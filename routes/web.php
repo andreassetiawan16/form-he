@@ -16,3 +16,5 @@ Route::get('/data-kesehatan/create', 'DataKesehatanController@create')->name('cr
 
 Route::get('/data-peserta', 'PesertaController@index')->name('data.peserta');
 Route::get('/data-peserta/create', 'PesertaController@create')->name('create.data.peserta');
+Route::get('tablePeserta', 'PesertaController@table');
+Route::post('/data-peserta/store', 'PesertaController@store');

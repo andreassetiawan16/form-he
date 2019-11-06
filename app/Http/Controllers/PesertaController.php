@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Peserta;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Datatables;
 
 class PesertaController extends Controller
 {
@@ -15,6 +18,32 @@ class PesertaController extends Controller
     public function index()
     {
         return view('peserta.index');
+    }
+
+    public function table(Request $request)
+    {
+        $input = $request->all();
+        $perPage = $request->has('per_page') ? (int) $input['per_page'] : 10;
+
+        $query = Peserta::query();
+        if($request->has('sort') && !empty($input['sort'])){
+            $sort = explode('|', $request->sort);
+        
+            $query->orderBy($sort[0], strtoupper($sort[1]));
+        }else{
+            $query->orderBy('created_at', 'DESC');
+        }
+        
+        $total = $query->count();
+        $currentPage = $request->input('page', 1);
+        $offset = ($currentPage - 1) * $perPage;
+        $result = $query->offset($offset)->limit($perPage)->get();
+    
+        $pesertas = new LengthAwarePaginator($result,$total,$perPage,$currentPage,[
+            'path' => Paginator::resolveCurrentPath(),
+            'pageName' => 'peserta'
+        ]);
+        return response()->json($pesertas)->setStatusCode(200);
     }
 
     /**
@@ -35,7 +64,10 @@ class PesertaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return response()->json([
+    		'success' => true,
+    		'message' => 'Pesan berhasil dikirim.'
+    	]);
     }
 
     /**

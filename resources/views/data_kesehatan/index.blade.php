@@ -5,7 +5,7 @@
 @endsection
 
 @section('add_button')
-    <a class="btn btn-block btn-primary" href="{{route("create.data.kesehatan")}}">Tambah</a>
+    <a class="btn btn-primary" href="{{route("create.data.kesehatan")}}">Tambah</a>
 @endsection
 
 @section('title_page')

@@ -36,16 +36,16 @@ desired effect
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
+    <section class="content-header" style="display:flex; justify-content:space-between; align-items:center">
       <h1>
         @yield('title_page')
         {{-- <small>Optional description</small> --}}
       </h1>
-      <ol class="breadcrumb">
+      {{-- <ol class="breadcrumb"> --}}
         @yield('add_button')
         {{-- <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
         <li class="active">Here</li> --}}
-      </ol>
+      {{-- </ol> --}}
     </section>
 
     <!-- Main content -->

@@ -4,3 +4,5 @@
 <script src="{{url('assets/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{url('assets/dist/js/adminlte.min.js')}}"></script>
+
+<script src="/js/app.js"></script>

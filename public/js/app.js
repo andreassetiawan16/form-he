@@ -2059,7 +2059,34 @@ __webpack_require__.r(__webpack_exports__);
       if (this.errorMessage[field] && this.errorMessage[field].length > 0) {
         return 'error';
       }
+    },
+    getDetailPeserta: function getDetailPeserta() {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function getDetailPeserta$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios__WEBPACK_IMPORTED_MODULE_1___default()({
+                method: 'GET',
+                url: '1/show',
+                data: this.peserta
+              }));
+
+            case 2:
+              response = _context2.sent;
+              console.log('response :', response);
+
+            case 4:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, null, this);
     }
+  },
+  mounted: function mounted() {
+    this.getDetailPeserta();
   }
 });
 

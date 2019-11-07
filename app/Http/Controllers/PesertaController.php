@@ -88,9 +88,12 @@ class PesertaController extends Controller
      * @param  \App\Peserta  $peserta
      * @return \Illuminate\Http\Response
      */
-    public function show(Peserta $peserta)
+    public function show($id)
     {
-        //
+        $peserta = Peserta::find($id);
+        return response ()->json([
+            'data' => $peserta
+        ]);
     }
 
     /**

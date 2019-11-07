@@ -75,18 +75,7 @@ export default {
       if (this.errorMessage[field] && this.errorMessage[field].length > 0) {
         return 'error'
       }
-    },
-    async getDetailPeserta () {
-      let response = await axios({
-          method: 'GET',
-          url: '1/show',
-          data: this.peserta
-      })
-      console.log('response :', response)
     }
-  },
-  mounted () {
-    this.getDetailPeserta()
   }
 }
 </script>

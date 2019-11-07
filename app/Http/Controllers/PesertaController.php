@@ -6,7 +6,8 @@ use App\Peserta;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Datatables;
+use App\Http\Requests\PesertaRequest;
+use Validator;
 
 class PesertaController extends Controller
 {
@@ -64,10 +65,21 @@ class PesertaController extends Controller
      */
     public function store(Request $request)
     {
-        return response()->json([
-    		'success' => true,
-    		'message' => 'Pesan berhasil dikirim.'
-    	]);
+        $data = $request->all();
+        $validator = Validator::make($data, PesertaRequest::rules());
+        if ($validator->fails()) {
+            $errorMessage = $validator->errors()->getMessages();
+            return response()->json([
+                'message' => $errorMessage,
+                'status' => 406
+            ]);
+        } else {
+            $response = Peserta::create($data);
+            return response()->json([
+                'data' => $response,
+                'message' => 'Berhasil membuat data peserta'
+            ]);
+        }
     }
 
     /**

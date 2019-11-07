@@ -1966,11 +1966,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2013,51 +2014,52 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       peserta: {
-        nama: '',
-        usia: '',
-        jenis_kelamin: '',
-        tinggi: '',
-        tempat_lahir: '',
-        tanggal_lahir: '',
-        alamat: ''
-      }
+        nama: null,
+        usia: null,
+        jenis_kelamin: null,
+        tinggi: null,
+        tempat_lahir: null,
+        tanggal_lahir: null,
+        alamat: null
+      },
+      errorMessage: {}
     };
   },
   methods: {
-    createPeserta: function () {
-      var _createPeserta = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var response;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default()({
-                  method: 'POST',
-                  url: 'store',
-                  data: this.peserta
-                });
+    createPeserta: function createPeserta() {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function createPeserta$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios__WEBPACK_IMPORTED_MODULE_1___default()({
+                method: 'POST',
+                url: 'store',
+                data: this.peserta
+              }));
 
-              case 2:
-                response = _context.sent;
-                console.log('pserta : ', response);
+            case 2:
+              response = _context.sent;
 
-              case 4:
-              case "end":
-                return _context.stop();
-            }
+              if (response.data.status === 200) {
+                window.location = '/data-peserta/';
+              } else {
+                this.errorMessage = Object.assign({}, response.data.message);
+              }
+
+            case 4:
+            case "end":
+              return _context.stop();
           }
-        }, _callee, this);
-      }));
-
-      function createPeserta() {
-        return _createPeserta.apply(this, arguments);
+        }
+      }, null, this);
+    },
+    getErrorMessage: function getErrorMessage(field) {
+      if (this.errorMessage[field] && this.errorMessage[field].length > 0) {
+        return 'error';
       }
-
-      return createPeserta;
-    }()
+    }
   }
 });
 
@@ -23876,207 +23878,306 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container-fluid" }, [
-    _vm._v("\n  " + _vm._s(_vm.peserta) + "\n  "),
-    _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "nama" } }, [_vm._v("Nama")]),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.peserta.nama,
-            expression: "peserta.nama"
-          }
-        ],
-        staticClass: "form-control input-text",
-        attrs: { type: "email" },
-        domProps: { value: _vm.peserta.nama },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.$set(_vm.peserta, "nama", $event.target.value)
-          }
-        }
-      })
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "Usia" } }, [_vm._v("Usia")]),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.peserta.usia,
-            expression: "peserta.usia"
-          }
-        ],
-        staticClass: "form-control input-text",
-        attrs: { type: "number" },
-        domProps: { value: _vm.peserta.usia },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.$set(_vm.peserta, "usia", $event.target.value)
-          }
-        }
-      })
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "Jenis Kelamin" } }, [
-        _vm._v("Jenis Kelamin")
-      ]),
-      _vm._v(" "),
-      _c(
-        "select",
-        {
+    _c(
+      "div",
+      { staticClass: "form-group" },
+      [
+        _c("label", { staticClass: "required", attrs: { for: "nama" } }, [
+          _vm._v("Nama")
+        ]),
+        _vm._v(" "),
+        _c("input", {
           directives: [
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.peserta.jenis_kelamin,
-              expression: "peserta.jenis_kelamin"
+              value: _vm.peserta.nama,
+              expression: "peserta.nama"
             }
           ],
           staticClass: "form-control input-text",
+          class: _vm.getErrorMessage("nama"),
+          attrs: { type: "email" },
+          domProps: { value: _vm.peserta.nama },
           on: {
-            change: function($event) {
-              var $$selectedVal = Array.prototype.filter
-                .call($event.target.options, function(o) {
-                  return o.selected
-                })
-                .map(function(o) {
-                  var val = "_value" in o ? o._value : o.value
-                  return val
-                })
-              _vm.$set(
-                _vm.peserta,
-                "jenis_kelamin",
-                $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-              )
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.peserta, "nama", $event.target.value)
             }
           }
-        },
-        [
-          _c("option", [_vm._v("Laki-laki")]),
-          _vm._v(" "),
-          _c("option", [_vm._v("Perempuan")])
-        ]
-      )
-    ]),
+        }),
+        _vm._v(" "),
+        _vm._l(_vm.errorMessage.nama, function(error, i) {
+          return _c("div", { key: i, staticClass: "error-message" }, [
+            _vm._v(_vm._s(error))
+          ])
+        })
+      ],
+      2
+    ),
     _vm._v(" "),
-    _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "Tinggi" } }, [_vm._v("Tinggi")]),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.peserta.tinggi,
-            expression: "peserta.tinggi"
-          }
-        ],
-        staticClass: "form-control input-text",
-        attrs: { type: "number" },
-        domProps: { value: _vm.peserta.tinggi },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+    _c(
+      "div",
+      { staticClass: "form-group" },
+      [
+        _c("label", { staticClass: "required", attrs: { for: "Usia" } }, [
+          _vm._v("Usia")
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.peserta.usia,
+              expression: "peserta.usia"
             }
-            _vm.$set(_vm.peserta, "tinggi", $event.target.value)
+          ],
+          staticClass: "form-control input-text",
+          class: _vm.getErrorMessage("usia"),
+          attrs: { type: "number" },
+          domProps: { value: _vm.peserta.usia },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.peserta, "usia", $event.target.value)
+            }
           }
-        }
-      })
-    ]),
+        }),
+        _vm._v(" "),
+        _vm._l(_vm.errorMessage.usia, function(error, i) {
+          return _c("div", { key: i, staticClass: "error-message" }, [
+            _vm._v(_vm._s(error))
+          ])
+        })
+      ],
+      2
+    ),
     _vm._v(" "),
-    _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "Tempat Lahir" } }, [_vm._v("Tempat Lahir")]),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
+    _c(
+      "div",
+      { staticClass: "form-group" },
+      [
+        _c(
+          "label",
+          { staticClass: "required", attrs: { for: "Jenis Kelamin" } },
+          [_vm._v("Jenis Kelamin")]
+        ),
+        _vm._v(" "),
+        _c(
+          "select",
           {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.peserta.tempat_lahir,
-            expression: "peserta.tempat_lahir"
-          }
-        ],
-        staticClass: "form-control input-text",
-        attrs: { type: "text" },
-        domProps: { value: _vm.peserta.tempat_lahir },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.peserta.jenis_kelamin,
+                expression: "peserta.jenis_kelamin"
+              }
+            ],
+            staticClass: "form-control input-text",
+            class: _vm.getErrorMessage("jenis_kelamin"),
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.$set(
+                  _vm.peserta,
+                  "jenis_kelamin",
+                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                )
+              }
             }
-            _vm.$set(_vm.peserta, "tempat_lahir", $event.target.value)
-          }
-        }
-      })
-    ]),
+          },
+          [
+            _c("option", [_vm._v("Laki-laki")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("Perempuan")])
+          ]
+        ),
+        _vm._v(" "),
+        _vm._l(_vm.errorMessage.jenis_kelamin, function(error, i) {
+          return _c("div", { key: i, staticClass: "error-message" }, [
+            _vm._v(_vm._s(error))
+          ])
+        })
+      ],
+      2
+    ),
     _vm._v(" "),
-    _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "Tanggal Lahir" } }, [
-        _vm._v("Tanggal Lahir")
-      ]),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.peserta.tanggal_lahir,
-            expression: "peserta.tanggal_lahir"
-          }
-        ],
-        staticClass: "form-control input-text",
-        attrs: { type: "text" },
-        domProps: { value: _vm.peserta.tanggal_lahir },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+    _c(
+      "div",
+      { staticClass: "form-group" },
+      [
+        _c("label", { staticClass: "required", attrs: { for: "Tinggi" } }, [
+          _vm._v("Tinggi")
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.peserta.tinggi,
+              expression: "peserta.tinggi"
             }
-            _vm.$set(_vm.peserta, "tanggal_lahir", $event.target.value)
+          ],
+          staticClass: "form-control input-text",
+          class: _vm.getErrorMessage("tinggi"),
+          attrs: { type: "number" },
+          domProps: { value: _vm.peserta.tinggi },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.peserta, "tinggi", $event.target.value)
+            }
           }
-        }
-      })
-    ]),
+        }),
+        _vm._v(" "),
+        _vm._l(_vm.errorMessage.tinggi, function(error, i) {
+          return _c("div", { key: i, staticClass: "error-message" }, [
+            _vm._v(_vm._s(error))
+          ])
+        })
+      ],
+      2
+    ),
     _vm._v(" "),
-    _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "Alamat" } }, [_vm._v("Alamat")]),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.peserta.alamat,
-            expression: "peserta.alamat"
-          }
-        ],
-        staticClass: "form-control input-text",
-        attrs: { type: "text" },
-        domProps: { value: _vm.peserta.alamat },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+    _c(
+      "div",
+      { staticClass: "form-group" },
+      [
+        _c(
+          "label",
+          { staticClass: "required", attrs: { for: "Tempat Lahir" } },
+          [_vm._v("Tempat Lahir")]
+        ),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.peserta.tempat_lahir,
+              expression: "peserta.tempat_lahir"
             }
-            _vm.$set(_vm.peserta, "alamat", $event.target.value)
+          ],
+          staticClass: "form-control input-text",
+          class: _vm.getErrorMessage("tempat_lahir"),
+          attrs: { type: "text" },
+          domProps: { value: _vm.peserta.tempat_lahir },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.peserta, "tempat_lahir", $event.target.value)
+            }
           }
-        }
-      })
-    ]),
+        }),
+        _vm._v(" "),
+        _vm._l(_vm.errorMessage.tempat_lahir, function(error, i) {
+          return _c("div", { key: i, staticClass: "error-message" }, [
+            _vm._v(_vm._s(error))
+          ])
+        })
+      ],
+      2
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "form-group" },
+      [
+        _c(
+          "label",
+          { staticClass: "required", attrs: { for: "Tanggal Lahir" } },
+          [_vm._v("Tanggal Lahir")]
+        ),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.peserta.tanggal_lahir,
+              expression: "peserta.tanggal_lahir"
+            }
+          ],
+          staticClass: "form-control input-text",
+          class: _vm.getErrorMessage("tanggal_lahir"),
+          attrs: { type: "date" },
+          domProps: { value: _vm.peserta.tanggal_lahir },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.peserta, "tanggal_lahir", $event.target.value)
+            }
+          }
+        }),
+        _vm._v(" "),
+        _vm._l(_vm.errorMessage.tanggal_lahir, function(error, i) {
+          return _c("div", { key: i, staticClass: "error-message" }, [
+            _vm._v(_vm._s(error))
+          ])
+        })
+      ],
+      2
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "form-group" },
+      [
+        _c("label", { staticClass: "required", attrs: { for: "Alamat" } }, [
+          _vm._v("Alamat")
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.peserta.alamat,
+              expression: "peserta.alamat"
+            }
+          ],
+          staticClass: "form-control input-text",
+          class: _vm.getErrorMessage("alamat"),
+          attrs: { type: "text" },
+          domProps: { value: _vm.peserta.alamat },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.peserta, "alamat", $event.target.value)
+            }
+          }
+        }),
+        _vm._v(" "),
+        _vm._l(_vm.errorMessage.alamat, function(error, i) {
+          return _c("div", { key: i, staticClass: "error-message" }, [
+            _vm._v(_vm._s(error))
+          ])
+        })
+      ],
+      2
+    ),
     _vm._v(" "),
     _c(
       "button",
@@ -38402,8 +38503,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\xampp\htdocs\HealthExpo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\xampp\htdocs\HealthExpo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/andreas/Documents/Work/form-he/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/andreas/Documents/Work/form-he/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

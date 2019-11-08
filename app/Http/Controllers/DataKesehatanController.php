@@ -36,6 +36,10 @@ class DataKesehatanController extends Controller
     public function store(Request $request)
     {
         //
+        return response()->json([
+    		'success' => true,
+    		'message' => 'Pesan berhasil dikirim.'
+    	]);
     }
 
     /**

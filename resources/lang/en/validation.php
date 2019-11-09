@@ -133,7 +133,7 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
-        'id_perserta' => [
+        'peserta_id' => [
             'required' => 'the peserta field is required'
         ]
     ],

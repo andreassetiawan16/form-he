@@ -9,4 +9,10 @@ class Peserta extends Model
     protected $fillable = [
         'nama', 'alamat', 'jenis_kelamin', 'tinggi', 'tempat_lahir', 'tanggal_lahir', 'usia'
     ];
+    
+    public function dataKesehatan()
+    {
+        return $this->hasMany(DataKesehatan::class);
+    }
+
 }

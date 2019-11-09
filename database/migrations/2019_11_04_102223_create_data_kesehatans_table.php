@@ -16,7 +16,7 @@ class CreateDataKesehatansTable extends Migration
         Schema::create('data_kesehatans', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->integer('id_perserta');
+            $table->integer('peserta_id');
             $table->longText('tempat_tanggal_he');
             $table->integer('bab_setiap_hari');
             $table->integer('bab_malam_hari');
@@ -27,6 +27,7 @@ class CreateDataKesehatansTable extends Migration
             $table->integer('kolestrol');
             $table->integer('hasil_lingkar_perut');
             $table->integer('nilai_rujukan_lingkar_perut');
+            $table->string('status_berat_badan');
             $table->integer('hasil_berat_badan');
             $table->integer('nilai_rujukan_berat_badan');
             $table->integer('angka_lemak_tubuh');

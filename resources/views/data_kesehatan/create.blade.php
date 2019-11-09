@@ -12,7 +12,7 @@
     <div class="box box-primary">
         <div class="box-body">
             <div id="app">
-                <data-kesehatan-form></data-kesehatan-form>
+                <data-kesehatan-form :isedit=false></data-kesehatan-form>
             </div>
         </div>
     </div>

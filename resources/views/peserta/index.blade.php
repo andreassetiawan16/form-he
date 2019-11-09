@@ -16,7 +16,7 @@
     <div class="box">
         <div class="box-body">
             <div id="app">
-                <custom-vuetable vuetable_ref="pesertaTable" url="{{url("tablePeserta")}}"></custom-vuetable>
+                <peserta-table url="{{url("tablePeserta")}}"></peserta-table>
             </div>
         </div>
     </div>

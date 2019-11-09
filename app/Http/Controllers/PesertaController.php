@@ -158,8 +158,15 @@ class PesertaController extends Controller
      * @param  \App\Peserta  $peserta
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Peserta $peserta)
+    public function destroy(Request $request)
     {
-        //
+        $peserta = Peserta::find($request->id);
+        $peserta->dataKesehatan()->delete();
+        $peserta->delete();
+
+        return response()->json([
+            'message' => 'Berhasil menghapus user',
+            'status' => 200
+        ]);
     }
 }

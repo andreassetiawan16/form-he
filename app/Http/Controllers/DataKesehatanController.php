@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\DataKesehatan;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Validator;
 
 class DataKesehatanController extends Controller
 {
@@ -22,7 +25,8 @@ class DataKesehatanController extends Controller
         $input = $request->all();
         $perPage = $request->has('per_page') ? (int) $input['per_page'] : 10;
 
-        $query = DataKesehatan::query();
+        $query = DataKesehatan::with('peserta');
+
         if($request->has('sort') && !empty($input['sort'])){
             $sort = explode('|', $request->sort);
         
@@ -61,10 +65,12 @@ class DataKesehatanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $response = DataKesehatan::create($data);
         return response()->json([
-    		'success' => true,
-    		'message' => 'Pesan berhasil dikirim.'
+            'data' => $response,
+            'message' => 'Berhasil Membuat Data Kesehatan',
+    		'status' => 200
     	]);
     }
 
@@ -90,9 +96,10 @@ class DataKesehatanController extends Controller
      * @param  \App\DataKesehatan  $dataKesehatan
      * @return \Illuminate\Http\Response
      */
-    public function edit(DataKesehatan $dataKesehatan)
+    public function edit($id)
     {
-        //
+        $dataKesehatan = DataKesehatan::find($id);
+        return view('data_kesehatan.edit', ['dataKesehatan' => $dataKesehatan]);
     }
 
     /**

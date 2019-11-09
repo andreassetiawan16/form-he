@@ -13,7 +13,7 @@
 @endsection
 
 @section('content')
-    <div class="box box-primary">
+    <div class="box">
         <div class="box-body">
             <div id="app">
                 <custom-vuetable vuetable_ref="pesertaTable" url="{{url("tablePeserta")}}"></custom-vuetable>

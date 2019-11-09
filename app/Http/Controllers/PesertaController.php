@@ -7,10 +7,13 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Http\Requests\PesertaRequest;
+use App\Http\Traits\DataKesehatanTrait;
 use Validator;
 
 class PesertaController extends Controller
 {
+    
+    use DataKesehatanTrait;
     /**
      * Display a listing of the resource.
      *
@@ -25,14 +28,17 @@ class PesertaController extends Controller
     {
         $input = $request->all();
         $perPage = $request->has('per_page') ? (int) $input['per_page'] : 10;
-
         $query = Peserta::query();
-        if($request->has('sort') && !empty($input['sort'])){
-            $sort = explode('|', $request->sort);
-        
-            $query->orderBy($sort[0], strtoupper($sort[1]));
-        }else{
-            $query->orderBy('created_at', 'DESC');
+        if ($request->has('filter')) {
+            $query->where('nama', 'LIKE', '%'.$request->filter.'%');
+        } else {
+            if($request->has('sort') && !empty($input['sort'])){
+                $sort = explode('|', $request->sort);
+            
+                $query->orderBy($sort[0], strtoupper($sort[1]));
+            }else{
+                $query->orderBy('created_at', 'DESC');
+            }
         }
         
         $total = $query->count();
@@ -77,7 +83,8 @@ class PesertaController extends Controller
             $response = Peserta::create($data);
             return response()->json([
                 'data' => $response,
-                'message' => 'Berhasil membuat data peserta'
+                'message' => 'Berhasil membuat data peserta',
+                'status' => 200
             ]);
         }
     }
@@ -96,15 +103,25 @@ class PesertaController extends Controller
         ]);
     }
 
+    public function search(Request $request)
+    {
+        $input = $request->all();
+        $pesertas = Peserta::where('nama', 'LIKE', '%'.$input['query'].'%')->get();
+        return response()->json([
+            'data' => $pesertas
+        ]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Peserta  $peserta
      * @return \Illuminate\Http\Response
      */
-    public function edit(Peserta $peserta)
+    public function edit($id)
     {
-        //
+        $peserta = Peserta::find($id);
+        return view('peserta.edit', ['peserta' => $peserta]);
     }
 
     /**
@@ -114,9 +131,25 @@ class PesertaController extends Controller
      * @param  \App\Peserta  $peserta
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Peserta $peserta)
+    public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        $validator = Validator::make($data, PesertaRequest::rules());
+        if ($validator->fails()) {
+            $errorMessage = $validator->errors()->getMessages();
+            return response()->json([
+                'message' => $errorMessage,
+                'status' => 406
+            ]);
+        } else {
+            $updatePeserta = Peserta::find($id);
+            $updatePeserta->update($data);
+            return response()->json([
+                'data' => $updatePeserta,
+                'message' => 'Berhasil membuat data peserta',
+                'status' => 200
+            ]);
+        }
     }
 
     /**

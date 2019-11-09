@@ -17,6 +17,12 @@
           .fa-trash-alt
             &:hover
               color: #e60023
+.vuetable-action
+  display: flex
+  align-items: center
+  justify-content: space-around
+  .fa
+    cursor: pointer
 
   thead
     color: #595D6C
@@ -72,3 +78,13 @@
       &.active
         background-color: #2c77f4
         color: white
+
+.vuetable-search
+  display: flex
+  align-items: center
+  justify-content: space-between
+  .input-group
+    width: 150px
+    .input-group-btn
+      .vuetable-btn-search
+        padding: 4px 12px

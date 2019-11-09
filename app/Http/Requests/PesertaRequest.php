@@ -33,4 +33,5 @@ class PesertaRequest extends FormRequest
             'usia' => 'required|integer',
         ];
     }
+    
 }

@@ -38,12 +38,22 @@
       <input type="text" class="form-control input-text" :class="getErrorMessage('alamat')" v-model="peserta.alamat">
       <div class="error-message" v-for="(error, i) in errorMessage.alamat" :key="i">{{ error }}</div>
     </div>
+    <!-- conton search peserta -->
+    <div class="form-group">
+      <vue-select :options="pesertas" label="nama" @search="searchPeserta" :clearable="false"></vue-select>
+    </div>
     <button class="btn btn-primary" @click="createPeserta">Save</button>
+    <!-- conton search peserta -->
   </div>
 </template>
 <script>
 import axios from 'axios'
+import vueSelect from 'vue-select'
 export default {
+  props: ['proppeserta', 'isedit'],
+  components: {
+    vueSelect
+  },
   data () {
     return {
       peserta: {
@@ -55,16 +65,28 @@ export default {
         tanggal_lahir: null,
         alamat: null
       },
-      errorMessage: {}
+      errorMessage: {},
+      pesertas: [],
     }
   },
   methods: {
     async createPeserta () {
-      let response = await axios({
+      let response = ''
+      if (!this.isedit) {
+        response = await axios({
+            method: 'POST',
+            url: 'store',
+            data: this.peserta
+        })
+      } else {
+        let payload = Object.assign({}, this.peserta)
+        delete payload.id
+        response = await axios({
           method: 'POST',
-          url: 'store',
-          data: this.peserta
-      })
+          url: 'update',
+          data: payload
+        })
+      }
       if (response.data.status === 200) {
         window.location = '/data-peserta/'
       } else {
@@ -75,7 +97,21 @@ export default {
       if (this.errorMessage[field] && this.errorMessage[field].length > 0) {
         return 'error'
       }
+    },
+    searchPeserta (search, loading) {
+      fetch ('/data-peserta/search?query=' + search)
+      .then(res => {
+        res.json()
+        .then(json => (this.pesertas = json.data));
+      })
     }
+  },
+  mounted () {
+    if (this.proppeserta) {
+      this.peserta = Object.assign({}, JSON.parse(this.proppeserta))
+      this.peserta.tanggal_lahir = this.peserta.tanggal_lahir.substring(0, 10)
+    }
+    this.searchPeserta('', true)
   }
 }
 </script>

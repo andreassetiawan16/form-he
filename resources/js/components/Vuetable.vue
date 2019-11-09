@@ -1,11 +1,22 @@
 <template>
   <div>
+    <div class="vuetable-search">
+      <div class="input-group">
+        <input type="text" class="form-control input-text" v-model="searchWord" @keyup.enter="doSearch">
+        <div class="input-group-btn">
+          <button class="btn btn-default vuetable-btn-search" @click="doSearch"><i class="fa fa-search"></i></button>
+        </div>
+      </div>
+    </div>
     <vuetable :ref="vuetable_ref"
-              :api-url="url"
+              :api-url="tempUrl"
               :fields="fields"
               pagination-path=""
               @vuetable:pagination-data="onPaginationData"
     >
+    <div slot="action" slot-scope="props" class="vuetable-action">
+      <span><i class="fa fa-pencil" @click="editPeserta(props.rowData.id)"></i> Edit</span>
+    </div>
     </vuetable>
     <div class="vuetable-pagination">
 
@@ -59,7 +70,9 @@ export default {
           }
         }
       },
-      fields: []
+      tempUrl: '',
+      fields: [],
+      searchWord: ''
     }
   },
   methods: {
@@ -69,14 +82,21 @@ export default {
     },
     onChangePage (page) {
       this.$refs[this.vuetable_ref].changePage(page)
+    },
+    editPeserta (id) {
+      window.location = '/data-peserta/' + id + '/edit'
+    },
+    doSearch () {
+      this.tempUrl = this.url + '?filter=' + this.searchWord
+      this.$nextTick(function () {
+        this.$refs[this.vuetable_ref].refresh()
+      })
     }
   },
   created () {
+    this.tempUrl = this.url
     if (this.vuetable_ref === 'pesertaTable') {
       this.fields = [
-        {
-          name: '__checkbox'
-        },
         {
           name: 'nama',
           title: 'Nama',
@@ -96,6 +116,11 @@ export default {
           name: 'alamat',
           title: 'Alamat',
           sortField: 'alamat'
+        },
+        {
+          name: '__slot:action',
+          title: 'Action',
+          titleClass: 'text-center'
         }
       ]
     }

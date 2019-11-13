@@ -17,12 +17,15 @@ class CreatePesertasTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->string('nama');
+            $table->string('email');
+            $table->string('usia');
             $table->longText('alamat');
             $table->string('jenis_kelamin');
             $table->integer('tinggi');
             $table->longText('tempat_lahir');
             $table->dateTime('tanggal_lahir');
-            $table->integer('usia');
+            $table->string('no_telepon');
+            $table->string('no_wa')->nullable();
         });
     }
 

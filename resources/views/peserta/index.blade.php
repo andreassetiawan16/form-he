@@ -4,20 +4,16 @@
     Health Expo
 @endsection
 
-@section('add_button')
-    <a class="btn btn-primary" href="{{route("create.data.peserta")}}">Tambah</a>
-@endsection
-
-@section('title_page')
-    Data Peserta
-@endsection
-
 @section('content')
-    <div class="box">
-        <div class="box-body">
-            <div id="app">
-                <peserta-table url="{{url("tablePeserta")}}"></peserta-table>
+    <div class="box box-info">
+        <div class="container-fluid">
+            <div class="head-content-section">
+                <h3>Data Peserta</h3>
+                <a class="btn btn-info" href="{{route("create.data.peserta")}}">Tambah</a>
             </div>
+        </div>
+        <div id="app">
+            <peserta-table url="{{url("tablePeserta")}}"></peserta-table>
         </div>
     </div>
 @endsection

@@ -1,22 +1,21 @@
 <template>
-  <div>
+  <div class="container-fluid">
     <!-- delete modal -->
-    <modal name="delete-data-kesehatan-modal" :width="500" :height="350">
-      <sweetalert-icon icon="warning" />
-      <h4 class="text-center" v-if="dataKesehatan.peserta">Apa anda yakin ingin menghapus data kesehatan {{ dataKesehatan.peserta.nama }}?</h4>
-      <div class="modal-action">
-        <span class="btn-cancel" @click="hideDeleteModal">Cancel</span>
-        <button class="btn btn-danger" @click="deleteDataKesehatan">Hapus</button>
-      </div>
-    </modal>
+    <delete-modal modalname="delete-peserta-modal" :width="500" :height="350" @doDelete="deletePeserta">
+      <template slot="title">Apa anda yakin ingin menghapus data peserta {{ peserta.nama }}?</template>
+      <template slot="description">Seluruh data kesehatan {{ peserta.nama }} juga akan dihapus</template>
+    </delete-modal>
     <!-- end delete modal -->
 
     <!-- loading modal -->
-     <modal name="loading-modal" :width="500">
-      <sweetalert-icon icon="loading" />
-      <h4 class="text-center">Loading</h4>
-    </modal>
+    <loading-modal />
     <!-- end loading modal -->
+
+    <!-- success modal -->
+    <success-modal>
+      Berhasil menghapus data peserta {{ peserta.nama }}
+    </success-modal>
+    <!-- endsuccess modal -->
 
     <!-- table -->
     <!-- <div class="vuetable-search">
@@ -27,17 +26,18 @@
         </div>
       </div>
     </div> -->
-    <vuetable ref="data_kesehatan_table"
+    <vuetable ref="peserta_table"
               :api-url="tempUrl"
               :fields="fields"
+              :per-page="10"
               pagination-path=""
               @vuetable:pagination-data="onPaginationData"
     >
       <div slot="nama" slot-scope="props">
-        <a :href="'/data-kesehatan/' + props.rowData.id + '/edit'">{{ props.rowData.peserta.nama }}</a>
+        <a :href="'/data-peserta/' + props.rowData.id + '/edit'">{{ props.rowData.nama }}</a>
       </div>
       <div slot="action" slot-scope="props" class="vuetable-action">
-        <span class="clickable" @click="showDeleteModal(props.rowData)"><i class="fa fa-trash"></i> Delete</span>
+        <span class="clickable delete" @click="showDeleteModal(props.rowData)"><i class="fa fa-trash"></i> Delete</span>
       </div>
     </vuetable>
     <div class="vuetable-pagination">
@@ -55,6 +55,7 @@
 
     </div>
     <!-- end table -->
+
   </div>
 </template>
 <script>
@@ -83,30 +84,38 @@ export default {
           pageClass: 'link-pagination',
           linkClass: '',
           icons: {
-            first: 'fa fa-angle-double-left',
-            prev: 'fa fa-angle-left',
-            next: 'fa fa-angle-right',
-            last: 'fa fa-angle-double-right',
+            prev: 'fa fa-chevron-left prev',
+            next: 'fa fa-chevron-right next'
           }
         }
       },
+      tempUrl: '',
       fields: [
         {
           name: '__slot:nama',
           title: 'Nama'
         },
         {
-          name: 'tempat_tanggal_he',
-          title: 'Tempat dan Tanggal HE'
+          name: 'email',
+          title: 'Email'
+        },
+        {
+          name: 'no_telepon',
+          title: 'Nomor Telepon'
+        },
+        {
+          name: 'alamat',
+          title: 'Alamat',
+          sortField: 'alamat'
+        },
+        {
+          name: '__slot:action',
+          title: 'Action',
+          titleClass: 'text-center'
         }
-        // {
-        //   name: '__slot:action',
-        //   title: 'Action',
-        //   titleClass: 'text-center'
-        // }
       ],
-      tempUrl: '',
-      dataKesehatan: {}
+      searchWord: '',
+      peserta: {}
     }
   },
   methods: {
@@ -115,33 +124,41 @@ export default {
       this.$refs.paginationInfo.setPaginationData(paginationData)
     },
     onChangePage (page) {
-      this.$refs.data_kesehatan_table.changePage(page)
+      this.$refs.peserta_table.changePage(page)
     },
-    showDeleteModal (dataKesehatan) {
-      this.$modal.show('delete-data-kesehatan-modal')
-      this.dataKesehatan = Object.assign({}, dataKesehatan)
+    showDeleteModal (peserta) {
+      this.$modal.show('delete-peserta-modal')
+      this.peserta = Object.assign({}, peserta)
     },
     hideDeleteModal () {
-      this.$modal.hide('delete-data-kesehatan-modal')
+      this.$modal.hide('delete-peserta-modal')
     },
-    async deleteDataKesehatan () {
+    async deletePeserta () {
       this.hideDeleteModal()
       this.$modal.show('loading-modal')
       let response = await axios ({
         method: 'POST',
-        url: 'delete',
-        data: {id: this.dataKesehatan.id}
+        url: process.env.MIX_BASE_URL + '/data-peserta/delete',
+        data: {id: this.peserta.id}
       })
       if (response.data.status === 200) {
         setTimeout(() => {
-          this.refreshTable()
           this.$modal.hide('loading-modal')
+          this.$modal.show('success-modal')
+          setTimeout(() => {
+            this.$modal.hide('success-modal')
+            this.refreshTable()
+          }, 2000)
         }, 2000)
       }
     },
+    doSearch () {
+      this.tempUrl = this.url + '?filter=' + this.searchWord
+      this.refreshTable()
+    },
     refreshTable () {
       this.$nextTick(function () {
-        this.$refs.data_kesehatan_table.refresh()
+        this.$refs.peserta_table.refresh()
       })
     }
   },

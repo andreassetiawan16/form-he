@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Peserta extends Model
 {
     protected $fillable = [
-        'nama', 'alamat', 'jenis_kelamin', 'tinggi', 'tempat_lahir', 'tanggal_lahir', 'usia'
+        'nama', 'email', 'usia', 'alamat', 'jenis_kelamin', 'tinggi', 'tempat_lahir', 'tanggal_lahir', 'no_telepon', 'no_wa',
     ];
     
     public function dataKesehatan()

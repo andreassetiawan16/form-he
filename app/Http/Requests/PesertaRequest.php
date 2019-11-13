@@ -25,6 +25,8 @@ class PesertaRequest extends FormRequest
     {
         return [
             'nama' => 'required',
+            'email' => 'required|email',
+            'no_telepon' => 'required',
             'alamat' => 'required',
             'jenis_kelamin' => 'required',
             'tinggi' => 'required|integer',

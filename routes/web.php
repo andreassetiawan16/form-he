@@ -13,9 +13,11 @@
 
 Route::get('/data-kesehatan', 'DataKesehatanController@index')->name('data.kesehatan');
 Route::get('/data-kesehatan/create', 'DataKesehatanController@create')->name('create.data.kesehatan');
-Route::get('tableDataKesehatan', 'DataKesehatanController@table');
+Route::get('/tableDataKesehatan/{id}', 'DataKesehatanController@table');
 Route::post('/data-kesehatan/store', 'DataKesehatanController@store');
 Route::get('/data-kesehatan/{id}/edit', 'DataKesehatanController@edit');
+Route::post('/data-kesehatan/{id}/update', 'DataKesehatanController@update');
+Route::post('/data-kesehatan/delete', 'DataKesehatanController@destroy');
 
 Route::get('/data-peserta', 'PesertaController@index')->name('data.peserta');
 Route::get('/data-peserta/create', 'PesertaController@create')->name('create.data.peserta');

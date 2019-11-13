@@ -1,0 +1,31 @@
+.vdpComponent
+  display: block !important
+  &.vdpWithInput
+    input
+      border-color: #d2d6de
+      width: 100%
+      padding: 0 7px
+      height: 30px
+      border-radius: 3px
+      font-size: 13px
+      line-height: 1.42857143
+      border: 1px solid #ccc
+      color: #555
+      &:focus
+        border-color: #3c8dbc
+        box-shadow: none
+        outline: 0
+    &.error
+      input
+        border: 1px solid #dd4b39
+    &.vdpFloating
+      &.vdpPositionBottom
+        bottom: 100% !important
+
+    .vdpCell
+      &.selected 
+        .vdpCellContent
+          background: #00c0ef !important
+      &:hover
+        .vdpCellContent
+          background: #00c0ef !important

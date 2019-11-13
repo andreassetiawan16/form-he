@@ -12,7 +12,7 @@
 
   <link rel="stylesheet" href="{{url('assets/dist/css/AdminLTE.min.css')}}">
 
-  <link rel="stylesheet" href="{{url('assets/dist/css/skins/skin-blue-light.min.css')}}">
+  {{-- <link rel="stylesheet" href="{{url('assets/dist/css/skins/skin-blue-light.min.css')}}"> --}}
 
   <link rel="stylesheet" href="/css/app.css">
   

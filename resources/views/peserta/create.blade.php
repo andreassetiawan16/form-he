@@ -4,16 +4,10 @@
     Health Expo
 @endsection
 
-@section('title_page')
-    Tambah Data Peserta
-@endsection
-
 @section('content')
-    <div class="box box-primary">
-        <div class="box-body">
-            <div id="app">
-                <data-peserta-form :isedit=false></data-peserta-form>
-            </div>
+    <div class="box box-info">
+        <div id="app">
+            <data-peserta-form :isedit=false :isShow=false></data-peserta-form>
         </div>
     </div>
 @endsection

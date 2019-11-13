@@ -3,7 +3,7 @@
 <html>
 @include('skeleton.header')
 
-<body class="hold-transition skin-blue-light sidebar-mini">
+<body class="hold-transition sidebar-mini">
 <div class="wrapper">
 
   <!-- Main Header -->

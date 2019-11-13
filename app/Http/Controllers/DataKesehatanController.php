@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\DataKesehatan;
+use App\Peserta;
 use Illuminate\Http\Request;
+use App\Http\Requests\DataKesehatanRequest;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Validator;
@@ -20,12 +22,14 @@ class DataKesehatanController extends Controller
         return view('data_kesehatan.index');
     }
 
-    public function table(Request $request)
+    public function table(Request $request, $id)
     {
+        // $dataKesehatan = Peserta::find($id)->dataKesehatan()->paginate(1);
+        // return response()->json($dataKesehatan);
         $input = $request->all();
         $perPage = $request->has('per_page') ? (int) $input['per_page'] : 10;
 
-        $query = DataKesehatan::with('peserta');
+        $query = Peserta::find($id)->dataKesehatan();
 
         if($request->has('sort') && !empty($input['sort'])){
             $sort = explode('|', $request->sort);
@@ -66,12 +70,21 @@ class DataKesehatanController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $response = DataKesehatan::create($data);
-        return response()->json([
-            'data' => $response,
-            'message' => 'Berhasil Membuat Data Kesehatan',
-    		'status' => 200
-    	]);
+        $validator = Validator::make($data, DataKesehatanRequest::rules());
+        if ($validator->fails()) {
+            $errorMessage = $validator->errors()->getMessages();
+            return response()->json([
+                'message' => $errorMessage,
+                'status' => 406
+            ]);
+        } else {
+            $response = DataKesehatan::create($data);
+            return response()->json([
+                'data' => $response,
+                'message' => 'Berhasil Membuat Data Kesehatan',
+                'status' => 200
+            ]);
+        }
     }
 
     /**
@@ -98,7 +111,7 @@ class DataKesehatanController extends Controller
      */
     public function edit($id)
     {
-        $dataKesehatan = DataKesehatan::find($id);
+        $dataKesehatan = DataKesehatan::with('peserta')->find($id);
         return view('data_kesehatan.edit', ['dataKesehatan' => $dataKesehatan]);
     }
 
@@ -109,9 +122,25 @@ class DataKesehatanController extends Controller
      * @param  \App\DataKesehatan  $dataKesehatan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, DataKesehatan $dataKesehatan)
+    public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        $validator = Validator::make($data, DataKesehatanRequest::rules());
+        if ($validator->fails()) {
+            $errorMessage = $validator->errors()->getMessages();
+            return response()->json([
+                'message' => $errorMessage,
+                'status' => 406
+            ]);
+        } else {
+            $updateDataKesehatan = DataKesehatan::find($id);
+            $updateDataKesehatan->update($data);
+            return response()->json([
+                'data' => $updateDataKesehatan,
+                'message' => 'Berhasil membuat data peserta',
+                'status' => 200
+            ]);
+        }
     }
 
     /**
@@ -120,8 +149,14 @@ class DataKesehatanController extends Controller
      * @param  \App\DataKesehatan  $dataKesehatan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DataKesehatan $dataKesehatan)
+    public function destroy(Request $request)
     {
-        //
+        $dataKesehatan = DataKesehatan::find($request->id);
+        $dataKesehatan->delete();
+
+        return ressponse()->json([
+            'message' => 'Berhasil menghapus data kesehatan',
+            'status' => 200
+        ]);
     }
 }

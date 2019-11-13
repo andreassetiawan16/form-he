@@ -8,6 +8,7 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Http\Requests\PesertaRequest;
 use App\Http\Traits\DataKesehatanTrait;
+use Carbon\Carbon;
 use Validator;
 
 class PesertaController extends Controller
@@ -72,6 +73,10 @@ class PesertaController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        $date = Carbon::parse($request->tanggal_lahir);
+        $now = Carbon::now();
+        $usia = $date->diffInYears($now);
+        $data['usia'] = $usia;
         $validator = Validator::make($data, PesertaRequest::rules());
         if ($validator->fails()) {
             $errorMessage = $validator->errors()->getMessages();
@@ -80,6 +85,7 @@ class PesertaController extends Controller
                 'status' => 406
             ]);
         } else {
+            $data['tanggal_lahir'] = $date;
             $response = Peserta::create($data);
             return response()->json([
                 'data' => $response,
@@ -134,6 +140,10 @@ class PesertaController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->all();
+        $date = Carbon::parse($request->tanggal_lahir);
+        $now = Carbon::now();
+        $usia = $date->diffInYears($now);
+        $data['usia'] = $usia;
         $validator = Validator::make($data, PesertaRequest::rules());
         if ($validator->fails()) {
             $errorMessage = $validator->errors()->getMessages();

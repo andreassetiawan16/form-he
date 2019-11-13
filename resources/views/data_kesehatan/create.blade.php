@@ -4,16 +4,10 @@
     Health Expo
 @endsection
 
-@section('title_page')
-    Tambah Data Kesehatan Peserta
-@endsection
-
 @section('content')
-    <div class="box box-primary">
-        <div class="box-body">
-            <div id="app">
-                <data-kesehatan-form :isedit=false></data-kesehatan-form>
-            </div>
+    <div class="box box-info">
+        <div id="app">
+            <data-kesehatan-form :iscreate=true urltablepeserta="{{url("tablePeserta")}}"></data-kesehatan-form>
         </div>
     </div>
 @endsection

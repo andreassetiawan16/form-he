@@ -3,6 +3,10 @@
 @import 'base/typography';
 @import 'component/vuetable';
 @import 'component/form';
+@import 'component/card';
 @import 'component/vue-select';
 @import 'component/modal';
+@import 'component/datepicker';
+@import 'component/pagination';
 @import 'vue-select/src/scss/vue-select.scss';
+@import 'vue-date-pick/src/vueDatePick.scss';

@@ -1,18 +1,40 @@
 <template>
   <div class="container-fluid">
-    <modal name="loading-modal" :width="500">
-      <sweetalert-icon icon="loading" />
-      <h4 class="text-center">Loading</h4>
-    </modal>
+    <loading-modal />
+
+    <success-modal>
+      {{ isedit ? `Berhasil update data peserta ${peserta.nama} ` : 'Berhasil membuat data peserta baru' }}
+    </success-modal>
 
     <!-- detail form -->
     <template v-if="isShow">
-      <div class="form-action" @click="editForm"><button class="btn btn-primary"><i class="fa fa-pencil"></i> Edit</button></div>
+      <div class="head-content-section">
+        <h3>Data Peserta {{ proppeserta ? JSON.parse(proppeserta).nama : '' }}</h3>
+        <button class="btn btn-info" @click="editForm"><i class="fa fa-pencil"></i> Edit</button>
+      </div>
       <div class="row form-group">
         <div class="col-sm-3">
           <div>Nama</div>
         </div>
         <div class="col-sm-9">: {{ peserta.nama }}</div>
+      </div>
+      <div class="row form-group">
+        <div class="col-sm-3">
+          <div>Email</div>
+        </div>
+        <div class="col-sm-9">: {{ peserta.email }}</div>
+      </div>
+      <div class="row form-group">
+        <div class="col-sm-3">
+          <div>Nomor Telepon</div>
+        </div>
+        <div class="col-sm-9">: {{ peserta.no_telepon }}</div>
+      </div>
+      <div class="row form-group">
+        <div class="col-sm-3">
+          <div>Nomor Whatsapp</div>
+        </div>
+        <div class="col-sm-9">: {{ peserta.no_wa ? peserta.no_wa : '-' }}</div>
       </div>
       <div class="row form-group">
         <div class="col-sm-3">
@@ -55,14 +77,27 @@
 
     <!-- edit form -->
     <template v-else>
+      <div class="head-content-section">
+        <h3>Data Peserta</h3>
+      </div>
       <div class="form-group">
         <label for="nama" class="required">Nama</label>
         <input type="email" class="form-control input-text" :class="getErrorMessage('nama')" v-model="peserta.nama">
         <div class="error-message" v-for="(error, i) in errorMessage.nama" :key="i">{{ error }}</div>
       </div>
       <div class="form-group">
-        <label for="Usia" class="required">Usia</label>
-        <input type="number" class="form-control input-text" :class="getErrorMessage('usia')" v-model="peserta.usia">
+        <label for="Email" class="required">Email</label>
+        <input type="email" class="form-control input-text" :class="getErrorMessage('email')" v-model="peserta.email">
+        <div class="error-message" v-for="(error, i) in errorMessage.email" :key="i">{{ error }}</div>
+      </div>
+      <div class="form-group">
+        <label for="Nomor Telepon" class="required">Nomor Telepon</label>
+        <input type="number" class="form-control input-text" :class="getErrorMessage('no_telepon')" v-model="peserta.no_telepon">
+        <div class="error-message" v-for="(error, i) in errorMessage.no_telepon" :key="i">{{ error }}</div>
+      </div>
+      <div class="form-group">
+        <label for="Nomor Whatsapp">Nomor Whatsapp</label>
+        <input type="number" class="form-control input-text" :class="getErrorMessage('no_wa')" v-model="peserta.no_wa">
         <div class="error-message" v-for="(error, i) in errorMessage.usia" :key="i">{{ error }}</div>
       </div>
       <div class="form-group">
@@ -85,7 +120,7 @@
       </div>
       <div class="form-group">
         <label for="Tanggal Lahir" class="required">Tanggal Lahir</label>
-        <input type="date" class="form-control input-text" :class="getErrorMessage('tanggal_lahir')" v-model="peserta.tanggal_lahir">
+        <vue-datepicker v-model="peserta.tanggal_lahir" :class="getErrorMessage('tanggal_lahir')" />
         <div class="error-message" v-for="(error, i) in errorMessage.tanggal_lahir" :key="i">{{ error }}</div>
       </div>
       <div class="form-group">
@@ -93,7 +128,7 @@
         <input type="text" class="form-control input-text" :class="getErrorMessage('alamat')" v-model="peserta.alamat">
         <div class="error-message" v-for="(error, i) in errorMessage.alamat" :key="i">{{ error }}</div>
       </div>
-      <button class="btn btn-primary" @click="createPeserta">Save</button>
+      <button class="btn btn-info" @click="createPeserta">Save</button>
     </template>
     <!-- edit form -->
   </div>
@@ -107,7 +142,9 @@ export default {
     return {
       peserta: {
         nama: null,
-        usia: null,
+        email: null,
+        no_telepon: null,
+        no_wa: null,
         jenis_kelamin: null,
         tinggi: null,
         tempat_lahir: null,
@@ -125,7 +162,7 @@ export default {
       if (!this.isedit) {
         response = await axios({
             method: 'POST',
-            url: 'store',
+            url: process.env.MIX_BASE_URL + '/data-peserta/store',
             data: this.peserta
         })
       } else {
@@ -133,17 +170,24 @@ export default {
         delete payload.id
         response = await axios({
           method: 'POST',
-          url: 'update',
+          url: process.env.MIX_BASE_URL + '/data-peserta/' + this.peserta.id + '/update',
           data: payload
         })
       }
       if (response.data.status === 200) {
         setTimeout(() => {
           this.$modal.hide('loading-modal')
-          window.location = '/data-peserta/'
+          this.$modal.show('success-modal')
+          setTimeout(() => {
+            this.$modal.hide('success-modal')
+            window.location = '/data-peserta/'
+          }, 2000)
         }, 2000)
       } else {
-        this.errorMessage = Object.assign({}, response.data.message)
+        setTimeout(() => {
+          this.$modal.hide('loading-modal')
+          this.errorMessage = Object.assign({}, response.data.message)
+        }, 2000)
       }
     },
     getErrorMessage (field) {

@@ -7,7 +7,7 @@
 @section('content')
     <div class="box box-info">
         <div id="app">
-            <data-kesehatan-form :iscreate=true urltablepeserta="{{url("tablePeserta")}}"></data-kesehatan-form>
+            <data-kesehatan-form :iscreate=true></data-kesehatan-form>
         </div>
     </div>
 @endsection

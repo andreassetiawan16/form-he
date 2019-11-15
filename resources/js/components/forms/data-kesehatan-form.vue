@@ -19,7 +19,7 @@
             <vue-select placeholder="Cari Peserta" :options="pesertas" label="nama" @search="searchPeserta" :clearable="false" :value="data.peserta.nama" @input="selectPeserta" :class="getErrorMessage('peserta_id')"></vue-select>
           </template>
           <template v-else>
-            <vue-select placeholder="Cari Peserta" :options="pesertas" label="nama" @search="searchPeserta" :clearable="false"  @input="selectPeserta" :class="getErrorMessage('peserta_id')"></vue-select>
+            <vue-select placeholder="Cari Peserta" :options="pesertas" label="nama" @search="searchPeserta" :clearable="false" :value="peserta.nama"  @input="selectPeserta" :class="getErrorMessage('peserta_id')"></vue-select>
           </template>
           <div class="input-group-addon clickable" @click="showTablePesertaModal"><i class="fa fa-search"></i></div>
         </div>
@@ -581,7 +581,9 @@ export default {
       this.peserta = peserta
       this.data.peserta_id = peserta.id
       this.data.nilai_rujukan_usia_tubuh = peserta.usia
-      this.data.peserta.nama = peserta.nama
+      if (this.propkesehatan) {
+        this.data.peserta.nama = peserta.nama
+      }
     },
     showTablePesertaModal () {
       this.$modal.show('peserta-table-modal')

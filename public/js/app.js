@@ -2476,7 +2476,10 @@ __webpack_require__.r(__webpack_exports__);
       this.peserta = peserta;
       this.data.peserta_id = peserta.id;
       this.data.nilai_rujukan_usia_tubuh = peserta.usia;
-      this.data.peserta.nama = peserta.nama;
+
+      if (this.propkesehatan) {
+        this.data.peserta.nama = peserta.nama;
+      }
     },
     showTablePesertaModal: function showTablePesertaModal() {
       this.$modal.show('peserta-table-modal');
@@ -25331,7 +25334,8 @@ var render = function() {
                                 placeholder: "Cari Peserta",
                                 options: _vm.pesertas,
                                 label: "nama",
-                                clearable: false
+                                clearable: false,
+                                value: _vm.peserta.nama
                               },
                               on: {
                                 search: _vm.searchPeserta,

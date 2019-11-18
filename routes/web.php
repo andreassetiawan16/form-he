@@ -13,7 +13,7 @@
 
 Route::get('/data-kesehatan', 'DataKesehatanController@index')->name('data.kesehatan');
 Route::get('/data-kesehatan/create', 'DataKesehatanController@create')->name('create.data.kesehatan');
-Route::get('/tableDataKesehatan/{id}', 'DataKesehatanController@table');
+Route::get('/tableDataKesehatan', 'DataKesehatanController@table');
 Route::post('/data-kesehatan/store', 'DataKesehatanController@store');
 Route::get('/data-kesehatan/{id}/edit', 'DataKesehatanController@edit');
 Route::post('/data-kesehatan/{id}/update', 'DataKesehatanController@update');

@@ -6,6 +6,6 @@
 
 @section('content')
     <div id="app">
-        <data-kesehatan-table url="{{url("tableDataKesehatan")}}"></data-kesehatan-table>
+        <data-kesehatan-table></data-kesehatan-table>
     </div>
 @endsection

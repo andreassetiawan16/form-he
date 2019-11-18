@@ -587,12 +587,29 @@ export default {
     },
     showTablePesertaModal () {
       this.$modal.show('peserta-table-modal')
+    },
+    formatDate(date) {
+      var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear()
+
+      if (month.length < 2) 
+        month = '0' + month
+      if (day.length < 2) 
+        day = '0' + day
+
+      return [year, month, day].join('-')
     }
   },
   mounted () {
     if (this.propkesehatan) {
       this.data = Object.assign({}, JSON.parse(this.propkesehatan))
+      this.data.tanggal_he = this.data.tanggal_he.substring(0, 10)
       this.peserta = Object.assign({}, JSON.parse(this.propkesehatan).peserta)
+    } else {
+      this.data.tanggal_he = new Date()
+      this.data.tanggal_he = (this.formatDate(this.data.tanggal_he)).toString()
     }
     this.isCreateStatus = this.iscreate
   }

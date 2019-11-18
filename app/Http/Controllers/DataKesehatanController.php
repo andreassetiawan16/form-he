@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\DataKesehatanRequest;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Carbon\Carbon;
 use Validator;
 
 class DataKesehatanController extends Controller
@@ -22,14 +23,24 @@ class DataKesehatanController extends Controller
         return view('data_kesehatan.index');
     }
 
-    public function table(Request $request, $id)
+    public function table(Request $request)
     {
         // $dataKesehatan = Peserta::find($id)->dataKesehatan()->paginate(1);
-        // return response()->json($dataKesehatan);
         $input = $request->all();
         $perPage = $request->has('per_page') ? (int) $input['per_page'] : 10;
 
-        $query = Peserta::find($id)->dataKesehatan();
+        // $query = Peserta::find($id)->dataKesehatan();
+        $query = DataKesehatan::with('peserta');
+
+        if(!is_null($request->peserta_id)) {
+            $query->where('peserta_id', $request->peserta_id);
+        }
+
+        if (!empty($request->from_date) && !empty($request->to_date)) {
+            $fromDate = new Carbon($request->from_date);
+            $toDate = new Carbon($request->to_date);
+            $query->whereBetween('tanggal_he', [$fromDate, $toDate]);
+        }
 
         if($request->has('sort') && !empty($input['sort'])){
             $sort = explode('|', $request->sort);
@@ -43,7 +54,7 @@ class DataKesehatanController extends Controller
         $currentPage = $request->input('page', 1);
         $offset = ($currentPage - 1) * $perPage;
         $result = $query->offset($offset)->limit($perPage)->get();
-    
+
         $dataKesehatans = new LengthAwarePaginator($result,$total,$perPage,$currentPage,[
             'path' => Paginator::resolveCurrentPath(),
             'pageName' => 'dataKesehatan'

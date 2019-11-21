@@ -7,7 +7,7 @@
 @section('content')
     <div class="box box-info">
         <div id="app">
-            <create-data-kesehatan-form></create-data-kesehatan-form>
+            <detail-data-kesehatan-form :datakesehatan="'{{ json_encode($dataKesehatan) }}'"></detail-data-kesehatan-form>
         </div>
     </div>
 @endsection

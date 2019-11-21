@@ -106,12 +106,8 @@ class DataKesehatanController extends Controller
      */
     public function show($id)
     {
-        $dataKesehatan = DataKesehatan::find($id);
-        return response ()->json([
-            'data' => $dataKesehatan,
-            'message' => 'Berhasil membuat data kesehatan',
-            'status' => 200
-        ]);
+        $dataKesehatan = DataKesehatan::with('peserta')->find($id);
+        return view('data_kesehatan.detail', ['dataKesehatan' => $dataKesehatan]);
     }
 
     /**

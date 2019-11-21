@@ -7,7 +7,7 @@
 @section('content')
     <div class="box box-primary">
         <div id="app">
-            <data-kesehatan-form :propkesehatan="'{{ json_encode($dataKesehatan) }}'" :iscreate=false></data-kesehatan-form>
+            <edit-data-kesehatan-form :datakesehatan="'{{ json_encode($dataKesehatan) }}'"></edit-data-kesehatan-form>
         </div>
     </div>
 @endsection

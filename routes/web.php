@@ -19,6 +19,16 @@ Route::get('/data-kesehatan/{id}/edit', 'DataKesehatanController@edit');
 Route::post('/data-kesehatan/{id}/update', 'DataKesehatanController@update');
 Route::post('/data-kesehatan/delete', 'DataKesehatanController@destroy');
 
+Route::get('/event','EventController@index')->name('events');
+Route::get('/event/create', 'EventController@create')->name('create.event');
+Route::get('tableEvents', 'EventController@table');
+Route::post('/event/store', 'EventController@store');
+Route::get('/event/{id}/show', 'EventController@show');
+Route::get('/event/{id}/edit', 'EventController@edit');
+Route::post('/event/{id}/update', 'EventController@update');
+Route::post('/event/delete', 'EventController@destroy');
+Route::get('/event/search', 'EventController@search');
+
 Route::get('/data-peserta', 'PesertaController@index')->name('data.peserta');
 Route::get('/data-peserta/create', 'PesertaController@create')->name('create.data.peserta');
 Route::get('tablePeserta', 'PesertaController@table');

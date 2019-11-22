@@ -7,7 +7,7 @@
 @section('content')
     <div class="box box-info">
         <div id="app">
-            <data-peserta-form :proppeserta="'{{ json_encode($peserta) }}'" :isedit=true></data-peserta-form>
+            <edit-data-peserta-form :datapeserta="'{{ json_encode($peserta) }}'"></edit-data-peserta-form>
         </div>
     </div>
 @endsection

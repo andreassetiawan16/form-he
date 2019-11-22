@@ -34,7 +34,7 @@
               @vuetable:pagination-data="onPaginationData"
     >
       <div slot="nama" slot-scope="props">
-        <a :href="'/data-peserta/' + props.rowData.id + '/edit'">{{ props.rowData.nama }}</a>
+        <a :href="'/data-peserta/' + props.rowData.id + '/detail'">{{ props.rowData.nama }}</a>
       </div>
       <div slot="action" slot-scope="props" class="vuetable-action">
         <span class="clickable delete" @click="showDeleteModal(props.rowData)"><i class="fa fa-trash"></i> Delete</span>

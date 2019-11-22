@@ -317,7 +317,7 @@ label {
   display: block !important;
 }
 
-.vdpComponent.vdpWithInput input {
+.vdpComponent.vdpWithInput input[type="text"] {
   border-color: #d2d6de;
   width: 100%;
   padding: 0 7px;
@@ -329,7 +329,7 @@ label {
   color: #555;
 }
 
-.vdpComponent.vdpWithInput input:focus {
+.vdpComponent.vdpWithInput input[type="text"]:focus {
   border-color: #3c8dbc;
   box-shadow: none;
   outline: 0;

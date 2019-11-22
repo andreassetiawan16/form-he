@@ -2901,7 +2901,7 @@ __webpack_require__.r(__webpack_exports__);
               _context.next = 3;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios__WEBPACK_IMPORTED_MODULE_1___default()({
                 method: 'POST',
-                url: "http://127.0.0.1:8000" + '/data-kesehatan/store',
+                url: "http://localhost:8000" + '/data-kesehatan/store',
                 data: this.data
               }));
 
@@ -3184,7 +3184,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       data: {},
-      urlEditKesehatan: "http://127.0.0.1:8000" + '/data-kesehatan/'
+      urlEditKesehatan: "http://localhost:8000" + '/data-kesehatan/'
     };
   },
   methods: {
@@ -3749,7 +3749,7 @@ __webpack_require__.r(__webpack_exports__);
               _context.next = 5;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios__WEBPACK_IMPORTED_MODULE_1___default()({
                 method: 'POST',
-                url: "http://127.0.0.1:8000" + '/data-kesehatan/' + this.data.id + '/update',
+                url: "http://localhost:8000" + '/data-kesehatan/' + this.data.id + '/update',
                 data: payload
               }));
 
@@ -3795,10 +3795,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/data-peserta-form.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/forms/data-peserta-form.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/data-peserta/create-data-peserta-form.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/forms/data-peserta/create-data-peserta-form.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3874,6 +3874,95 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      peserta: {
+        nama: null,
+        email: null,
+        no_telepon: null,
+        no_wa: null,
+        jenis_kelamin: null,
+        tinggi: null,
+        tempat_lahir: null,
+        tanggal_lahir: null,
+        alamat: null
+      },
+      errorMessage: {}
+    };
+  },
+  methods: {
+    createPeserta: function createPeserta() {
+      var _this = this;
+
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function createPeserta$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              this.$modal.show('loading-modal');
+              _context.next = 3;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios__WEBPACK_IMPORTED_MODULE_1___default()({
+                method: 'POST',
+                url: "http://localhost:8000" + '/data-peserta/store',
+                data: this.peserta
+              }));
+
+            case 3:
+              response = _context.sent;
+
+              if (response.data.status === 200) {
+                setTimeout(function () {
+                  _this.$modal.hide('loading-modal');
+
+                  _this.$modal.show('success-modal');
+
+                  setTimeout(function () {
+                    _this.$modal.hide('success-modal');
+
+                    window.location = '/data-peserta/';
+                  }, 2000);
+                }, 2000);
+              } else {
+                setTimeout(function () {
+                  _this.$modal.hide('loading-modal');
+
+                  _this.errorMessage = Object.assign({}, response.data.message);
+                }, 2000);
+              }
+
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, null, this);
+    },
+    getErrorMessage: function getErrorMessage(field) {
+      if (this.errorMessage[field] && this.errorMessage[field].length > 0) {
+        return 'error';
+      }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/data-peserta/detail-data-peserta-form.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/forms/data-peserta/detail-data-peserta-form.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue_select__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-select */ "./node_modules/vue-select/dist/vue-select.js");
+/* harmony import */ var vue_select__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_select__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -3949,7 +4038,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['proppeserta', 'isedit'],
+  props: ['datapeserta'],
   data: function data() {
     return {
       peserta: {
@@ -3963,53 +4052,138 @@ __webpack_require__.r(__webpack_exports__);
         tanggal_lahir: null,
         alamat: null
       },
-      errorMessage: {},
-      isShow: true
+      urlEditDataPeserta: "http://localhost:8000" + '/data-peserta/'
+    };
+  },
+  mounted: function mounted() {
+    this.peserta = Object.assign({}, JSON.parse(this.datapeserta));
+    this.peserta.tanggal_lahir = this.peserta.tanggal_lahir.substring(0, 10);
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/data-peserta/edit-data-peserta-form.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/forms/data-peserta/edit-data-peserta-form.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue_select__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-select */ "./node_modules/vue-select/dist/vue-select.js");
+/* harmony import */ var vue_select__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_select__WEBPACK_IMPORTED_MODULE_2__);
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['datapeserta'],
+  data: function data() {
+    return {
+      peserta: {
+        nama: null,
+        email: null,
+        no_telepon: null,
+        no_wa: null,
+        jenis_kelamin: null,
+        tinggi: null,
+        tempat_lahir: null,
+        tanggal_lahir: null,
+        alamat: null
+      },
+      errorMessage: {}
     };
   },
   methods: {
-    createPeserta: function createPeserta() {
+    updatePeserta: function updatePeserta() {
       var _this = this;
 
-      var response, payload;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function createPeserta$(_context) {
+      var payload, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function updatePeserta$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              response = '';
               this.$modal.show('loading-modal');
-
-              if (this.isedit) {
-                _context.next = 8;
-                break;
-              }
-
+              payload = Object.assign({}, this.peserta);
+              delete payload.id;
               _context.next = 5;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios__WEBPACK_IMPORTED_MODULE_1___default()({
                 method: 'POST',
-                url: "http://127.0.0.1:8000" + '/data-peserta/store',
-                data: this.peserta
+                url: "http://localhost:8000" + '/data-peserta/' + this.peserta.id + '/update',
+                data: payload
               }));
 
             case 5:
               response = _context.sent;
-              _context.next = 13;
-              break;
 
-            case 8:
-              payload = Object.assign({}, this.peserta);
-              delete payload.id;
-              _context.next = 12;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios__WEBPACK_IMPORTED_MODULE_1___default()({
-                method: 'POST',
-                url: "http://127.0.0.1:8000" + '/data-peserta/' + this.peserta.id + '/update',
-                data: payload
-              }));
-
-            case 12:
-              response = _context.sent;
-
-            case 13:
               if (response.data.status === 200) {
                 setTimeout(function () {
                   _this.$modal.hide('loading-modal');
@@ -4030,7 +4204,7 @@ __webpack_require__.r(__webpack_exports__);
                 }, 2000);
               }
 
-            case 14:
+            case 7:
             case "end":
               return _context.stop();
           }
@@ -4041,29 +4215,20 @@ __webpack_require__.r(__webpack_exports__);
       if (this.errorMessage[field] && this.errorMessage[field].length > 0) {
         return 'error';
       }
-    },
-    editForm: function editForm() {
-      this.isShow = false;
     }
   },
   mounted: function mounted() {
-    if (this.proppeserta) {
-      this.peserta = Object.assign({}, JSON.parse(this.proppeserta));
-      this.peserta.tanggal_lahir = this.peserta.tanggal_lahir.substring(0, 10);
-    }
-
-    if (!this.isedit) {
-      this.isShow = false;
-    }
+    this.peserta = Object.assign({}, JSON.parse(this.datapeserta));
+    this.peserta.tanggal_lahir = this.peserta.tanggal_lahir.substring(0, 10);
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/event-form.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/forms/event-form.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/event/create-event-form.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/forms/event/create-event-form.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4109,20 +4274,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['propevent', 'isedit'],
   data: function data() {
     return {
       event: {
@@ -4131,8 +4284,7 @@ __webpack_require__.r(__webpack_exports__);
         tanggal_event: null,
         jumlah_peserta: null
       },
-      errorMessage: {},
-      isShow: true
+      errorMessage: {}
     };
   },
   methods: {
@@ -4144,30 +4296,17 @@ __webpack_require__.r(__webpack_exports__);
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              response = '';
               this.$modal.show('loading-modal');
-
-              if (this.isedit) {
-                _context.next = 8;
-                break;
-              }
-
-              _context.next = 5;
+              _context.next = 3;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios__WEBPACK_IMPORTED_MODULE_1___default()({
                 method: 'POST',
-                url: "http://127.0.0.1:8000" + '/event/store',
+                url: "http://localhost:8000" + '/event/store',
                 data: this.event
               }));
 
-            case 5:
+            case 3:
               response = _context.sent;
-              _context.next = 9;
-              break;
 
-            case 8:
-              console.log('edit :');
-
-            case 9:
               if (response.data.status === 200) {
                 setTimeout(function () {
                   _this.$modal.hide('loading-modal');
@@ -4188,7 +4327,7 @@ __webpack_require__.r(__webpack_exports__);
                 }, 2000);
               }
 
-            case 10:
+            case 5:
             case "end":
               return _context.stop();
           }
@@ -4199,10 +4338,184 @@ __webpack_require__.r(__webpack_exports__);
       if (this.errorMessage[field] && this.errorMessage[field].length > 0) {
         return 'error';
       }
-    },
-    editForm: function editForm() {
-      this.isShow = false;
     }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/event/detail-event-form.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/forms/event/detail-event-form.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['dataevent'],
+  data: function data() {
+    return {
+      urlEditEvent: "http://localhost:8000" + '/event/',
+      event: {}
+    };
+  },
+  created: function created() {
+    this.event = Object.assign({}, JSON.parse(this.dataevent));
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/event/edit-event-form.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/forms/event/edit-event-form.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['dataevent'],
+  data: function data() {
+    return {
+      event: {
+        pembicara: null,
+        topik: null,
+        tanggal_event: null,
+        jumlah_peserta: null
+      },
+      errorMessage: {}
+    };
+  },
+  methods: {
+    updataEvent: function updataEvent() {
+      var _this = this;
+
+      var payload, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function updataEvent$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              this.$modal.show('loading-modal');
+              payload = Object.assign({}, this.event);
+              delete payload.id;
+              _context.next = 5;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios__WEBPACK_IMPORTED_MODULE_1___default()({
+                method: 'POST',
+                url: "http://localhost:8000" + '/event/' + this.event.id + '/update',
+                data: payload
+              }));
+
+            case 5:
+              response = _context.sent;
+
+              if (response.data.status === 200) {
+                setTimeout(function () {
+                  _this.$modal.hide('loading-modal');
+
+                  _this.$modal.show('success-modal');
+
+                  setTimeout(function () {
+                    _this.$modal.hide('success-modal');
+
+                    window.location = '/event/';
+                  }, 2000);
+                }, 2000);
+              } else {
+                setTimeout(function () {
+                  _this.$modal.hide('loading-modal');
+
+                  _this.errorMessage = Object.assign({}, response.data.message);
+                }, 2000);
+              }
+
+            case 7:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, null, this);
+    },
+    getErrorMessage: function getErrorMessage(field) {
+      if (this.errorMessage[field] && this.errorMessage[field].length > 0) {
+        return 'error';
+      }
+    }
+  },
+  created: function created() {
+    this.event = Object.assign({}, JSON.parse(this.dataevent));
   }
 });
 
@@ -4315,7 +4628,7 @@ __webpack_require__.r(__webpack_exports__);
           }
         }
       },
-      url: "http://127.0.0.1:8000" + '/tablePeserta',
+      url: "http://localhost:8000" + '/tablePeserta',
       tempUrl: '',
       fields: [{
         name: 'nama',
@@ -4547,10 +4860,10 @@ __webpack_require__.r(__webpack_exports__);
         title: 'Action',
         titleClass: 'text-center'
       }],
-      urlDetailDataKesehatan: "http://127.0.0.1:8000" + '/data-kesehatan/',
-      urlAddDataKesehatan: "http://127.0.0.1:8000" + '/data-kesehatan/create',
-      urlTable: "http://127.0.0.1:8000" + '/tableDataKesehatan/?from_date=&to_date=&peserta_id=',
-      tempUrlTable: "http://127.0.0.1:8000" + '/tableDataKesehatan/?',
+      urlDetailDataKesehatan: "http://localhost:8000" + '/data-kesehatan/',
+      urlAddDataKesehatan: "http://localhost:8000" + '/data-kesehatan/create',
+      urlTable: "http://localhost:8000" + '/tableDataKesehatan/?from_date=&to_date=&peserta_id=',
+      tempUrlTable: "http://localhost:8000" + '/tableDataKesehatan/?',
       selectedDataKesehatan: {},
       listDataKesehatan: [],
       fromDate: '',
@@ -4615,7 +4928,7 @@ __webpack_require__.r(__webpack_exports__);
               _context.next = 4;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios__WEBPACK_IMPORTED_MODULE_1___default()({
                 method: 'POST',
-                url: "http://127.0.0.1:8000" + '/data-kesehatan/delete',
+                url: "http://localhost:8000" + '/data-kesehatan/delete',
                 data: {
                   id: this.selectedDataKesehatan.id
                 }
@@ -4746,11 +5059,6 @@ __webpack_require__.r(__webpack_exports__);
     VuetablePagination: vuetable_2_src_components_VuetablePagination__WEBPACK_IMPORTED_MODULE_3__["default"],
     VuetablePaginationInfo: vuetable_2_src_components_VuetablePaginationInfo__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
-  props: {
-    url: {
-      type: String
-    }
-  },
   data: function data() {
     return {
       css: {
@@ -4766,27 +5074,29 @@ __webpack_require__.r(__webpack_exports__);
           }
         }
       },
-      tempUrl: '',
+      urlTable: "http://localhost:8000" + '/tableEvents',
+      tempUrl: "http://localhost:8000" + '/tableEvents',
+      urlDetailEvent: "http://localhost:8000",
       fields: [{
-        name: '__slot:nama',
-        title: 'Tanggal'
+        name: '__slot:topik',
+        title: 'topik'
       }, {
-        name: 'email',
-        title: 'Email'
+        name: 'tanggal_event',
+        title: 'Tanggal Event'
       }, {
-        name: 'no_telepon',
-        title: 'Nomor Telepon'
+        name: 'pembicara',
+        title: 'Pembicara'
       }, {
-        name: 'alamat',
-        title: 'Alamat',
-        sortField: 'alamat'
+        name: 'jumlah_peserta',
+        title: 'Jumlah Peserta',
+        sortField: 'jumlah_peserta'
       }, {
         name: '__slot:action',
         title: 'Action',
         titleClass: 'text-center'
       }],
       searchWord: '',
-      peserta: {}
+      event: {}
     };
   },
   methods: {
@@ -4797,42 +5107,55 @@ __webpack_require__.r(__webpack_exports__);
     onChangePage: function onChangePage(page) {
       this.$refs.event_table.changePage(page);
     },
-    showDeleteModal: function showDeleteModal(peserta) {
-      this.$modal.show('delete-peserta-modal');
-      this.peserta = Object.assign({}, peserta);
+    showDeleteModal: function showDeleteModal(event) {
+      this.$modal.show('delete-event-modal');
+      this.event = Object.assign({}, event);
     },
     hideDeleteModal: function hideDeleteModal() {
-      this.$modal.hide('delete-peserta-modal');
+      this.$modal.hide('delete-event-modal');
     },
     deleteEvent: function deleteEvent() {
+      var _this = this;
+
+      var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function deleteEvent$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              console.log('deleteEvent :'); //   this.hideDeleteModal()
-              //   this.$modal.show('loading-modal')
-              //   let response = await axios ({
-              //     method: 'POST',
-              //     url: process.env.MIX_BASE_URL + '/data-peserta/delete',
-              //     data: {id: this.peserta.id}
-              //   })
-              //   if (response.data.status === 200) {
-              //     setTimeout(() => {
-              //       this.$modal.hide('loading-modal')
-              //       this.$modal.show('success-modal')
-              //       setTimeout(() => {
-              //         this.$modal.hide('success-modal')
-              //         this.refreshTable()
-              //       }, 2000)
-              //     }, 2000)
-              //   }
+              this.hideDeleteModal();
+              this.$modal.show('loading-modal');
+              _context.next = 4;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios__WEBPACK_IMPORTED_MODULE_1___default()({
+                method: 'POST',
+                url: "http://localhost:8000" + '/event/delete',
+                data: {
+                  id: this.event.id
+                }
+              }));
 
-            case 1:
+            case 4:
+              response = _context.sent;
+
+              if (response.data.status === 200) {
+                setTimeout(function () {
+                  _this.$modal.hide('loading-modal');
+
+                  _this.$modal.show('success-modal');
+
+                  setTimeout(function () {
+                    _this.$modal.hide('success-modal');
+
+                    _this.refreshTable();
+                  }, 2000);
+                }, 2000);
+              }
+
+            case 6:
             case "end":
               return _context.stop();
           }
         }
-      });
+      }, null, this);
     },
     doSearch: function doSearch() {
       this.tempUrl = this.url + '?filter=' + this.searchWord;
@@ -4843,9 +5166,6 @@ __webpack_require__.r(__webpack_exports__);
         this.$refs.event_table.refresh();
       });
     }
-  },
-  created: function created() {
-    this.tempUrl = this.url;
   }
 });
 
@@ -5009,7 +5329,7 @@ __webpack_require__.r(__webpack_exports__);
               _context.next = 4;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios__WEBPACK_IMPORTED_MODULE_1___default()({
                 method: 'POST',
-                url: "http://127.0.0.1:8000" + '/data-peserta/delete',
+                url: "http://localhost:8000" + '/data-peserta/delete',
                 data: {
                   id: this.peserta.id
                 }
@@ -44301,10 +44621,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/data-peserta-form.vue?vue&type=template&id=85156f3e&":
-/*!**************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/forms/data-peserta-form.vue?vue&type=template&id=85156f3e& ***!
-  \**************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/data-peserta/create-data-peserta-form.vue?vue&type=template&id=29d6eaca&":
+/*!**********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/forms/data-peserta/create-data-peserta-form.vue?vue&type=template&id=29d6eaca& ***!
+  \**********************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -44323,511 +44643,516 @@ var render = function() {
       _c("loading-modal"),
       _vm._v(" "),
       _c("success-modal", [
-        _vm._v(
-          "\n    " +
-            _vm._s(
-              _vm.isedit
-                ? "Berhasil update data peserta " + _vm.peserta.nama + " "
-                : "Berhasil membuat data peserta baru"
-            ) +
-            "\n  "
-        )
+        _vm._v("\n    Berhasil membuat data peserta baru\n  ")
       ]),
       _vm._v(" "),
-      _vm.isShow
-        ? [
-            _c("div", { staticClass: "head-content-section" }, [
-              _c("h3", [
-                _vm._v(
-                  "Data Peserta " +
-                    _vm._s(
-                      _vm.proppeserta ? JSON.parse(_vm.proppeserta).nama : ""
-                    )
-                )
-              ]),
-              _vm._v(" "),
-              _c(
-                "button",
-                { staticClass: "btn btn-info", on: { click: _vm.editForm } },
-                [_c("i", { staticClass: "fa fa-pencil" }), _vm._v(" Edit")]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row form-group" }, [
-              _vm._m(0),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-9" }, [
-                _vm._v(": " + _vm._s(_vm.peserta.nama))
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row form-group" }, [
-              _vm._m(1),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-9" }, [
-                _vm._v(": " + _vm._s(_vm.peserta.email))
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row form-group" }, [
-              _vm._m(2),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-9" }, [
-                _vm._v(": " + _vm._s(_vm.peserta.no_telepon))
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row form-group" }, [
-              _vm._m(3),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-9" }, [
-                _vm._v(
-                  ": " + _vm._s(_vm.peserta.no_wa ? _vm.peserta.no_wa : "-")
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row form-group" }, [
-              _vm._m(4),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-9" }, [
-                _vm._v(": " + _vm._s(_vm.peserta.usia) + " Tahun")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row form-group" }, [
-              _vm._m(5),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-9" }, [
-                _vm._v(": " + _vm._s(_vm.peserta.jenis_kelamin))
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row form-group" }, [
-              _vm._m(6),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-9" }, [
-                _vm._v(": " + _vm._s(_vm.peserta.tinggi) + " cm")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row form-group" }, [
-              _vm._m(7),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-9" }, [
-                _vm._v(": " + _vm._s(_vm.peserta.tempat_lahir))
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row form-group" }, [
-              _vm._m(8),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-9" }, [
-                _vm._v(": " + _vm._s(_vm.peserta.tanggal_lahir))
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row form-group" }, [
-              _vm._m(9),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-9" }, [
-                _vm._v(": " + _vm._s(_vm.peserta.alamat))
-              ])
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-group" },
+        [
+          _c("label", { staticClass: "required", attrs: { for: "nama" } }, [
+            _vm._v("Nama")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.peserta.nama,
+                expression: "peserta.nama"
+              }
+            ],
+            staticClass: "form-control input-text",
+            class: _vm.getErrorMessage("nama"),
+            attrs: { type: "email" },
+            domProps: { value: _vm.peserta.nama },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.peserta, "nama", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.errorMessage.nama, function(error, i) {
+            return _c("div", { key: i, staticClass: "error-message" }, [
+              _vm._v(_vm._s(error))
             ])
-          ]
-        : [
-            _vm._m(10),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "form-group" },
-              [
-                _c(
-                  "label",
-                  { staticClass: "required", attrs: { for: "nama" } },
-                  [_vm._v("Nama")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.peserta.nama,
-                      expression: "peserta.nama"
-                    }
-                  ],
-                  staticClass: "form-control input-text",
-                  class: _vm.getErrorMessage("nama"),
-                  attrs: { type: "email" },
-                  domProps: { value: _vm.peserta.nama },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.peserta, "nama", $event.target.value)
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _vm._l(_vm.errorMessage.nama, function(error, i) {
-                  return _c("div", { key: i, staticClass: "error-message" }, [
-                    _vm._v(_vm._s(error))
-                  ])
-                })
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-group" },
+        [
+          _c("label", { staticClass: "required", attrs: { for: "Email" } }, [
+            _vm._v("Email")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.peserta.email,
+                expression: "peserta.email"
+              }
+            ],
+            staticClass: "form-control input-text",
+            class: _vm.getErrorMessage("email"),
+            attrs: { type: "email" },
+            domProps: { value: _vm.peserta.email },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.peserta, "email", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.errorMessage.email, function(error, i) {
+            return _c("div", { key: i, staticClass: "error-message" }, [
+              _vm._v(_vm._s(error))
+            ])
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-group" },
+        [
+          _c(
+            "label",
+            { staticClass: "required", attrs: { for: "Nomor Telepon" } },
+            [_vm._v("Nomor Telepon")]
+          ),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.peserta.no_telepon,
+                expression: "peserta.no_telepon"
+              }
+            ],
+            staticClass: "form-control input-text",
+            class: _vm.getErrorMessage("no_telepon"),
+            attrs: { type: "number" },
+            domProps: { value: _vm.peserta.no_telepon },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.peserta, "no_telepon", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.errorMessage.no_telepon, function(error, i) {
+            return _c("div", { key: i, staticClass: "error-message" }, [
+              _vm._v(_vm._s(error))
+            ])
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-group" },
+        [
+          _c("label", { attrs: { for: "Nomor Whatsapp" } }, [
+            _vm._v("Nomor Whatsapp")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.peserta.no_wa,
+                expression: "peserta.no_wa"
+              }
+            ],
+            staticClass: "form-control input-text",
+            class: _vm.getErrorMessage("no_wa"),
+            attrs: { type: "number" },
+            domProps: { value: _vm.peserta.no_wa },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.peserta, "no_wa", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.errorMessage.usia, function(error, i) {
+            return _c("div", { key: i, staticClass: "error-message" }, [
+              _vm._v(_vm._s(error))
+            ])
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-group" },
+        [
+          _c(
+            "label",
+            { staticClass: "required", attrs: { for: "Jenis Kelamin" } },
+            [_vm._v("Jenis Kelamin")]
+          ),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.peserta.jenis_kelamin,
+                  expression: "peserta.jenis_kelamin"
+                }
               ],
-              2
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "form-group" },
-              [
-                _c(
-                  "label",
-                  { staticClass: "required", attrs: { for: "Email" } },
-                  [_vm._v("Email")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.peserta.email,
-                      expression: "peserta.email"
-                    }
-                  ],
-                  staticClass: "form-control input-text",
-                  class: _vm.getErrorMessage("email"),
-                  attrs: { type: "email" },
-                  domProps: { value: _vm.peserta.email },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.peserta, "email", $event.target.value)
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _vm._l(_vm.errorMessage.email, function(error, i) {
-                  return _c("div", { key: i, staticClass: "error-message" }, [
-                    _vm._v(_vm._s(error))
-                  ])
-                })
-              ],
-              2
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "form-group" },
-              [
-                _c(
-                  "label",
-                  { staticClass: "required", attrs: { for: "Nomor Telepon" } },
-                  [_vm._v("Nomor Telepon")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.peserta.no_telepon,
-                      expression: "peserta.no_telepon"
-                    }
-                  ],
-                  staticClass: "form-control input-text",
-                  class: _vm.getErrorMessage("no_telepon"),
-                  attrs: { type: "number" },
-                  domProps: { value: _vm.peserta.no_telepon },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.peserta, "no_telepon", $event.target.value)
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _vm._l(_vm.errorMessage.no_telepon, function(error, i) {
-                  return _c("div", { key: i, staticClass: "error-message" }, [
-                    _vm._v(_vm._s(error))
-                  ])
-                })
-              ],
-              2
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "form-group" },
-              [
-                _c("label", { attrs: { for: "Nomor Whatsapp" } }, [
-                  _vm._v("Nomor Whatsapp")
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.peserta.no_wa,
-                      expression: "peserta.no_wa"
-                    }
-                  ],
-                  staticClass: "form-control input-text",
-                  class: _vm.getErrorMessage("no_wa"),
-                  attrs: { type: "number" },
-                  domProps: { value: _vm.peserta.no_wa },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.peserta, "no_wa", $event.target.value)
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _vm._l(_vm.errorMessage.usia, function(error, i) {
-                  return _c("div", { key: i, staticClass: "error-message" }, [
-                    _vm._v(_vm._s(error))
-                  ])
-                })
-              ],
-              2
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "form-group" },
-              [
-                _c(
-                  "label",
-                  { staticClass: "required", attrs: { for: "Jenis Kelamin" } },
-                  [_vm._v("Jenis Kelamin")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "select",
-                  {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.peserta.jenis_kelamin,
-                        expression: "peserta.jenis_kelamin"
-                      }
-                    ],
-                    staticClass: "form-control input-text",
-                    class: _vm.getErrorMessage("jenis_kelamin"),
-                    on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.$set(
-                          _vm.peserta,
-                          "jenis_kelamin",
-                          $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        )
-                      }
-                    }
-                  },
-                  [
-                    _c("option", [_vm._v("Laki-laki")]),
-                    _vm._v(" "),
-                    _c("option", [_vm._v("Perempuan")])
-                  ]
-                ),
-                _vm._v(" "),
-                _vm._l(_vm.errorMessage.jenis_kelamin, function(error, i) {
-                  return _c("div", { key: i, staticClass: "error-message" }, [
-                    _vm._v(_vm._s(error))
-                  ])
-                })
-              ],
-              2
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "form-group" },
-              [
-                _c(
-                  "label",
-                  { staticClass: "required", attrs: { for: "Tinggi" } },
-                  [_vm._v("Tinggi")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.peserta.tinggi,
-                      expression: "peserta.tinggi"
-                    }
-                  ],
-                  staticClass: "form-control input-text",
-                  class: _vm.getErrorMessage("tinggi"),
-                  attrs: { type: "number" },
-                  domProps: { value: _vm.peserta.tinggi },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.peserta, "tinggi", $event.target.value)
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _vm._l(_vm.errorMessage.tinggi, function(error, i) {
-                  return _c("div", { key: i, staticClass: "error-message" }, [
-                    _vm._v(_vm._s(error))
-                  ])
-                })
-              ],
-              2
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "form-group" },
-              [
-                _c(
-                  "label",
-                  { staticClass: "required", attrs: { for: "Tempat Lahir" } },
-                  [_vm._v("Tempat Lahir")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.peserta.tempat_lahir,
-                      expression: "peserta.tempat_lahir"
-                    }
-                  ],
-                  staticClass: "form-control input-text",
-                  class: _vm.getErrorMessage("tempat_lahir"),
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.peserta.tempat_lahir },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.peserta, "tempat_lahir", $event.target.value)
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _vm._l(_vm.errorMessage.tempat_lahir, function(error, i) {
-                  return _c("div", { key: i, staticClass: "error-message" }, [
-                    _vm._v(_vm._s(error))
-                  ])
-                })
-              ],
-              2
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "form-group" },
-              [
-                _c(
-                  "label",
-                  { staticClass: "required", attrs: { for: "Tanggal Lahir" } },
-                  [_vm._v("Tanggal Lahir")]
-                ),
-                _vm._v(" "),
-                _c("vue-datepicker", {
-                  class: _vm.getErrorMessage("tanggal_lahir"),
-                  model: {
-                    value: _vm.peserta.tanggal_lahir,
-                    callback: function($$v) {
-                      _vm.$set(_vm.peserta, "tanggal_lahir", $$v)
-                    },
-                    expression: "peserta.tanggal_lahir"
-                  }
-                }),
-                _vm._v(" "),
-                _vm._l(_vm.errorMessage.tanggal_lahir, function(error, i) {
-                  return _c("div", { key: i, staticClass: "error-message" }, [
-                    _vm._v(_vm._s(error))
-                  ])
-                })
-              ],
-              2
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "form-group" },
-              [
-                _c(
-                  "label",
-                  { staticClass: "required", attrs: { for: "Alamat" } },
-                  [_vm._v("Alamat")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.peserta.alamat,
-                      expression: "peserta.alamat"
-                    }
-                  ],
-                  staticClass: "form-control input-text",
-                  class: _vm.getErrorMessage("alamat"),
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.peserta.alamat },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.peserta, "alamat", $event.target.value)
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _vm._l(_vm.errorMessage.alamat, function(error, i) {
-                  return _c("div", { key: i, staticClass: "error-message" }, [
-                    _vm._v(_vm._s(error))
-                  ])
-                })
-              ],
-              2
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              { staticClass: "btn btn-info", on: { click: _vm.createPeserta } },
-              [_vm._v("Save")]
-            )
-          ]
+              staticClass: "form-control input-text",
+              class: _vm.getErrorMessage("jenis_kelamin"),
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    _vm.peserta,
+                    "jenis_kelamin",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
+                }
+              }
+            },
+            [
+              _c("option", [_vm._v("Laki-laki")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Perempuan")])
+            ]
+          ),
+          _vm._v(" "),
+          _vm._l(_vm.errorMessage.jenis_kelamin, function(error, i) {
+            return _c("div", { key: i, staticClass: "error-message" }, [
+              _vm._v(_vm._s(error))
+            ])
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-group" },
+        [
+          _c("label", { staticClass: "required", attrs: { for: "Tinggi" } }, [
+            _vm._v("Tinggi")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.peserta.tinggi,
+                expression: "peserta.tinggi"
+              }
+            ],
+            staticClass: "form-control input-text",
+            class: _vm.getErrorMessage("tinggi"),
+            attrs: { type: "number" },
+            domProps: { value: _vm.peserta.tinggi },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.peserta, "tinggi", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.errorMessage.tinggi, function(error, i) {
+            return _c("div", { key: i, staticClass: "error-message" }, [
+              _vm._v(_vm._s(error))
+            ])
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-group" },
+        [
+          _c(
+            "label",
+            { staticClass: "required", attrs: { for: "Tempat Lahir" } },
+            [_vm._v("Tempat Lahir")]
+          ),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.peserta.tempat_lahir,
+                expression: "peserta.tempat_lahir"
+              }
+            ],
+            staticClass: "form-control input-text",
+            class: _vm.getErrorMessage("tempat_lahir"),
+            attrs: { type: "text" },
+            domProps: { value: _vm.peserta.tempat_lahir },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.peserta, "tempat_lahir", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.errorMessage.tempat_lahir, function(error, i) {
+            return _c("div", { key: i, staticClass: "error-message" }, [
+              _vm._v(_vm._s(error))
+            ])
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-group" },
+        [
+          _c(
+            "label",
+            { staticClass: "required", attrs: { for: "Tanggal Lahir" } },
+            [_vm._v("Tanggal Lahir")]
+          ),
+          _vm._v(" "),
+          _c("vue-datepicker", {
+            class: _vm.getErrorMessage("tanggal_lahir"),
+            model: {
+              value: _vm.peserta.tanggal_lahir,
+              callback: function($$v) {
+                _vm.$set(_vm.peserta, "tanggal_lahir", $$v)
+              },
+              expression: "peserta.tanggal_lahir"
+            }
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.errorMessage.tanggal_lahir, function(error, i) {
+            return _c("div", { key: i, staticClass: "error-message" }, [
+              _vm._v(_vm._s(error))
+            ])
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-group" },
+        [
+          _c("label", { staticClass: "required", attrs: { for: "Alamat" } }, [
+            _vm._v("Alamat")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.peserta.alamat,
+                expression: "peserta.alamat"
+              }
+            ],
+            staticClass: "form-control input-text",
+            class: _vm.getErrorMessage("alamat"),
+            attrs: { type: "text" },
+            domProps: { value: _vm.peserta.alamat },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.peserta, "alamat", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.errorMessage.alamat, function(error, i) {
+            return _c("div", { key: i, staticClass: "error-message" }, [
+              _vm._v(_vm._s(error))
+            ])
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-info", on: { click: _vm.createPeserta } },
+        [_vm._v("Save")]
+      )
     ],
-    2
+    1
   )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "head-content-section" }, [
+      _c("h3", [_vm._v("Create Data Peserta")])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/data-peserta/detail-data-peserta-form.vue?vue&type=template&id=fedff742&":
+/*!**********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/forms/data-peserta/detail-data-peserta-form.vue?vue&type=template&id=fedff742& ***!
+  \**********************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container-fluid" }, [
+    _c("div", { staticClass: "head-content-section" }, [
+      _c("h3", [_vm._v("Data Peserta " + _vm._s(_vm.peserta.nama))]),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-info",
+          attrs: { href: _vm.urlEditDataPeserta + _vm.peserta.id + "/edit" }
+        },
+        [_c("i", { staticClass: "fa fa-pencil" }), _vm._v(" Edit")]
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row form-group" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-9" }, [
+        _vm._v(": " + _vm._s(_vm.peserta.nama))
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row form-group" }, [
+      _vm._m(1),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-9" }, [
+        _vm._v(": " + _vm._s(_vm.peserta.email))
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row form-group" }, [
+      _vm._m(2),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-9" }, [
+        _vm._v(": " + _vm._s(_vm.peserta.no_telepon))
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row form-group" }, [
+      _vm._m(3),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-9" }, [
+        _vm._v(": " + _vm._s(_vm.peserta.no_wa ? _vm.peserta.no_wa : "-"))
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row form-group" }, [
+      _vm._m(4),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-9" }, [
+        _vm._v(": " + _vm._s(_vm.peserta.usia) + " Tahun")
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row form-group" }, [
+      _vm._m(5),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-9" }, [
+        _vm._v(": " + _vm._s(_vm.peserta.jenis_kelamin))
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row form-group" }, [
+      _vm._m(6),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-9" }, [
+        _vm._v(": " + _vm._s(_vm.peserta.tinggi) + " cm")
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row form-group" }, [
+      _vm._m(7),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-9" }, [
+        _vm._v(": " + _vm._s(_vm.peserta.tempat_lahir))
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row form-group" }, [
+      _vm._m(8),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-9" }, [
+        _vm._v(": " + _vm._s(_vm.peserta.tanggal_lahir))
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row form-group" }, [
+      _vm._m(9),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-9" }, [
+        _vm._v(": " + _vm._s(_vm.peserta.alamat))
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -44905,14 +45230,6 @@ var staticRenderFns = [
     return _c("div", { staticClass: "col-sm-3" }, [
       _c("div", [_vm._v("Alamat")])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "head-content-section" }, [
-      _c("h3", [_vm._v("Data Peserta")])
-    ])
   }
 ]
 render._withStripped = true
@@ -44921,10 +45238,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/event-form.vue?vue&type=template&id=4f8ff8c2&":
-/*!*******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/forms/event-form.vue?vue&type=template&id=4f8ff8c2& ***!
-  \*******************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/data-peserta/edit-data-peserta-form.vue?vue&type=template&id=79ef8f18&":
+/*!********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/forms/data-peserta/edit-data-peserta-form.vue?vue&type=template&id=79ef8f18& ***!
+  \********************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -44945,174 +45262,856 @@ var render = function() {
       _c("success-modal", [
         _vm._v(
           "\n    " +
-            _vm._s(
-              _vm.isedit
-                ? "Berhasil update data event"
-                : "Berhasil membuat data peserta baru"
-            ) +
+            _vm._s("Berhasil update data peserta " + _vm.peserta.nama) +
             "\n  "
         )
       ]),
       _vm._v(" "),
-      [
-        _vm._m(0),
-        _vm._v("\n    " + _vm._s(_vm.event) + "\n    "),
-        _c(
-          "div",
-          { staticClass: "form-group" },
-          [
-            _c(
-              "label",
-              { staticClass: "required", attrs: { for: "tanggal_event" } },
-              [_vm._v("Tanggal Event")]
-            ),
-            _vm._v(" "),
-            _c("vue-datepicker", {
-              class: _vm.getErrorMessage("tanggal_event"),
-              model: {
-                value: _vm.event.tanggal_event,
-                callback: function($$v) {
-                  _vm.$set(_vm.event, "tanggal_event", $$v)
-                },
-                expression: "event.tanggal_event"
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-group" },
+        [
+          _c("label", { staticClass: "required", attrs: { for: "nama" } }, [
+            _vm._v("Nama")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.peserta.nama,
+                expression: "peserta.nama"
               }
-            }),
-            _vm._v(" "),
-            _vm._l(_vm.errorMessage.tanggal_event, function(error, i) {
-              return _c("div", { key: i, staticClass: "error-message" }, [
-                _vm._v(_vm._s(error))
-              ])
-            })
-          ],
-          2
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-group" },
-          [
-            _c("label", { attrs: { for: "pembicara" } }, [_vm._v("Pembicara")]),
-            _vm._v(" "),
-            _c("input", {
+            ],
+            staticClass: "form-control input-text",
+            class: _vm.getErrorMessage("nama"),
+            attrs: { type: "email" },
+            domProps: { value: _vm.peserta.nama },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.peserta, "nama", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.errorMessage.nama, function(error, i) {
+            return _c("div", { key: i, staticClass: "error-message" }, [
+              _vm._v(_vm._s(error))
+            ])
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-group" },
+        [
+          _c("label", { staticClass: "required", attrs: { for: "Email" } }, [
+            _vm._v("Email")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.peserta.email,
+                expression: "peserta.email"
+              }
+            ],
+            staticClass: "form-control input-text",
+            class: _vm.getErrorMessage("email"),
+            attrs: { type: "email" },
+            domProps: { value: _vm.peserta.email },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.peserta, "email", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.errorMessage.email, function(error, i) {
+            return _c("div", { key: i, staticClass: "error-message" }, [
+              _vm._v(_vm._s(error))
+            ])
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-group" },
+        [
+          _c(
+            "label",
+            { staticClass: "required", attrs: { for: "Nomor Telepon" } },
+            [_vm._v("Nomor Telepon")]
+          ),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.peserta.no_telepon,
+                expression: "peserta.no_telepon"
+              }
+            ],
+            staticClass: "form-control input-text",
+            class: _vm.getErrorMessage("no_telepon"),
+            attrs: { type: "number" },
+            domProps: { value: _vm.peserta.no_telepon },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.peserta, "no_telepon", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.errorMessage.no_telepon, function(error, i) {
+            return _c("div", { key: i, staticClass: "error-message" }, [
+              _vm._v(_vm._s(error))
+            ])
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-group" },
+        [
+          _c("label", { attrs: { for: "Nomor Whatsapp" } }, [
+            _vm._v("Nomor Whatsapp")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.peserta.no_wa,
+                expression: "peserta.no_wa"
+              }
+            ],
+            staticClass: "form-control input-text",
+            class: _vm.getErrorMessage("no_wa"),
+            attrs: { type: "number" },
+            domProps: { value: _vm.peserta.no_wa },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.peserta, "no_wa", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.errorMessage.usia, function(error, i) {
+            return _c("div", { key: i, staticClass: "error-message" }, [
+              _vm._v(_vm._s(error))
+            ])
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-group" },
+        [
+          _c(
+            "label",
+            { staticClass: "required", attrs: { for: "Jenis Kelamin" } },
+            [_vm._v("Jenis Kelamin")]
+          ),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
               directives: [
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.event.pembicara,
-                  expression: "event.pembicara"
+                  value: _vm.peserta.jenis_kelamin,
+                  expression: "peserta.jenis_kelamin"
                 }
               ],
               staticClass: "form-control input-text",
-              class: _vm.getErrorMessage("pembicara"),
-              attrs: { type: "text" },
-              domProps: { value: _vm.event.pembicara },
+              class: _vm.getErrorMessage("jenis_kelamin"),
               on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.event, "pembicara", $event.target.value)
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    _vm.peserta,
+                    "jenis_kelamin",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
                 }
               }
-            }),
-            _vm._v(" "),
-            _vm._l(_vm.errorMessage.nama, function(error, i) {
-              return _c("div", { key: i, staticClass: "error-message" }, [
-                _vm._v(_vm._s(error))
-              ])
-            })
-          ],
-          2
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-group" },
-          [
-            _c("label", { attrs: { for: "topik" } }, [_vm._v("Topik")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.event.topik,
-                  expression: "event.topik"
-                }
-              ],
-              staticClass: "form-control input-text",
-              class: _vm.getErrorMessage("pembicara"),
-              attrs: { type: "text" },
-              domProps: { value: _vm.event.topik },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.event, "topik", $event.target.value)
-                }
+            },
+            [
+              _c("option", [_vm._v("Laki-laki")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Perempuan")])
+            ]
+          ),
+          _vm._v(" "),
+          _vm._l(_vm.errorMessage.jenis_kelamin, function(error, i) {
+            return _c("div", { key: i, staticClass: "error-message" }, [
+              _vm._v(_vm._s(error))
+            ])
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-group" },
+        [
+          _c("label", { staticClass: "required", attrs: { for: "Tinggi" } }, [
+            _vm._v("Tinggi")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.peserta.tinggi,
+                expression: "peserta.tinggi"
               }
-            }),
-            _vm._v(" "),
-            _vm._l(_vm.errorMessage.topik, function(error, i) {
-              return _c("div", { key: i, staticClass: "error-message" }, [
-                _vm._v(_vm._s(error))
-              ])
-            })
-          ],
-          2
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-group" },
-          [
-            _c(
-              "label",
-              { staticClass: "required", attrs: { for: "jumlah_peserta" } },
-              [_vm._v("Jumlah Peserta")]
-            ),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.event.jumlah_peserta,
-                  expression: "event.jumlah_peserta"
+            ],
+            staticClass: "form-control input-text",
+            class: _vm.getErrorMessage("tinggi"),
+            attrs: { type: "number" },
+            domProps: { value: _vm.peserta.tinggi },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
                 }
-              ],
-              staticClass: "form-control input-text",
-              class: _vm.getErrorMessage("tinggi"),
-              attrs: { type: "number" },
-              domProps: { value: _vm.event.jumlah_peserta },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.event, "jumlah_peserta", $event.target.value)
-                }
+                _vm.$set(_vm.peserta, "tinggi", $event.target.value)
               }
-            }),
-            _vm._v(" "),
-            _vm._l(_vm.errorMessage.jumlah_peserta, function(error, i) {
-              return _c("div", { key: i, staticClass: "error-message" }, [
-                _vm._v(_vm._s(error))
-              ])
-            })
-          ],
-          2
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          { staticClass: "btn btn-info", on: { click: _vm.createEvent } },
-          [_vm._v("Save")]
-        )
-      ]
+            }
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.errorMessage.tinggi, function(error, i) {
+            return _c("div", { key: i, staticClass: "error-message" }, [
+              _vm._v(_vm._s(error))
+            ])
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-group" },
+        [
+          _c(
+            "label",
+            { staticClass: "required", attrs: { for: "Tempat Lahir" } },
+            [_vm._v("Tempat Lahir")]
+          ),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.peserta.tempat_lahir,
+                expression: "peserta.tempat_lahir"
+              }
+            ],
+            staticClass: "form-control input-text",
+            class: _vm.getErrorMessage("tempat_lahir"),
+            attrs: { type: "text" },
+            domProps: { value: _vm.peserta.tempat_lahir },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.peserta, "tempat_lahir", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.errorMessage.tempat_lahir, function(error, i) {
+            return _c("div", { key: i, staticClass: "error-message" }, [
+              _vm._v(_vm._s(error))
+            ])
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-group" },
+        [
+          _c(
+            "label",
+            { staticClass: "required", attrs: { for: "Tanggal Lahir" } },
+            [_vm._v("Tanggal Lahir")]
+          ),
+          _vm._v(" "),
+          _c("vue-datepicker", {
+            class: _vm.getErrorMessage("tanggal_lahir"),
+            model: {
+              value: _vm.peserta.tanggal_lahir,
+              callback: function($$v) {
+                _vm.$set(_vm.peserta, "tanggal_lahir", $$v)
+              },
+              expression: "peserta.tanggal_lahir"
+            }
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.errorMessage.tanggal_lahir, function(error, i) {
+            return _c("div", { key: i, staticClass: "error-message" }, [
+              _vm._v(_vm._s(error))
+            ])
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-group" },
+        [
+          _c("label", { staticClass: "required", attrs: { for: "Alamat" } }, [
+            _vm._v("Alamat")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.peserta.alamat,
+                expression: "peserta.alamat"
+              }
+            ],
+            staticClass: "form-control input-text",
+            class: _vm.getErrorMessage("alamat"),
+            attrs: { type: "text" },
+            domProps: { value: _vm.peserta.alamat },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.peserta, "alamat", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.errorMessage.alamat, function(error, i) {
+            return _c("div", { key: i, staticClass: "error-message" }, [
+              _vm._v(_vm._s(error))
+            ])
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-info", on: { click: _vm.updatePeserta } },
+        [_vm._v("Save")]
+      )
     ],
-    2
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "head-content-section" }, [
+      _c("h3", [_vm._v("Create Data Peserta")])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/event/create-event-form.vue?vue&type=template&id=4b24ffb8&":
+/*!********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/forms/event/create-event-form.vue?vue&type=template&id=4b24ffb8& ***!
+  \********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "container-fluid" },
+    [
+      _c("loading-modal"),
+      _vm._v(" "),
+      _c("success-modal", [_vm._v("\n    Berhasil membuat event baru\n  ")]),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-group" },
+        [
+          _c(
+            "label",
+            { staticClass: "required", attrs: { for: "tanggal_event" } },
+            [_vm._v("Tanggal Event")]
+          ),
+          _vm._v(" "),
+          _c("vue-datepicker", {
+            class: _vm.getErrorMessage("tanggal_event"),
+            attrs: { format: "YYYY-MM-DD HH:mm", pickTime: true },
+            model: {
+              value: _vm.event.tanggal_event,
+              callback: function($$v) {
+                _vm.$set(_vm.event, "tanggal_event", $$v)
+              },
+              expression: "event.tanggal_event"
+            }
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.errorMessage.tanggal_event, function(error, i) {
+            return _c("div", { key: i, staticClass: "error-message" }, [
+              _vm._v(_vm._s(error))
+            ])
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-group" },
+        [
+          _c("label", { attrs: { for: "pembicara" } }, [_vm._v("Pembicara")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.event.pembicara,
+                expression: "event.pembicara"
+              }
+            ],
+            staticClass: "form-control input-text",
+            class: _vm.getErrorMessage("pembicara"),
+            attrs: { type: "text" },
+            domProps: { value: _vm.event.pembicara },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.event, "pembicara", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.errorMessage.pembicara, function(error, i) {
+            return _c("div", { key: i, staticClass: "error-message" }, [
+              _vm._v(_vm._s(error))
+            ])
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-group" },
+        [
+          _c("label", { attrs: { for: "topik" } }, [_vm._v("Topik")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.event.topik,
+                expression: "event.topik"
+              }
+            ],
+            staticClass: "form-control input-text",
+            class: _vm.getErrorMessage("topik"),
+            attrs: { type: "text" },
+            domProps: { value: _vm.event.topik },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.event, "topik", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.errorMessage.topik, function(error, i) {
+            return _c("div", { key: i, staticClass: "error-message" }, [
+              _vm._v(_vm._s(error))
+            ])
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-group" },
+        [
+          _c(
+            "label",
+            { staticClass: "required", attrs: { for: "jumlah_peserta" } },
+            [_vm._v("Jumlah Peserta")]
+          ),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.event.jumlah_peserta,
+                expression: "event.jumlah_peserta"
+              }
+            ],
+            staticClass: "form-control input-text",
+            class: _vm.getErrorMessage("jumlah_peserta"),
+            attrs: { type: "number" },
+            domProps: { value: _vm.event.jumlah_peserta },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.event, "jumlah_peserta", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.errorMessage.jumlah_peserta, function(error, i) {
+            return _c("div", { key: i, staticClass: "error-message" }, [
+              _vm._v(_vm._s(error))
+            ])
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-info", on: { click: _vm.createEvent } },
+        [_vm._v("Save")]
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "head-content-section" }, [
+      _c("h3", [_vm._v("Data Event")])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/event/detail-event-form.vue?vue&type=template&id=553253c3&":
+/*!********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/forms/event/detail-event-form.vue?vue&type=template&id=553253c3& ***!
+  \********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container-fluid" }, [
+    _c("div", { staticClass: "head-content-section" }, [
+      _c("h3", [_vm._v("Data Event")]),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-info",
+          attrs: { href: _vm.urlEditEvent + _vm.event.id + "/edit" }
+        },
+        [_c("i", { staticClass: "fa fa-pencil" }), _vm._v(" Edit")]
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row form-group" }, [
+      _c("div", { staticClass: "col-sm-3" }, [_vm._v("Tanggal Event")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-9" }, [
+        _vm._v(_vm._s(_vm.event.tanggal_event))
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row form-group" }, [
+      _c("div", { staticClass: "col-sm-3" }, [_vm._v("Pembicara")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-9" }, [
+        _vm._v(_vm._s(_vm.event.pembicara))
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row form-group" }, [
+      _c("div", { staticClass: "col-sm-3" }, [_vm._v("Topik")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-9" }, [_vm._v(_vm._s(_vm.event.topik))])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row form-group" }, [
+      _c("div", { staticClass: "col-sm-3" }, [_vm._v("Jumlah Peserta")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-9" }, [
+        _vm._v(_vm._s(_vm.event.jumlah_peserta))
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/event/edit-event-form.vue?vue&type=template&id=222e8a2c&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/forms/event/edit-event-form.vue?vue&type=template&id=222e8a2c& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "container-fluid" },
+    [
+      _c("loading-modal"),
+      _vm._v(" "),
+      _c("success-modal", [_vm._v("\n    Berhasil membuat event baru\n  ")]),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-group" },
+        [
+          _c(
+            "label",
+            { staticClass: "required", attrs: { for: "tanggal_event" } },
+            [_vm._v("Tanggal Event")]
+          ),
+          _vm._v(" "),
+          _c("vue-datepicker", {
+            class: _vm.getErrorMessage("tanggal_event"),
+            attrs: { format: "YYYY-MM-DD HH:mm", pickTime: true },
+            model: {
+              value: _vm.event.tanggal_event,
+              callback: function($$v) {
+                _vm.$set(_vm.event, "tanggal_event", $$v)
+              },
+              expression: "event.tanggal_event"
+            }
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.errorMessage.tanggal_event, function(error, i) {
+            return _c("div", { key: i, staticClass: "error-message" }, [
+              _vm._v(_vm._s(error))
+            ])
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-group" },
+        [
+          _c("label", { attrs: { for: "pembicara" } }, [_vm._v("Pembicara")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.event.pembicara,
+                expression: "event.pembicara"
+              }
+            ],
+            staticClass: "form-control input-text",
+            class: _vm.getErrorMessage("pembicara"),
+            attrs: { type: "text" },
+            domProps: { value: _vm.event.pembicara },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.event, "pembicara", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.errorMessage.pembicara, function(error, i) {
+            return _c("div", { key: i, staticClass: "error-message" }, [
+              _vm._v(_vm._s(error))
+            ])
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-group" },
+        [
+          _c("label", { attrs: { for: "topik" } }, [_vm._v("Topik")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.event.topik,
+                expression: "event.topik"
+              }
+            ],
+            staticClass: "form-control input-text",
+            class: _vm.getErrorMessage("topik"),
+            attrs: { type: "text" },
+            domProps: { value: _vm.event.topik },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.event, "topik", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.errorMessage.topik, function(error, i) {
+            return _c("div", { key: i, staticClass: "error-message" }, [
+              _vm._v(_vm._s(error))
+            ])
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-group" },
+        [
+          _c(
+            "label",
+            { staticClass: "required", attrs: { for: "jumlah_peserta" } },
+            [_vm._v("Jumlah Peserta")]
+          ),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.event.jumlah_peserta,
+                expression: "event.jumlah_peserta"
+              }
+            ],
+            staticClass: "form-control input-text",
+            class: _vm.getErrorMessage("jumlah_peserta"),
+            attrs: { type: "number" },
+            domProps: { value: _vm.event.jumlah_peserta },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.event, "jumlah_peserta", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.errorMessage.jumlah_peserta, function(error, i) {
+            return _c("div", { key: i, staticClass: "error-message" }, [
+              _vm._v(_vm._s(error))
+            ])
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-info", on: { click: _vm.updataEvent } },
+        [_vm._v("Save")]
+      )
+    ],
+    1
   )
 }
 var staticRenderFns = [
@@ -45723,8 +46722,8 @@ var render = function() {
       _c(
         "delete-modal",
         {
-          attrs: { modalname: "delete-peserta-modal", width: 500, height: 350 },
-          on: { doDelete: _vm.deletePeserta }
+          attrs: { modalname: "delete-event-modal", width: 500, height: 350 },
+          on: { doDelete: _vm.deleteEvent }
         },
         [
           _c("template", { slot: "title" }, [
@@ -45753,17 +46752,21 @@ var render = function() {
         on: { "vuetable:pagination-data": _vm.onPaginationData },
         scopedSlots: _vm._u([
           {
-            key: "nama",
+            key: "topik",
             fn: function(props) {
               return _c("div", {}, [
                 _c(
                   "a",
                   {
                     attrs: {
-                      href: "/data-peserta/" + props.rowData.id + "/edit"
+                      href:
+                        _vm.urlDetailEvent +
+                        "/event/" +
+                        props.rowData.id +
+                        "/detail"
                     }
                   },
-                  [_vm._v(_vm._s(props.rowData.nama))]
+                  [_vm._v(_vm._s(props.rowData.topik))]
                 )
               ])
             }
@@ -45891,7 +46894,7 @@ var render = function() {
                   "a",
                   {
                     attrs: {
-                      href: "/data-peserta/" + props.rowData.id + "/edit"
+                      href: "/data-peserta/" + props.rowData.id + "/detail"
                     }
                   },
                   [_vm._v(_vm._s(props.rowData.nama))]
@@ -60101,19 +61104,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_forms_data_kesehatan_create_data_kesehatan_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/forms/data-kesehatan/create-data-kesehatan-form */ "./resources/js/components/forms/data-kesehatan/create-data-kesehatan-form.vue");
 /* harmony import */ var _components_forms_data_kesehatan_detail_data_kesehatan_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/forms/data-kesehatan/detail-data-kesehatan-form */ "./resources/js/components/forms/data-kesehatan/detail-data-kesehatan-form.vue");
 /* harmony import */ var _components_forms_data_kesehatan_edit_data_kesehatan_form__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/forms/data-kesehatan/edit-data-kesehatan-form */ "./resources/js/components/forms/data-kesehatan/edit-data-kesehatan-form.vue");
-/* harmony import */ var _components_forms_data_peserta_form__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/forms/data-peserta-form */ "./resources/js/components/forms/data-peserta-form.vue");
-/* harmony import */ var _components_forms_event_form__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/forms/event-form */ "./resources/js/components/forms/event-form.vue");
-/* harmony import */ var _components_modals_delete_modal__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/modals/delete-modal */ "./resources/js/components/modals/delete-modal.vue");
-/* harmony import */ var _components_modals_loading_modal__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/modals/loading-modal */ "./resources/js/components/modals/loading-modal.vue");
-/* harmony import */ var _components_modals_success_modal__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/modals/success-modal */ "./resources/js/components/modals/success-modal.vue");
-/* harmony import */ var _components_modals_peserta_table_modal__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/modals/peserta-table-modal */ "./resources/js/components/modals/peserta-table-modal.vue");
-/* harmony import */ var vue_date_pick__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vue-date-pick */ "./node_modules/vue-date-pick/dist/vueDatePick.js");
-/* harmony import */ var vue_date_pick__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(vue_date_pick__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var vue_js_modal__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vue-js-modal */ "./node_modules/vue-js-modal/dist/index.js");
-/* harmony import */ var vue_js_modal__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(vue_js_modal__WEBPACK_IMPORTED_MODULE_13__);
-/* harmony import */ var vue_sweetalert_icons__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! vue-sweetalert-icons */ "./node_modules/vue-sweetalert-icons/dist/sweetalert-icon.esm.js");
-/* harmony import */ var vuejs_paginate__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! vuejs-paginate */ "./node_modules/vuejs-paginate/dist/index.js");
-/* harmony import */ var vuejs_paginate__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(vuejs_paginate__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var _components_forms_data_peserta_detail_data_peserta_form__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/forms/data-peserta/detail-data-peserta-form */ "./resources/js/components/forms/data-peserta/detail-data-peserta-form.vue");
+/* harmony import */ var _components_forms_data_peserta_create_data_peserta_form__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/forms/data-peserta/create-data-peserta-form */ "./resources/js/components/forms/data-peserta/create-data-peserta-form.vue");
+/* harmony import */ var _components_forms_data_peserta_edit_data_peserta_form__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/forms/data-peserta/edit-data-peserta-form */ "./resources/js/components/forms/data-peserta/edit-data-peserta-form.vue");
+/* harmony import */ var _components_forms_event_create_event_form__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/forms/event/create-event-form */ "./resources/js/components/forms/event/create-event-form.vue");
+/* harmony import */ var _components_forms_event_detail_event_form__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/forms/event/detail-event-form */ "./resources/js/components/forms/event/detail-event-form.vue");
+/* harmony import */ var _components_forms_event_edit_event_form__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/forms/event/edit-event-form */ "./resources/js/components/forms/event/edit-event-form.vue");
+/* harmony import */ var _components_modals_delete_modal__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/modals/delete-modal */ "./resources/js/components/modals/delete-modal.vue");
+/* harmony import */ var _components_modals_loading_modal__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/modals/loading-modal */ "./resources/js/components/modals/loading-modal.vue");
+/* harmony import */ var _components_modals_success_modal__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/modals/success-modal */ "./resources/js/components/modals/success-modal.vue");
+/* harmony import */ var _components_modals_peserta_table_modal__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/modals/peserta-table-modal */ "./resources/js/components/modals/peserta-table-modal.vue");
+/* harmony import */ var vue_date_pick__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! vue-date-pick */ "./node_modules/vue-date-pick/dist/vueDatePick.js");
+/* harmony import */ var vue_date_pick__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(vue_date_pick__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var vue_js_modal__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! vue-js-modal */ "./node_modules/vue-js-modal/dist/index.js");
+/* harmony import */ var vue_js_modal__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(vue_js_modal__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var vue_sweetalert_icons__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! vue-sweetalert-icons */ "./node_modules/vue-sweetalert-icons/dist/sweetalert-icon.esm.js");
+/* harmony import */ var vuejs_paginate__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! vuejs-paginate */ "./node_modules/vuejs-paginate/dist/index.js");
+/* harmony import */ var vuejs_paginate__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(vuejs_paginate__WEBPACK_IMPORTED_MODULE_19__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js"); //table
@@ -60125,6 +61132,11 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 
  // form data peserta
+
+
+
+ // form event
+
 
 
  // modal
@@ -60146,16 +61158,21 @@ Vue.component('create-data-kesehatan-form', _components_forms_data_kesehatan_cre
 Vue.component('edit-data-kesehatan-form', _components_forms_data_kesehatan_edit_data_kesehatan_form__WEBPACK_IMPORTED_MODULE_5__["default"]);
 Vue.component('detail-data-kesehatan-form', _components_forms_data_kesehatan_detail_data_kesehatan_form__WEBPACK_IMPORTED_MODULE_4__["default"]); // form data peserta
 
-Vue.component('data-peserta-form', _components_forms_data_peserta_form__WEBPACK_IMPORTED_MODULE_6__["default"]);
-Vue.component('event-form', _components_forms_event_form__WEBPACK_IMPORTED_MODULE_7__["default"]);
-Vue.component('delete-modal', _components_modals_delete_modal__WEBPACK_IMPORTED_MODULE_8__["default"]);
-Vue.component('loading-modal', _components_modals_loading_modal__WEBPACK_IMPORTED_MODULE_9__["default"]);
-Vue.component('success-modal', _components_modals_success_modal__WEBPACK_IMPORTED_MODULE_10__["default"]);
-Vue.component('peserta-table-modal', _components_modals_peserta_table_modal__WEBPACK_IMPORTED_MODULE_11__["default"]);
-Vue.component('vue-datepicker', vue_date_pick__WEBPACK_IMPORTED_MODULE_12___default.a);
-Vue.component('vue-pagination', vuejs_paginate__WEBPACK_IMPORTED_MODULE_15___default.a);
-Vue.use(vue_js_modal__WEBPACK_IMPORTED_MODULE_13___default.a);
-Vue.use(vue_sweetalert_icons__WEBPACK_IMPORTED_MODULE_14__["default"]);
+Vue.component('detail-data-peserta-form', _components_forms_data_peserta_detail_data_peserta_form__WEBPACK_IMPORTED_MODULE_6__["default"]);
+Vue.component('create-data-peserta-form', _components_forms_data_peserta_create_data_peserta_form__WEBPACK_IMPORTED_MODULE_7__["default"]);
+Vue.component('edit-data-peserta-form', _components_forms_data_peserta_edit_data_peserta_form__WEBPACK_IMPORTED_MODULE_8__["default"]); // form event
+
+Vue.component('create-event-form', _components_forms_event_create_event_form__WEBPACK_IMPORTED_MODULE_9__["default"]);
+Vue.component('detail-event-form', _components_forms_event_detail_event_form__WEBPACK_IMPORTED_MODULE_10__["default"]);
+Vue.component('edit-event-form', _components_forms_event_edit_event_form__WEBPACK_IMPORTED_MODULE_11__["default"]);
+Vue.component('delete-modal', _components_modals_delete_modal__WEBPACK_IMPORTED_MODULE_12__["default"]);
+Vue.component('loading-modal', _components_modals_loading_modal__WEBPACK_IMPORTED_MODULE_13__["default"]);
+Vue.component('success-modal', _components_modals_success_modal__WEBPACK_IMPORTED_MODULE_14__["default"]);
+Vue.component('peserta-table-modal', _components_modals_peserta_table_modal__WEBPACK_IMPORTED_MODULE_15__["default"]);
+Vue.component('vue-datepicker', vue_date_pick__WEBPACK_IMPORTED_MODULE_16___default.a);
+Vue.component('vue-pagination', vuejs_paginate__WEBPACK_IMPORTED_MODULE_19___default.a);
+Vue.use(vue_js_modal__WEBPACK_IMPORTED_MODULE_17___default.a);
+Vue.use(vue_sweetalert_icons__WEBPACK_IMPORTED_MODULE_18__["default"]);
 var app = new Vue({
   el: '#app'
 });
@@ -60401,18 +61418,18 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/forms/data-peserta-form.vue":
-/*!*************************************************************!*\
-  !*** ./resources/js/components/forms/data-peserta-form.vue ***!
-  \*************************************************************/
+/***/ "./resources/js/components/forms/data-peserta/create-data-peserta-form.vue":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/forms/data-peserta/create-data-peserta-form.vue ***!
+  \*********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _data_peserta_form_vue_vue_type_template_id_85156f3e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data-peserta-form.vue?vue&type=template&id=85156f3e& */ "./resources/js/components/forms/data-peserta-form.vue?vue&type=template&id=85156f3e&");
-/* harmony import */ var _data_peserta_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./data-peserta-form.vue?vue&type=script&lang=js& */ "./resources/js/components/forms/data-peserta-form.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _create_data_peserta_form_vue_vue_type_template_id_29d6eaca___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./create-data-peserta-form.vue?vue&type=template&id=29d6eaca& */ "./resources/js/components/forms/data-peserta/create-data-peserta-form.vue?vue&type=template&id=29d6eaca&");
+/* harmony import */ var _create_data_peserta_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./create-data-peserta-form.vue?vue&type=script&lang=js& */ "./resources/js/components/forms/data-peserta/create-data-peserta-form.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -60421,9 +61438,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _data_peserta_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _data_peserta_form_vue_vue_type_template_id_85156f3e___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _data_peserta_form_vue_vue_type_template_id_85156f3e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _create_data_peserta_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _create_data_peserta_form_vue_vue_type_template_id_29d6eaca___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _create_data_peserta_form_vue_vue_type_template_id_29d6eaca___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -60433,55 +61450,55 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/forms/data-peserta-form.vue"
+component.options.__file = "resources/js/components/forms/data-peserta/create-data-peserta-form.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/forms/data-peserta-form.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************!*\
-  !*** ./resources/js/components/forms/data-peserta-form.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************/
+/***/ "./resources/js/components/forms/data-peserta/create-data-peserta-form.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************!*\
+  !*** ./resources/js/components/forms/data-peserta/create-data-peserta-form.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_data_peserta_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./data-peserta-form.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/data-peserta-form.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_data_peserta_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_create_data_peserta_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./create-data-peserta-form.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/data-peserta/create-data-peserta-form.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_create_data_peserta_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/forms/data-peserta-form.vue?vue&type=template&id=85156f3e&":
-/*!********************************************************************************************!*\
-  !*** ./resources/js/components/forms/data-peserta-form.vue?vue&type=template&id=85156f3e& ***!
-  \********************************************************************************************/
+/***/ "./resources/js/components/forms/data-peserta/create-data-peserta-form.vue?vue&type=template&id=29d6eaca&":
+/*!****************************************************************************************************************!*\
+  !*** ./resources/js/components/forms/data-peserta/create-data-peserta-form.vue?vue&type=template&id=29d6eaca& ***!
+  \****************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_data_peserta_form_vue_vue_type_template_id_85156f3e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./data-peserta-form.vue?vue&type=template&id=85156f3e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/data-peserta-form.vue?vue&type=template&id=85156f3e&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_data_peserta_form_vue_vue_type_template_id_85156f3e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_create_data_peserta_form_vue_vue_type_template_id_29d6eaca___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./create-data-peserta-form.vue?vue&type=template&id=29d6eaca& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/data-peserta/create-data-peserta-form.vue?vue&type=template&id=29d6eaca&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_create_data_peserta_form_vue_vue_type_template_id_29d6eaca___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_data_peserta_form_vue_vue_type_template_id_85156f3e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_create_data_peserta_form_vue_vue_type_template_id_29d6eaca___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ "./resources/js/components/forms/event-form.vue":
-/*!******************************************************!*\
-  !*** ./resources/js/components/forms/event-form.vue ***!
-  \******************************************************/
+/***/ "./resources/js/components/forms/data-peserta/detail-data-peserta-form.vue":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/forms/data-peserta/detail-data-peserta-form.vue ***!
+  \*********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _event_form_vue_vue_type_template_id_4f8ff8c2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./event-form.vue?vue&type=template&id=4f8ff8c2& */ "./resources/js/components/forms/event-form.vue?vue&type=template&id=4f8ff8c2&");
-/* harmony import */ var _event_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./event-form.vue?vue&type=script&lang=js& */ "./resources/js/components/forms/event-form.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _detail_data_peserta_form_vue_vue_type_template_id_fedff742___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./detail-data-peserta-form.vue?vue&type=template&id=fedff742& */ "./resources/js/components/forms/data-peserta/detail-data-peserta-form.vue?vue&type=template&id=fedff742&");
+/* harmony import */ var _detail_data_peserta_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./detail-data-peserta-form.vue?vue&type=script&lang=js& */ "./resources/js/components/forms/data-peserta/detail-data-peserta-form.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -60490,9 +61507,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _event_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _event_form_vue_vue_type_template_id_4f8ff8c2___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _event_form_vue_vue_type_template_id_4f8ff8c2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _detail_data_peserta_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _detail_data_peserta_form_vue_vue_type_template_id_fedff742___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _detail_data_peserta_form_vue_vue_type_template_id_fedff742___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -60502,38 +61519,314 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/forms/event-form.vue"
+component.options.__file = "resources/js/components/forms/data-peserta/detail-data-peserta-form.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/forms/event-form.vue?vue&type=script&lang=js&":
+/***/ "./resources/js/components/forms/data-peserta/detail-data-peserta-form.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************!*\
+  !*** ./resources/js/components/forms/data-peserta/detail-data-peserta-form.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_detail_data_peserta_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./detail-data-peserta-form.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/data-peserta/detail-data-peserta-form.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_detail_data_peserta_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/forms/data-peserta/detail-data-peserta-form.vue?vue&type=template&id=fedff742&":
+/*!****************************************************************************************************************!*\
+  !*** ./resources/js/components/forms/data-peserta/detail-data-peserta-form.vue?vue&type=template&id=fedff742& ***!
+  \****************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_detail_data_peserta_form_vue_vue_type_template_id_fedff742___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./detail-data-peserta-form.vue?vue&type=template&id=fedff742& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/data-peserta/detail-data-peserta-form.vue?vue&type=template&id=fedff742&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_detail_data_peserta_form_vue_vue_type_template_id_fedff742___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_detail_data_peserta_form_vue_vue_type_template_id_fedff742___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/forms/data-peserta/edit-data-peserta-form.vue":
 /*!*******************************************************************************!*\
-  !*** ./resources/js/components/forms/event-form.vue?vue&type=script&lang=js& ***!
+  !*** ./resources/js/components/forms/data-peserta/edit-data-peserta-form.vue ***!
   \*******************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_event_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./event-form.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/event-form.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_event_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _edit_data_peserta_form_vue_vue_type_template_id_79ef8f18___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./edit-data-peserta-form.vue?vue&type=template&id=79ef8f18& */ "./resources/js/components/forms/data-peserta/edit-data-peserta-form.vue?vue&type=template&id=79ef8f18&");
+/* harmony import */ var _edit_data_peserta_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit-data-peserta-form.vue?vue&type=script&lang=js& */ "./resources/js/components/forms/data-peserta/edit-data-peserta-form.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _edit_data_peserta_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _edit_data_peserta_form_vue_vue_type_template_id_79ef8f18___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _edit_data_peserta_form_vue_vue_type_template_id_79ef8f18___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/forms/data-peserta/edit-data-peserta-form.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/forms/event-form.vue?vue&type=template&id=4f8ff8c2&":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/components/forms/event-form.vue?vue&type=template&id=4f8ff8c2& ***!
-  \*************************************************************************************/
+/***/ "./resources/js/components/forms/data-peserta/edit-data-peserta-form.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/js/components/forms/data-peserta/edit-data-peserta-form.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_edit_data_peserta_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./edit-data-peserta-form.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/data-peserta/edit-data-peserta-form.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_edit_data_peserta_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/forms/data-peserta/edit-data-peserta-form.vue?vue&type=template&id=79ef8f18&":
+/*!**************************************************************************************************************!*\
+  !*** ./resources/js/components/forms/data-peserta/edit-data-peserta-form.vue?vue&type=template&id=79ef8f18& ***!
+  \**************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_event_form_vue_vue_type_template_id_4f8ff8c2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./event-form.vue?vue&type=template&id=4f8ff8c2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/event-form.vue?vue&type=template&id=4f8ff8c2&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_event_form_vue_vue_type_template_id_4f8ff8c2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_edit_data_peserta_form_vue_vue_type_template_id_79ef8f18___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./edit-data-peserta-form.vue?vue&type=template&id=79ef8f18& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/data-peserta/edit-data-peserta-form.vue?vue&type=template&id=79ef8f18&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_edit_data_peserta_form_vue_vue_type_template_id_79ef8f18___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_event_form_vue_vue_type_template_id_4f8ff8c2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_edit_data_peserta_form_vue_vue_type_template_id_79ef8f18___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/forms/event/create-event-form.vue":
+/*!*******************************************************************!*\
+  !*** ./resources/js/components/forms/event/create-event-form.vue ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _create_event_form_vue_vue_type_template_id_4b24ffb8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./create-event-form.vue?vue&type=template&id=4b24ffb8& */ "./resources/js/components/forms/event/create-event-form.vue?vue&type=template&id=4b24ffb8&");
+/* harmony import */ var _create_event_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./create-event-form.vue?vue&type=script&lang=js& */ "./resources/js/components/forms/event/create-event-form.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _create_event_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _create_event_form_vue_vue_type_template_id_4b24ffb8___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _create_event_form_vue_vue_type_template_id_4b24ffb8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/forms/event/create-event-form.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/forms/event/create-event-form.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/components/forms/event/create-event-form.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_create_event_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./create-event-form.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/event/create-event-form.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_create_event_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/forms/event/create-event-form.vue?vue&type=template&id=4b24ffb8&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/forms/event/create-event-form.vue?vue&type=template&id=4b24ffb8& ***!
+  \**************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_create_event_form_vue_vue_type_template_id_4b24ffb8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./create-event-form.vue?vue&type=template&id=4b24ffb8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/event/create-event-form.vue?vue&type=template&id=4b24ffb8&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_create_event_form_vue_vue_type_template_id_4b24ffb8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_create_event_form_vue_vue_type_template_id_4b24ffb8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/forms/event/detail-event-form.vue":
+/*!*******************************************************************!*\
+  !*** ./resources/js/components/forms/event/detail-event-form.vue ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _detail_event_form_vue_vue_type_template_id_553253c3___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./detail-event-form.vue?vue&type=template&id=553253c3& */ "./resources/js/components/forms/event/detail-event-form.vue?vue&type=template&id=553253c3&");
+/* harmony import */ var _detail_event_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./detail-event-form.vue?vue&type=script&lang=js& */ "./resources/js/components/forms/event/detail-event-form.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _detail_event_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _detail_event_form_vue_vue_type_template_id_553253c3___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _detail_event_form_vue_vue_type_template_id_553253c3___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/forms/event/detail-event-form.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/forms/event/detail-event-form.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/components/forms/event/detail-event-form.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_detail_event_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./detail-event-form.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/event/detail-event-form.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_detail_event_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/forms/event/detail-event-form.vue?vue&type=template&id=553253c3&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/forms/event/detail-event-form.vue?vue&type=template&id=553253c3& ***!
+  \**************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_detail_event_form_vue_vue_type_template_id_553253c3___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./detail-event-form.vue?vue&type=template&id=553253c3& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/event/detail-event-form.vue?vue&type=template&id=553253c3&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_detail_event_form_vue_vue_type_template_id_553253c3___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_detail_event_form_vue_vue_type_template_id_553253c3___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/forms/event/edit-event-form.vue":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/forms/event/edit-event-form.vue ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _edit_event_form_vue_vue_type_template_id_222e8a2c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./edit-event-form.vue?vue&type=template&id=222e8a2c& */ "./resources/js/components/forms/event/edit-event-form.vue?vue&type=template&id=222e8a2c&");
+/* harmony import */ var _edit_event_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit-event-form.vue?vue&type=script&lang=js& */ "./resources/js/components/forms/event/edit-event-form.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _edit_event_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _edit_event_form_vue_vue_type_template_id_222e8a2c___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _edit_event_form_vue_vue_type_template_id_222e8a2c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/forms/event/edit-event-form.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/forms/event/edit-event-form.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/forms/event/edit-event-form.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_edit_event_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./edit-event-form.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/event/edit-event-form.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_edit_event_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/forms/event/edit-event-form.vue?vue&type=template&id=222e8a2c&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/forms/event/edit-event-form.vue?vue&type=template&id=222e8a2c& ***!
+  \************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_edit_event_form_vue_vue_type_template_id_222e8a2c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./edit-event-form.vue?vue&type=template&id=222e8a2c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/event/edit-event-form.vue?vue&type=template&id=222e8a2c&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_edit_event_form_vue_vue_type_template_id_222e8a2c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_edit_event_form_vue_vue_type_template_id_222e8a2c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -61008,8 +62301,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /opt/lampp/htdocs/form-he/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /opt/lampp/htdocs/form-he/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/andreas/Documents/Work/form-he/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/andreas/Documents/Work/form-he/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

@@ -104,9 +104,7 @@ class PesertaController extends Controller
     public function show($id)
     {
         $peserta = Peserta::find($id);
-        return response ()->json([
-            'data' => $peserta
-        ]);
+        return view('peserta.detail', ['peserta' => $peserta]);
     }
 
     public function search(Request $request)

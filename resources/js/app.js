@@ -13,9 +13,14 @@ import DetailDataKesehatanForm from './components/forms/data-kesehatan/detail-da
 import EditDataKesehatanForm from './components/forms/data-kesehatan/edit-data-kesehatan-form';
 
 // form data peserta
-import DataPesertaForm from './components/forms/data-peserta-form';
-import DataKesehatanForm from './components/forms/data-kesehatan-form';
-import EventForm from './components/forms/event-form';
+import DetailDataPesertaForm from './components/forms/data-peserta/detail-data-peserta-form';
+import CreateDataPesertaForm from './components/forms/data-peserta/create-data-peserta-form';
+import EditDataPesertaForm from './components/forms/data-peserta/edit-data-peserta-form';
+
+// form event
+import CreateEventForm from './components/forms/event/create-event-form';
+import DetailEventForm from './components/forms/event/detail-event-form';
+import EditEventForm from './components/forms/event/edit-event-form';
 
 // modal
 import DeleteModal from './components/modals/delete-modal';
@@ -39,9 +44,14 @@ Vue.component('edit-data-kesehatan-form', EditDataKesehatanForm);
 Vue.component('detail-data-kesehatan-form', DetailDataKesehatanForm);
 
 // form data peserta
-Vue.component('data-peserta-form', DataPesertaForm);
-Vue.component('data-kesehatan-form', DataKesehatanForm);
-Vue.component('event-form', EventForm)
+Vue.component('detail-data-peserta-form', DetailDataPesertaForm);
+Vue.component('create-data-peserta-form', CreateDataPesertaForm);
+Vue.component('edit-data-peserta-form', EditDataPesertaForm);
+
+// form event
+Vue.component('create-event-form', CreateEventForm)
+Vue.component('detail-event-form', DetailEventForm)
+Vue.component('edit-event-form', EditEventForm)
 
 Vue.component('delete-modal', DeleteModal);
 Vue.component('loading-modal', LoadingModal);

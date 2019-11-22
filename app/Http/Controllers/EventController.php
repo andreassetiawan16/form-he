@@ -6,7 +6,7 @@ use App\Event;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
-use App\Http\Requests\PesertaRequest;
+use App\Http\Requests\EventRequest;
 use App\Http\Traits\DataKesehatanTrait;
 use Carbon\Carbon;
 use Validator;
@@ -21,6 +21,35 @@ class EventController extends Controller
     public function index()
     {
         return view('event.index');
+    }
+
+    public function table(Request $request)
+    {
+        $input = $request->all();
+        $perPage = $request->has('per_page') ? (int) $input['per_page'] : 10;
+        $query = Event::query();
+        if ($request->has('filter')) {
+            $query->where('nama', 'LIKE', '%'.$request->filter.'%');
+        } else {
+            if($request->has('sort') && !empty($input['sort'])){
+                $sort = explode('|', $request->sort);
+            
+                $query->orderBy($sort[0], strtoupper($sort[1]));
+            }else{
+                $query->orderBy('created_at', 'DESC');
+            }
+        }
+        
+        $total = $query->count();
+        $currentPage = $request->input('page', 1);
+        $offset = ($currentPage - 1) * $perPage;
+        $result = $query->offset($offset)->limit($perPage)->get();
+    
+        $pesertas = new LengthAwarePaginator($result,$total,$perPage,$currentPage,[
+            'path' => Paginator::resolveCurrentPath(),
+            'pageName' => 'peserta'
+        ]);
+        return response()->json($pesertas)->setStatusCode(200);
     }
 
     /**
@@ -65,9 +94,10 @@ class EventController extends Controller
      * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $event)
+    public function show($id)
     {
-        //
+        $event = Event::find($id);
+        return view('event.detail', ['event' => $event]);
     }
 
     /**
@@ -79,7 +109,7 @@ class EventController extends Controller
     public function edit($id)
     {
         $event = Event::find($id);
-        return view('event.id', ['event' => $event]);
+        return view('event.edit', ['event' => $event]);
     }
 
     /**
@@ -92,6 +122,22 @@ class EventController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->all();
+        $validator = Validator::make($data, EventRequest::rules());
+        if ($validator->fails()) {
+            $errorMessage = $validator->errors()->getMessages();
+            return response()->json([
+                'message' => $errorMessage,
+                'status' => 406
+            ]);
+        } else {
+            $updateEvent = Event::find($id);
+            $updateEvent->update($data);
+            return response()->json([
+                'data' => $updateEvent,
+                'message' => 'Berhasil update data peserta',
+                'status' => 200
+            ]);
+        }
     }
 
     /**
@@ -100,12 +146,12 @@ class EventController extends Controller
      * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $event)
+    public function destroy(Request $request)
     {
         $event = Event::find($request->id);
         $event->delete();
         return response()->json([
-            'message' => 'Berhasil menghapus user',
+            'message' => 'Berhasil menghapus event',
             'status' => 200
         ]);
     }

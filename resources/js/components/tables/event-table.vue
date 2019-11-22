@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <!-- delete modal -->
-    <delete-modal modalname="delete-peserta-modal" :width="500" :height="350" @doDelete="deletePeserta">
+    <delete-modal modalname="delete-event-modal" :width="500" :height="350" @doDelete="deleteEvent">
       <template slot="title">Apa anda yakin ingin menghapus event?</template>
       <template slot="description">Seluruh data kesehatan juga akan dihapus</template>
     </delete-modal>
@@ -33,8 +33,8 @@
               pagination-path=""
               @vuetable:pagination-data="onPaginationData"
     >
-      <div slot="nama" slot-scope="props">
-        <a :href="'/data-peserta/' + props.rowData.id + '/edit'">{{ props.rowData.nama }}</a>
+      <div slot="topik" slot-scope="props">
+        <a :href="urlDetailEvent + '/event/' + props.rowData.id + '/detail'">{{ props.rowData.topik }}</a>
       </div>
       <div slot="action" slot-scope="props" class="vuetable-action">
         <span class="clickable delete" @click="showDeleteModal(props.rowData)"><i class="fa fa-trash"></i> Delete</span>
@@ -69,11 +69,6 @@ export default {
     VuetablePagination,
     VuetablePaginationInfo,
   },
-  props: {
-    url: {
-      type: String
-    }
-  },
   data () {
     return {
       css: {
@@ -89,24 +84,26 @@ export default {
           }
         }
       },
-      tempUrl: '',
+      urlTable: process.env.MIX_BASE_URL + '/tableEvents',
+      tempUrl: process.env.MIX_BASE_URL + '/tableEvents',
+      urlDetailEvent: process.env.MIX_BASE_URL,
       fields: [
         {
-          name: '__slot:nama',
-          title: 'Tanggal'
+          name: '__slot:topik',
+          title: 'topik'
         },
         {
-          name: 'email',
-          title: 'Email'
+          name: 'tanggal_event',
+          title: 'Tanggal Event'
         },
         {
-          name: 'no_telepon',
-          title: 'Nomor Telepon'
+          name: 'pembicara',
+          title: 'Pembicara'
         },
         {
-          name: 'alamat',
-          title: 'Alamat',
-          sortField: 'alamat'
+          name: 'jumlah_peserta',
+          title: 'Jumlah Peserta',
+          sortField: 'jumlah_peserta'
         },
         {
           name: '__slot:action',
@@ -115,7 +112,7 @@ export default {
         }
       ],
       searchWord: '',
-      peserta: {}
+      event: {}
     }
   },
   methods: {
@@ -126,32 +123,31 @@ export default {
     onChangePage (page) {
       this.$refs.event_table.changePage(page)
     },
-    showDeleteModal (peserta) {
-      this.$modal.show('delete-peserta-modal')
-      this.peserta = Object.assign({}, peserta)
+    showDeleteModal (event) {
+      this.$modal.show('delete-event-modal')
+      this.event = Object.assign({}, event)
     },
     hideDeleteModal () {
-      this.$modal.hide('delete-peserta-modal')
+      this.$modal.hide('delete-event-modal')
     },
     async deleteEvent () {
-        console.log('deleteEvent :')
-    //   this.hideDeleteModal()
-    //   this.$modal.show('loading-modal')
-    //   let response = await axios ({
-    //     method: 'POST',
-    //     url: process.env.MIX_BASE_URL + '/data-peserta/delete',
-    //     data: {id: this.peserta.id}
-    //   })
-    //   if (response.data.status === 200) {
-    //     setTimeout(() => {
-    //       this.$modal.hide('loading-modal')
-    //       this.$modal.show('success-modal')
-    //       setTimeout(() => {
-    //         this.$modal.hide('success-modal')
-    //         this.refreshTable()
-    //       }, 2000)
-    //     }, 2000)
-    //   }
+      this.hideDeleteModal()
+      this.$modal.show('loading-modal')
+      let response = await axios({
+        method: 'POST',
+        url: process.env.MIX_BASE_URL + '/event/delete',
+        data: {id: this.event.id}
+      })
+      if (response.data.status === 200) {
+        setTimeout(() => {
+          this.$modal.hide('loading-modal')
+          this.$modal.show('success-modal')
+          setTimeout(() => {
+            this.$modal.hide('success-modal')
+            this.refreshTable()
+          }, 2000)
+        }, 2000)
+      }
     },
     doSearch () {
       this.tempUrl = this.url + '?filter=' + this.searchWord
@@ -162,9 +158,6 @@ export default {
         this.$refs.event_table.refresh()
       })
     }
-  },
-  created () {
-    this.tempUrl = this.url
   }
 }
 </script>

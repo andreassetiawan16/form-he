@@ -13,7 +13,7 @@
             </div>
         </div>
         <div id="app">
-            <event-table url="{{url("tableEvents")}}"></event-table>
+            <event-table></event-table>
         </div>
     </div>
 @endsection

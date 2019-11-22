@@ -61,7 +61,7 @@
                   @vuetable:pagination-data="onPaginationData"
         >
           <template slot="tanggal" slot-scope="props">
-            <a :href="urlDetailDataKesehatan + props.rowData.id + '/edit'">{{ props.rowData.tanggal_he.substring(0, 10) }}</a>
+            <a :href="urlDetailDataKesehatan + props.rowData.id + '/detail'">{{ props.rowData.tanggal_he.substring(0, 10) }}</a>
           </template>
           <template slot="berat_badan" slot-scope="props">
             <div class="text-center">{{ props.rowData.hasil_berat_badan }}kg, {{ props.rowData.nilai_rujukan_berat_badan }} kg</div>

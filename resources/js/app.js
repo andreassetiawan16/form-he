@@ -5,6 +5,7 @@ window.Vue = require('vue');
 //table
 import PesertaTable from './components/tables/peserta-table';
 import DataKesehatanTable from './components/tables/data-kesehatan-table';
+import EventTable from './components/tables/event-table';
 
 //form data kesehatan
 import CreateDataKesehatanForm from './components/forms/data-kesehatan/create-data-kesehatan-form'
@@ -13,6 +14,8 @@ import EditDataKesehatanForm from './components/forms/data-kesehatan/edit-data-k
 
 // form data peserta
 import DataPesertaForm from './components/forms/data-peserta-form';
+import DataKesehatanForm from './components/forms/data-kesehatan-form';
+import EventForm from './components/forms/event-form';
 
 // modal
 import DeleteModal from './components/modals/delete-modal';
@@ -28,6 +31,7 @@ import VuePagination from 'vuejs-paginate'
 
 Vue.component('peserta-table', PesertaTable);
 Vue.component('data-kesehatan-table', DataKesehatanTable);
+Vue.component('event-table', EventTable);
 
 // form data kesehatan
 Vue.component('create-data-kesehatan-form', CreateDataKesehatanForm);
@@ -36,6 +40,8 @@ Vue.component('detail-data-kesehatan-form', DetailDataKesehatanForm);
 
 // form data peserta
 Vue.component('data-peserta-form', DataPesertaForm);
+Vue.component('data-kesehatan-form', DataKesehatanForm);
+Vue.component('event-form', EventForm)
 
 Vue.component('delete-modal', DeleteModal);
 Vue.component('loading-modal', LoadingModal);

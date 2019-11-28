@@ -3,7 +3,6 @@
     <!-- delete modal -->
     <delete-modal modalname="delete-event-modal" :width="500" :height="350" @doDelete="deleteEvent">
       <template slot="title">Apa anda yakin ingin menghapus event?</template>
-      <template slot="description">Seluruh data kesehatan juga akan dihapus</template>
     </delete-modal>
     <!-- end delete modal -->
 

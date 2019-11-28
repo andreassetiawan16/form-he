@@ -5,11 +5,17 @@
     <peserta-table-modal @selectedPeserta="selectPeserta($event)" />
     <!-- end peserta table modal -->
 
+    <loading-modal />
+
     <!-- modal delete data kesehatan -->
     <delete-modal modalname="delete-data-kesehatan-modal" :width="500" :height="350" @doDelete="deleteDataKesehatan">
       <template slot="title">Apa anda yakin ingin menghapus data kesehatan {{ peserta.nama }}</template>
     </delete-modal>
     <!-- end modal delete data kesehatan -->
+
+    <success-modal>
+      Berhasil menghapus data kesehatan
+    </success-modal>
 
     <div class="box box-info" >
       <div class="container-fluid">
@@ -258,6 +264,11 @@ export default {
         day = '0' + day
 
       return [year, month, day].join('-')
+    },
+    refreshTable () {
+      this.$nextTick(function () {
+        this.$refs.data_kesehatan_table.refresh()
+      })
     }
   }
 }

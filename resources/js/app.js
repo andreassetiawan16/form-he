@@ -30,9 +30,10 @@ import PesertaTableModal from './components/modals/peserta-table-modal'
 
 // external plugin
 import VueDatepicker from 'vue-date-pick';
-import VModal from 'vue-js-modal'
+import VModal from 'vue-js-modal';
 import SweetAlertIcons from 'vue-sweetalert-icons';
-import VuePagination from 'vuejs-paginate'
+import VuePagination from 'vuejs-paginate';
+import { ToggleButton } from 'vue-js-toggle-button'
 
 Vue.component('peserta-table', PesertaTable);
 Vue.component('data-kesehatan-table', DataKesehatanTable);
@@ -49,9 +50,9 @@ Vue.component('create-data-peserta-form', CreateDataPesertaForm);
 Vue.component('edit-data-peserta-form', EditDataPesertaForm);
 
 // form event
-Vue.component('create-event-form', CreateEventForm)
-Vue.component('detail-event-form', DetailEventForm)
-Vue.component('edit-event-form', EditEventForm)
+Vue.component('create-event-form', CreateEventForm);
+Vue.component('detail-event-form', DetailEventForm);
+Vue.component('edit-event-form', EditEventForm);
 
 Vue.component('delete-modal', DeleteModal);
 Vue.component('loading-modal', LoadingModal);
@@ -59,7 +60,8 @@ Vue.component('success-modal', SuccessModal);
 Vue.component('peserta-table-modal', PesertaTableModal);
 
 Vue.component('vue-datepicker', VueDatepicker);
-Vue.component('vue-pagination', VuePagination)
+Vue.component('vue-pagination', VuePagination);
+Vue.component('toggle-button', ToggleButton);
 
 Vue.use(VModal);
 Vue.use(SweetAlertIcons);

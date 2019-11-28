@@ -2876,6 +2876,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3047,6 +3063,15 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3869,6 +3894,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4026,11 +4062,18 @@ __webpack_require__.r(__webpack_exports__);
       }, null, this);
     }
   },
-  mounted: function mounted() {
+  beforeMount: function beforeMount() {
     this.data.tanggal_he = new Date();
     this.data = Object.assign({}, JSON.parse(this.datakesehatan));
     this.peserta = Object.assign({}, JSON.parse(this.datakesehatan).peserta);
     this.data.tanggal_he = this.formatDate(this.data.tanggal_he).toString();
+
+    if (this.data.intensif_program === 1) {
+      this.data.intensif_program = true;
+    } else {
+      this.data.intensif_program = false;
+    }
+
     delete this.data.peserta;
   }
 });
@@ -5034,6 +5077,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5208,6 +5257,11 @@ __webpack_require__.r(__webpack_exports__);
       if (month.length < 2) month = '0' + month;
       if (day.length < 2) day = '0' + day;
       return [year, month, day].join('-');
+    },
+    refreshTable: function refreshTable() {
+      this.$nextTick(function () {
+        this.$refs.data_kesehatan_table.refresh();
+      });
     }
   }
 });
@@ -5231,7 +5285,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuetable_2_src_components_VuetablePagination__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuetable-2/src/components/VuetablePagination */ "./node_modules/vuetable-2/src/components/VuetablePagination.vue");
 /* harmony import */ var vuetable_2_src_components_VuetablePaginationInfo__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuetable-2/src/components/VuetablePaginationInfo */ "./node_modules/vuetable-2/src/components/VuetablePaginationInfo.vue");
 
-//
 //
 //
 //
@@ -38128,6 +38181,865 @@ exports.callbackify = callbackify;
 
 /***/ }),
 
+/***/ "./node_modules/vue-js-toggle-button/dist/index.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/vue-js-toggle-button/dist/index.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(true)
+		module.exports = factory();
+	else {}
+})(this, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// identity function for calling harmony imports with the correct context
+/******/ 	__webpack_require__.i = function(value) { return value; };
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/dist/";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(8)
+
+var Component = __webpack_require__(6)(
+  /* script */
+  __webpack_require__(1),
+  /* template */
+  __webpack_require__(7),
+  /* scopeId */
+  "data-v-25adc6c0",
+  /* cssModules */
+  null
+)
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(3);
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+var DEFAULT_COLOR_CHECKED = '#75c791';
+var DEFAULT_COLOR_UNCHECKED = '#bfcbd9';
+var DEFAULT_LABEL_CHECKED = 'on';
+var DEFAULT_LABEL_UNCHECKED = 'off';
+var DEFAULT_SWITCH_COLOR = '#fff';
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'ToggleButton',
+  props: {
+    value: {
+      type: Boolean,
+      default: false
+    },
+    name: {
+      type: String
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    tag: {
+      type: String
+    },
+    sync: {
+      type: Boolean,
+      default: false
+    },
+    speed: {
+      type: Number,
+      default: 300
+    },
+    color: {
+      type: [String, Object],
+      validator: function validator(value) {
+        return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* isString */])(value) || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* has */])(value, 'checked') || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* has */])(value, 'unchecked') || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* has */])(value, 'disabled');
+      }
+    },
+    switchColor: {
+      type: [String, Object],
+      validator: function validator(value) {
+        return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* isString */])(value) || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* has */])(value, 'checked') || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* has */])(value, 'unchecked');
+      }
+    },
+    cssColors: {
+      type: Boolean,
+      default: false
+    },
+    labels: {
+      type: [Boolean, Object],
+      default: false,
+      validator: function validator(value) {
+        return (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' ? value.checked || value.unchecked : typeof value === 'boolean';
+      }
+    },
+    height: {
+      type: Number,
+      default: 22
+    },
+    width: {
+      type: Number,
+      default: 50
+    },
+    margin: {
+      type: Number,
+      default: 3
+    },
+    fontSize: {
+      type: Number
+    }
+  },
+  computed: {
+    className: function className() {
+      var toggled = this.toggled,
+          disabled = this.disabled;
+
+
+      return ['vue-js-switch', {
+        toggled: toggled,
+        disabled: disabled
+      }];
+    },
+    coreStyle: function coreStyle() {
+      return {
+        width: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(this.width),
+        height: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(this.height),
+        backgroundColor: this.cssColors ? null : this.disabled ? this.colorDisabled : this.colorCurrent,
+        borderRadius: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(Math.round(this.height / 2))
+      };
+    },
+    buttonRadius: function buttonRadius() {
+      return this.height - this.margin * 2;
+    },
+    distance: function distance() {
+      return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(this.width - this.height + this.margin);
+    },
+    buttonStyle: function buttonStyle() {
+      var transition = 'transform ' + this.speed + 'ms';
+      var margin = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(this.margin);
+
+      var transform = this.toggled ? __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["d" /* translate3d */])(this.distance, margin) : __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["d" /* translate3d */])(margin, margin);
+
+      var background = this.switchColor ? this.switchColorCurrent : null;
+
+      return {
+        width: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(this.buttonRadius),
+        height: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(this.buttonRadius),
+        transition: transition,
+        transform: transform,
+        background: background
+      };
+    },
+    labelStyle: function labelStyle() {
+      return {
+        lineHeight: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(this.height),
+        fontSize: this.fontSize ? __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(this.fontSize) : null
+      };
+    },
+    colorChecked: function colorChecked() {
+      var color = this.color;
+
+
+      if (!__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["e" /* isObject */])(color)) {
+        return color || DEFAULT_COLOR_CHECKED;
+      }
+
+      return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["f" /* get */])(color, 'checked', DEFAULT_COLOR_CHECKED);
+    },
+    colorUnchecked: function colorUnchecked() {
+      return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["f" /* get */])(this.color, 'unchecked', DEFAULT_COLOR_UNCHECKED);
+    },
+    colorDisabled: function colorDisabled() {
+      return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["f" /* get */])(this.color, 'disabled', this.colorCurrent);
+    },
+    colorCurrent: function colorCurrent() {
+      return this.toggled ? this.colorChecked : this.colorUnchecked;
+    },
+    labelChecked: function labelChecked() {
+      return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["f" /* get */])(this.labels, 'checked', DEFAULT_LABEL_CHECKED);
+    },
+    labelUnchecked: function labelUnchecked() {
+      return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["f" /* get */])(this.labels, 'unchecked', DEFAULT_LABEL_UNCHECKED);
+    },
+    switchColorChecked: function switchColorChecked() {
+      return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["f" /* get */])(this.switchColor, 'checked', DEFAULT_SWITCH_COLOR);
+    },
+    switchColorUnchecked: function switchColorUnchecked() {
+      return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["f" /* get */])(this.switchColor, 'unchecked', DEFAULT_SWITCH_COLOR);
+    },
+    switchColorCurrent: function switchColorCurrent() {
+      var switchColor = this.switchColor;
+
+
+      if (!__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["e" /* isObject */])(this.switchColor)) {
+        return this.switchColor || DEFAULT_SWITCH_COLOR;
+      }
+
+      return this.toggled ? this.switchColorChecked : this.switchColorUnchecked;
+    }
+  },
+  watch: {
+    value: function value(_value) {
+      if (this.sync) {
+        this.toggled = !!_value;
+      }
+    }
+  },
+  data: function data() {
+    return {
+      toggled: !!this.value
+    };
+  },
+
+  methods: {
+    toggle: function toggle(event) {
+      var toggled = !this.toggled;
+
+      if (!this.sync) {
+        this.toggled = toggled;
+      }
+
+      this.$emit('input', toggled);
+      this.$emit('change', {
+        value: toggled,
+        tag: this.tag,
+        srcEvent: event
+      });
+    }
+  }
+});
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Button_vue__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Button_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Button_vue__);
+/* harmony reexport (default from non-hamory) */ __webpack_require__.d(__webpack_exports__, "ToggleButton", function() { return __WEBPACK_IMPORTED_MODULE_0__Button_vue___default.a; });
+
+
+var installed = false;
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  install: function install(Vue) {
+    if (installed) {
+      return;
+    }
+
+    Vue.component('ToggleButton', __WEBPACK_IMPORTED_MODULE_0__Button_vue___default.a);
+    installed = true;
+  }
+});
+
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return isString; });
+/* unused harmony export isBoolean */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return isObject; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return has; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return get; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return px; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return translate3d; });
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var isString = function isString(value) {
+  return typeof value === 'string';
+};
+
+var isBoolean = function isBoolean(value) {
+  return typeof value === 'boolean';
+};
+
+var isObject = function isObject(value) {
+  return (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object';
+};
+
+var has = function has(object, key) {
+  return isObject(object) && object.hasOwnProperty(key);
+};
+
+var get = function get(object, key, defaultValue) {
+  return has(object, key) ? object[key] : defaultValue;
+};
+
+var px = function px(value) {
+  return value + 'px';
+};
+
+var translate3d = function translate3d(x, y) {
+  var z = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '0px';
+
+  return 'translate3d(' + x + ', ' + y + ', ' + z + ')';
+};
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(5)();
+// imports
+
+
+// module
+exports.push([module.i, ".vue-js-switch[data-v-25adc6c0]{display:inline-block;position:relative;vertical-align:middle;user-select:none;font-size:10px;cursor:pointer}.vue-js-switch .v-switch-input[data-v-25adc6c0]{opacity:0;position:absolute;width:1px;height:1px}.vue-js-switch .v-switch-label[data-v-25adc6c0]{position:absolute;top:0;font-weight:600;color:#fff;z-index:1}.vue-js-switch .v-switch-label.v-left[data-v-25adc6c0]{left:10px}.vue-js-switch .v-switch-label.v-right[data-v-25adc6c0]{right:10px}.vue-js-switch .v-switch-core[data-v-25adc6c0]{display:block;position:relative;box-sizing:border-box;outline:0;margin:0;transition:border-color .3s,background-color .3s;user-select:none}.vue-js-switch .v-switch-core .v-switch-button[data-v-25adc6c0]{display:block;position:absolute;overflow:hidden;top:0;left:0;border-radius:100%;background-color:#fff;z-index:2}.vue-js-switch.disabled[data-v-25adc6c0]{pointer-events:none;opacity:.6}", ""]);
+
+// exports
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function() {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		var result = [];
+		for(var i = 0; i < this.length; i++) {
+			var item = this[i];
+			if(item[2]) {
+				result.push("@media " + item[2] + "{" + item[1] + "}");
+			} else {
+				result.push(item[1]);
+			}
+		}
+		return result.join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+// this module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  scopeId,
+  cssModules
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  // inject cssModules
+  if (cssModules) {
+    var computed = Object.create(options.computed || null)
+    Object.keys(cssModules).forEach(function (key) {
+      var module = cssModules[key]
+      computed[key] = function () { return module }
+    })
+    options.computed = computed
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    class: _vm.className
+  }, [_c('input', {
+    staticClass: "v-switch-input",
+    attrs: {
+      "type": "checkbox",
+      "name": _vm.name,
+      "disabled": _vm.disabled
+    },
+    domProps: {
+      "checked": _vm.value
+    },
+    on: {
+      "change": function($event) {
+        $event.stopPropagation();
+        return _vm.toggle($event)
+      }
+    }
+  }), _vm._v(" "), _c('div', {
+    staticClass: "v-switch-core",
+    style: (_vm.coreStyle)
+  }, [_c('div', {
+    staticClass: "v-switch-button",
+    style: (_vm.buttonStyle)
+  })]), _vm._v(" "), (_vm.labels) ? [(_vm.toggled) ? _c('span', {
+    staticClass: "v-switch-label v-left",
+    style: (_vm.labelStyle)
+  }, [_vm._t("checked", [
+    [_vm._v(_vm._s(_vm.labelChecked))]
+  ])], 2) : _c('span', {
+    staticClass: "v-switch-label v-right",
+    style: (_vm.labelStyle)
+  }, [_vm._t("unchecked", [
+    [_vm._v(_vm._s(_vm.labelUnchecked))]
+  ])], 2)] : _vm._e()], 2)
+},staticRenderFns: []}
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(4);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(9)("2283861f", content, true);
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+  Modified by Evan You @yyx990803
+*/
+
+var hasDocument = typeof document !== 'undefined'
+
+if (typeof DEBUG !== 'undefined' && DEBUG) {
+  if (!hasDocument) {
+    throw new Error(
+    'vue-style-loader cannot be used in a non-browser environment. ' +
+    "Use { target: 'node' } in your Webpack config to indicate a server-rendering environment."
+  ) }
+}
+
+var listToStyles = __webpack_require__(10)
+
+/*
+type StyleObject = {
+  id: number;
+  parts: Array<StyleObjectPart>
+}
+
+type StyleObjectPart = {
+  css: string;
+  media: string;
+  sourceMap: ?string
+}
+*/
+
+var stylesInDom = {/*
+  [id: number]: {
+    id: number,
+    refs: number,
+    parts: Array<(obj?: StyleObjectPart) => void>
+  }
+*/}
+
+var head = hasDocument && (document.head || document.getElementsByTagName('head')[0])
+var singletonElement = null
+var singletonCounter = 0
+var isProduction = false
+var noop = function () {}
+
+// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+// tags it will allow on a page
+var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
+
+module.exports = function (parentId, list, _isProduction) {
+  isProduction = _isProduction
+
+  var styles = listToStyles(parentId, list)
+  addStylesToDom(styles)
+
+  return function update (newList) {
+    var mayRemove = []
+    for (var i = 0; i < styles.length; i++) {
+      var item = styles[i]
+      var domStyle = stylesInDom[item.id]
+      domStyle.refs--
+      mayRemove.push(domStyle)
+    }
+    if (newList) {
+      styles = listToStyles(parentId, newList)
+      addStylesToDom(styles)
+    } else {
+      styles = []
+    }
+    for (var i = 0; i < mayRemove.length; i++) {
+      var domStyle = mayRemove[i]
+      if (domStyle.refs === 0) {
+        for (var j = 0; j < domStyle.parts.length; j++) {
+          domStyle.parts[j]()
+        }
+        delete stylesInDom[domStyle.id]
+      }
+    }
+  }
+}
+
+function addStylesToDom (styles /* Array<StyleObject> */) {
+  for (var i = 0; i < styles.length; i++) {
+    var item = styles[i]
+    var domStyle = stylesInDom[item.id]
+    if (domStyle) {
+      domStyle.refs++
+      for (var j = 0; j < domStyle.parts.length; j++) {
+        domStyle.parts[j](item.parts[j])
+      }
+      for (; j < item.parts.length; j++) {
+        domStyle.parts.push(addStyle(item.parts[j]))
+      }
+      if (domStyle.parts.length > item.parts.length) {
+        domStyle.parts.length = item.parts.length
+      }
+    } else {
+      var parts = []
+      for (var j = 0; j < item.parts.length; j++) {
+        parts.push(addStyle(item.parts[j]))
+      }
+      stylesInDom[item.id] = { id: item.id, refs: 1, parts: parts }
+    }
+  }
+}
+
+function createStyleElement () {
+  var styleElement = document.createElement('style')
+  styleElement.type = 'text/css'
+  head.appendChild(styleElement)
+  return styleElement
+}
+
+function addStyle (obj /* StyleObjectPart */) {
+  var update, remove
+  var styleElement = document.querySelector('style[data-vue-ssr-id~="' + obj.id + '"]')
+
+  if (styleElement) {
+    if (isProduction) {
+      // has SSR styles and in production mode.
+      // simply do nothing.
+      return noop
+    } else {
+      // has SSR styles but in dev mode.
+      // for some reason Chrome can't handle source map in server-rendered
+      // style tags - source maps in <style> only works if the style tag is
+      // created and inserted dynamically. So we remove the server rendered
+      // styles and inject new ones.
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  if (isOldIE) {
+    // use singleton mode for IE9.
+    var styleIndex = singletonCounter++
+    styleElement = singletonElement || (singletonElement = createStyleElement())
+    update = applyToSingletonTag.bind(null, styleElement, styleIndex, false)
+    remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true)
+  } else {
+    // use multi-style-tag mode in all other cases
+    styleElement = createStyleElement()
+    update = applyToTag.bind(null, styleElement)
+    remove = function () {
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  update(obj)
+
+  return function updateStyle (newObj /* StyleObjectPart */) {
+    if (newObj) {
+      if (newObj.css === obj.css &&
+          newObj.media === obj.media &&
+          newObj.sourceMap === obj.sourceMap) {
+        return
+      }
+      update(obj = newObj)
+    } else {
+      remove()
+    }
+  }
+}
+
+var replaceText = (function () {
+  var textStore = []
+
+  return function (index, replacement) {
+    textStore[index] = replacement
+    return textStore.filter(Boolean).join('\n')
+  }
+})()
+
+function applyToSingletonTag (styleElement, index, remove, obj) {
+  var css = remove ? '' : obj.css
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = replaceText(index, css)
+  } else {
+    var cssNode = document.createTextNode(css)
+    var childNodes = styleElement.childNodes
+    if (childNodes[index]) styleElement.removeChild(childNodes[index])
+    if (childNodes.length) {
+      styleElement.insertBefore(cssNode, childNodes[index])
+    } else {
+      styleElement.appendChild(cssNode)
+    }
+  }
+}
+
+function applyToTag (styleElement, obj) {
+  var css = obj.css
+  var media = obj.media
+  var sourceMap = obj.sourceMap
+
+  if (media) {
+    styleElement.setAttribute('media', media)
+  }
+
+  if (sourceMap) {
+    // https://developer.chrome.com/devtools/docs/javascript-debugging
+    // this makes source maps inside style tags work properly in Chrome
+    css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */'
+    // http://stackoverflow.com/a/26603875
+    css += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + ' */'
+  }
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = css
+  } else {
+    while (styleElement.firstChild) {
+      styleElement.removeChild(styleElement.firstChild)
+    }
+    styleElement.appendChild(document.createTextNode(css))
+  }
+}
+
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports) {
+
+/**
+ * Translates the list format produced by css-loader into something
+ * easier to manipulate.
+ */
+module.exports = function listToStyles (parentId, list) {
+  var styles = []
+  var newStyles = {}
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i]
+    var id = item[0]
+    var css = item[1]
+    var media = item[2]
+    var sourceMap = item[3]
+    var part = {
+      id: parentId + ':' + i,
+      css: css,
+      media: media,
+      sourceMap: sourceMap
+    }
+    if (!newStyles[id]) {
+      styles.push(newStyles[id] = { id: id, parts: [part] })
+    } else {
+      newStyles[id].parts.push(part)
+    }
+  }
+  return styles
+}
+
+
+/***/ })
+/******/ ]);
+});
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/index.js?!./node_modules/vuetable-2/src/components/Vuetable.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib??vue-loader-options!./node_modules/vuetable-2/src/components/Vuetable.vue?vue&type=script&lang=js& ***!
@@ -40898,7 +41810,6 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "container-fluid" },
     [
       _c("loading-modal"),
       _vm._v(" "),
@@ -40914,942 +41825,1407 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "form-group" },
-        [
-          _c("label", { staticClass: "required", attrs: { for: "nama" } }, [
-            _vm._v("Nama Peserta")
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "input-group" },
-            [
-              _c("vue-select", {
-                class: _vm.getErrorMessage("peserta_id"),
-                attrs: {
-                  placeholder: "Cari Peserta",
-                  options: _vm.pesertas,
-                  label: "nama",
-                  clearable: false,
-                  value: _vm.peserta.nama
-                },
-                on: { search: _vm.searchPeserta, input: _vm.selectPeserta }
-              }),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "input-group-addon clickable",
-                  on: { click: _vm.showTablePesertaModal }
-                },
-                [_c("i", { staticClass: "fa fa-search" })]
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _vm._l(_vm.errorMessage.peserta_id, function(error, i) {
-            return _c("div", { key: i, staticClass: "error-message" }, [
-              _vm._v(_vm._s(error))
-            ])
-          })
-        ],
-        2
-      ),
-      _vm._v(" "),
-      _vm.peserta.nama !== null
-        ? [
-            _c("div", { staticClass: "row form-group" }, [
-              _vm._m(1),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-9" }, [
-                _vm._v(": " + _vm._s(_vm.peserta.alamat))
-              ])
-            ]),
+      _c("div", { staticClass: "box box-info" }, [
+        _c(
+          "div",
+          { staticClass: "container-fluid" },
+          [
+            _vm._m(0),
             _vm._v(" "),
-            _c("div", { staticClass: "row form-group" }, [
-              _vm._m(2),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-9" }, [
-                _vm._v(": " + _vm._s(_vm.peserta.jenis_kelamin))
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row form-group" }, [
-              _vm._m(3),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-9" }, [
-                _vm._v(": " + _vm._s(_vm.peserta.tinggi))
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row form-group" }, [
-              _vm._m(4),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-9" }, [
-                _vm._v(
-                  ": " +
-                    _vm._s(_vm.peserta.tempat_lahir) +
-                    ", " +
-                    _vm._s(_vm.peserta.tanggal_lahir.substring(0, 10))
-                )
-              ])
-            ])
-          ]
-        : _vm._e(),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c(
-            "div",
-            { staticClass: "form-group" },
-            [
-              _c(
-                "label",
-                { staticClass: "required", attrs: { for: "tanggal he" } },
-                [_vm._v("Tanggal He")]
-              ),
-              _vm._v(" "),
-              _c("vue-datepicker", {
-                class: _vm.getErrorMessage("tanggal_he"),
-                model: {
-                  value: _vm.data.tanggal_he,
-                  callback: function($$v) {
-                    _vm.$set(_vm.data, "tanggal_he", $$v)
-                  },
-                  expression: "data.tanggal_he"
-                }
-              }),
-              _vm._v(" "),
-              _vm._l(_vm.errorMessage.tanggal_he, function(error, i) {
-                return _c("div", { key: i, staticClass: "error-message" }, [
-                  _vm._v(_vm._s(error))
-                ])
-              })
-            ],
-            2
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-9" }, [
-          _c("label", { attrs: { for: "tempat he" } }, [_vm._v("Tempat He")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.data.tempat_he,
-                expression: "data.tempat_he"
-              }
-            ],
-            staticClass: "form-control input-text",
-            attrs: { type: "text" },
-            domProps: { value: _vm.data.tempat_he },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.data, "tempat_he", $event.target.value)
-              }
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row row-form-kesehatan" }, [
-        _vm._m(5),
-        _vm._v(" "),
-        _vm._m(6),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _c("div", { staticClass: "text-center" }, [
-            _c("b", [_vm._v("Nilai Rujukan")]),
-            _vm._v(" ("),
             _c(
-              "span",
-              {
-                staticClass: "btn btn-link clickable",
-                on: {
-                  click: function($event) {
-                    return _vm.editRujukanValue(true)
-                  }
-                }
-              },
-              [_c("i", { staticClass: "fa fa-pencil" }), _vm._v(" Edit")]
+              "div",
+              { staticClass: "form-group" },
+              [
+                _c(
+                  "label",
+                  { staticClass: "required", attrs: { for: "nama" } },
+                  [_vm._v("Nama Peserta")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "input-group" },
+                  [
+                    _c("vue-select", {
+                      class: _vm.getErrorMessage("peserta_id"),
+                      attrs: {
+                        placeholder: "Cari Peserta",
+                        options: _vm.pesertas,
+                        label: "nama",
+                        clearable: false,
+                        value: _vm.peserta.nama
+                      },
+                      on: {
+                        search: _vm.searchPeserta,
+                        input: _vm.selectPeserta
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "input-group-addon clickable",
+                        on: { click: _vm.showTablePesertaModal }
+                      },
+                      [_c("i", { staticClass: "fa fa-search" })]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _vm._l(_vm.errorMessage.peserta_id, function(error, i) {
+                  return _c("div", { key: i, staticClass: "error-message" }, [
+                    _vm._v(_vm._s(error))
+                  ])
+                })
+              ],
+              2
             ),
-            _vm._v(")")
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row row-form-kesehatan" }, [
-        _vm._m(7),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c("div", { staticClass: "input-group" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.data.bab_setiap_hari,
-                  expression: "data.bab_setiap_hari"
-                }
-              ],
-              staticClass: "form-control input-text",
-              attrs: { type: "number" },
-              domProps: { value: _vm.data.bab_setiap_hari },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.data, "bab_setiap_hari", $event.target.value)
-                }
-              }
-            }),
             _vm._v(" "),
-            _c("div", { staticClass: "input-group-addon" }, [_vm._v("/hari")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _vm.isEditRujukan
-            ? _c("div", { staticClass: "input-group" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.data.nilai_rujukan_bab_setiap_hari,
-                      expression: "data.nilai_rujukan_bab_setiap_hari"
-                    }
-                  ],
-                  staticClass: "form-control input-text",
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.data.nilai_rujukan_bab_setiap_hari },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(
-                        _vm.data,
-                        "nilai_rujukan_bab_setiap_hari",
-                        $event.target.value
-                      )
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group-addon" }, [
-                  _vm._v("/hari")
-                ])
-              ])
-            : _c("div", { staticClass: "text-center" }, [
-                _vm._v(
-                  _vm._s(_vm.data.nilai_rujukan_bab_setiap_hari) + " x/hari"
-                )
-              ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row row-form-kesehatan" }, [
-        _vm._m(8),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c("div", { staticClass: "input-group" }, [
-            _c("div", { staticClass: "input-group-addon" }, [_vm._v("≤")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.data.bab_malam_hari,
-                  expression: "data.bab_malam_hari"
-                }
-              ],
-              staticClass: "form-control input-text",
-              attrs: { type: "number" },
-              domProps: { value: _vm.data.bab_malam_hari },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.data, "bab_malam_hari", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "input-group-addon" }, [_vm._v("/malam")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _vm.isEditRujukan
-            ? _c("div", { staticClass: "input-group" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.data.nilai_rujukan_bak_malam_hari,
-                      expression: "data.nilai_rujukan_bak_malam_hari"
-                    }
-                  ],
-                  staticClass: "form-control input-text",
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.data.nilai_rujukan_bak_malam_hari },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(
-                        _vm.data,
-                        "nilai_rujukan_bak_malam_hari",
-                        $event.target.value
-                      )
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group-addon" }, [
-                  _vm._v("kali")
-                ])
-              ])
-            : _c("div", { staticClass: "text-center" }, [
-                _vm._v(
-                  " ≤ " +
-                    _vm._s(_vm.data.nilai_rujukan_bak_malam_hari) +
-                    " kali"
-                )
-              ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row row-form-kesehatan" }, [
-        _vm._m(9),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c("div", { staticClass: "input-group" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.data.tensi_sistol,
-                  expression: "data.tensi_sistol"
-                }
-              ],
-              staticClass: "form-control input-text",
-              attrs: { type: "number" },
-              domProps: { value: _vm.data.tensi_sistol },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.data, "tensi_sistol", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "input-group-addon" }, [_vm._v("mmHg")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _vm.isEditRujukan
-            ? _c("div", { staticClass: "input-group" }, [
-                _c("div", { staticClass: "input-group-addon" }, [
-                  _vm._v("S :")
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.data.nilai_rujukan_tensi_sistol,
-                      expression: "data.nilai_rujukan_tensi_sistol"
-                    }
-                  ],
-                  staticClass: "form-control input-text",
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.data.nilai_rujukan_tensi_sistol },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(
-                        _vm.data,
-                        "nilai_rujukan_tensi_sistol",
-                        $event.target.value
-                      )
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group-addon" }, [
-                  _vm._v("mmHg")
-                ])
-              ])
-            : _c("div", { staticClass: "text-center" }, [
-                _vm._v(
-                  "S: " + _vm._s(_vm.data.nilai_rujukan_tensi_sistol) + " mmHg"
-                )
-              ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row row-form-kesehatan" }, [
-        _vm._m(10),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c("div", { staticClass: "input-group" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.data.tensi_diastol,
-                  expression: "data.tensi_diastol"
-                }
-              ],
-              staticClass: "form-control input-text",
-              attrs: { type: "number" },
-              domProps: { value: _vm.data.tensi_diastol },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.data, "tensi_diastol", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "input-group-addon" }, [_vm._v("mmHg")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _vm.isEditRujukan
-            ? _c("div", { staticClass: "input-group" }, [
-                _c("div", { staticClass: "input-group-addon" }, [
-                  _vm._v("D :")
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.data.nilai_rujukan_tensi_diastol,
-                      expression: "data.nilai_rujukan_tensi_diastol"
-                    }
-                  ],
-                  staticClass: "form-control input-text",
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.data.nilai_rujukan_tensi_diastol },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(
-                        _vm.data,
-                        "nilai_rujukan_tensi_diastol",
-                        $event.target.value
-                      )
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group-addon" }, [
-                  _vm._v("mmHg")
-                ])
-              ])
-            : _c("div", { staticClass: "text-center" }, [
-                _vm._v(
-                  "D: " + _vm._s(_vm.data.nilai_rujukan_tensi_diastol) + " mmHg"
-                )
-              ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row row-form-kesehatan" }, [
-        _vm._m(11),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c("div", { staticClass: "input-group" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.data.asam_urat,
-                  expression: "data.asam_urat"
-                }
-              ],
-              staticClass: "form-control input-text",
-              attrs: { type: "number" },
-              domProps: { value: _vm.data.asam_urat },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.data, "asam_urat", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "input-group-addon" }, [_vm._v("mg/dl")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _vm.isEditRujukan
-            ? _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-sm-6" }, [
-                  _c("div", { staticClass: "input-group" }, [
-                    _c("div", { staticClass: "input-group-addon" }, [
-                      _vm._v("L : < ")
-                    ]),
+            _vm.peserta.nama !== null
+              ? [
+                  _c("div", { staticClass: "row form-group" }, [
+                    _vm._m(1),
                     _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.data.nilai_rujukan_asam_urat_l,
-                          expression: "data.nilai_rujukan_asam_urat_l"
-                        }
-                      ],
-                      staticClass: "form-control input-text",
-                      attrs: { type: "number" },
-                      domProps: { value: _vm.data.nilai_rujukan_asam_urat_l },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.data,
-                            "nilai_rujukan_asam_urat_l",
-                            $event.target.value
-                          )
-                        }
+                    _c("div", { staticClass: "col-sm-9" }, [
+                      _vm._v(": " + _vm._s(_vm.peserta.alamat))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row form-group" }, [
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-9" }, [
+                      _vm._v(": " + _vm._s(_vm.peserta.jenis_kelamin))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row form-group" }, [
+                    _vm._m(3),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-9" }, [
+                      _vm._v(": " + _vm._s(_vm.peserta.tinggi))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row form-group" }, [
+                    _vm._m(4),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-9" }, [
+                      _vm._v(
+                        ": " +
+                          _vm._s(_vm.peserta.tempat_lahir) +
+                          ", " +
+                          _vm._s(_vm.peserta.tanggal_lahir.substring(0, 10))
+                      )
+                    ])
+                  ])
+                ]
+              : _vm._e(),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-sm-3" }, [
+                _c(
+                  "div",
+                  { staticClass: "form-group" },
+                  [
+                    _c(
+                      "label",
+                      { staticClass: "required", attrs: { for: "tanggal he" } },
+                      [_vm._v("Tanggal He")]
+                    ),
+                    _vm._v(" "),
+                    _c("vue-datepicker", {
+                      class: _vm.getErrorMessage("tanggal_he"),
+                      model: {
+                        value: _vm.data.tanggal_he,
+                        callback: function($$v) {
+                          _vm.$set(_vm.data, "tanggal_he", $$v)
+                        },
+                        expression: "data.tanggal_he"
                       }
                     }),
                     _vm._v(" "),
-                    _c("div", { staticClass: "input-group-addon" }, [
-                      _vm._v("mg/dl")
-                    ])
-                  ])
+                    _vm._l(_vm.errorMessage.tanggal_he, function(error, i) {
+                      return _c(
+                        "div",
+                        { key: i, staticClass: "error-message" },
+                        [_vm._v(_vm._s(error))]
+                      )
+                    })
+                  ],
+                  2
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-9" }, [
+                _c("label", { attrs: { for: "tempat he" } }, [
+                  _vm._v("Tempat He")
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-sm-6" }, [
-                  _c("div", { staticClass: "input-group" }, [
-                    _c("div", { staticClass: "input-group-addon" }, [
-                      _vm._v("P : < ")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.data.nilai_rujukan_asam_urat_p,
-                          expression: "data.nilai_rujukan_asam_urat_p"
-                        }
-                      ],
-                      staticClass: "form-control input-text",
-                      attrs: { type: "number" },
-                      domProps: { value: _vm.data.nilai_rujukan_asam_urat_p },
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.data.tempat_he,
+                      expression: "data.tempat_he"
+                    }
+                  ],
+                  staticClass: "form-control input-text",
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.data.tempat_he },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.data, "tempat_he", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row row-form-kesehatan" }, [
+              _vm._m(5),
+              _vm._v(" "),
+              _vm._m(6),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4" }, [
+                _c("div", { staticClass: "text-center" }, [
+                  _c("b", [_vm._v("Nilai Rujukan")]),
+                  _vm._v(" ("),
+                  _c(
+                    "span",
+                    {
+                      staticClass: "btn btn-link clickable",
                       on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.data,
-                            "nilai_rujukan_asam_urat_p",
-                            $event.target.value
-                          )
+                        click: function($event) {
+                          return _vm.editRujukanValue(true)
                         }
                       }
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "input-group-addon" }, [
-                      _vm._v("mg/dl")
+                    },
+                    [_c("i", { staticClass: "fa fa-pencil" }), _vm._v(" Edit")]
+                  ),
+                  _vm._v(")")
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row row-form-kesehatan" }, [
+              _vm._m(7),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-3" }, [
+                _c("div", { staticClass: "input-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.data.bab_setiap_hari,
+                        expression: "data.bab_setiap_hari"
+                      }
+                    ],
+                    staticClass: "form-control input-text",
+                    attrs: { type: "number" },
+                    domProps: { value: _vm.data.bab_setiap_hari },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.data,
+                          "bab_setiap_hari",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group-addon" }, [
+                    _vm._v("/hari")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4" }, [
+                _vm.isEditRujukan
+                  ? _c("div", { staticClass: "input-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.data.nilai_rujukan_bab_setiap_hari,
+                            expression: "data.nilai_rujukan_bab_setiap_hari"
+                          }
+                        ],
+                        staticClass: "form-control input-text",
+                        attrs: { type: "text" },
+                        domProps: {
+                          value: _vm.data.nilai_rujukan_bab_setiap_hari
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.data,
+                              "nilai_rujukan_bab_setiap_hari",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-group-addon" }, [
+                        _vm._v("/hari")
+                      ])
                     ])
+                  : _c("div", { staticClass: "text-center" }, [
+                      _vm._v(
+                        _vm._s(_vm.data.nilai_rujukan_bab_setiap_hari) +
+                          " x/hari"
+                      )
+                    ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row row-form-kesehatan" }, [
+              _vm._m(8),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-3" }, [
+                _c("div", { staticClass: "input-group" }, [
+                  _c("div", { staticClass: "input-group-addon" }, [
+                    _vm._v("≤")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.data.bab_malam_hari,
+                        expression: "data.bab_malam_hari"
+                      }
+                    ],
+                    staticClass: "form-control input-text",
+                    attrs: { type: "number" },
+                    domProps: { value: _vm.data.bab_malam_hari },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.data,
+                          "bab_malam_hari",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group-addon" }, [
+                    _vm._v("/malam")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4" }, [
+                _vm.isEditRujukan
+                  ? _c("div", { staticClass: "input-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.data.nilai_rujukan_bak_malam_hari,
+                            expression: "data.nilai_rujukan_bak_malam_hari"
+                          }
+                        ],
+                        staticClass: "form-control input-text",
+                        attrs: { type: "text" },
+                        domProps: {
+                          value: _vm.data.nilai_rujukan_bak_malam_hari
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.data,
+                              "nilai_rujukan_bak_malam_hari",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-group-addon" }, [
+                        _vm._v("kali")
+                      ])
+                    ])
+                  : _c("div", { staticClass: "text-center" }, [
+                      _vm._v(
+                        " ≤ " +
+                          _vm._s(_vm.data.nilai_rujukan_bak_malam_hari) +
+                          " kali"
+                      )
+                    ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row row-form-kesehatan" }, [
+              _vm._m(9),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-3" }, [
+                _c("div", { staticClass: "input-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.data.tensi_sistol,
+                        expression: "data.tensi_sistol"
+                      }
+                    ],
+                    staticClass: "form-control input-text",
+                    attrs: { type: "number" },
+                    domProps: { value: _vm.data.tensi_sistol },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.data, "tensi_sistol", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group-addon" }, [
+                    _vm._v("mmHg")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4" }, [
+                _vm.isEditRujukan
+                  ? _c("div", { staticClass: "input-group" }, [
+                      _c("div", { staticClass: "input-group-addon" }, [
+                        _vm._v("S :")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.data.nilai_rujukan_tensi_sistol,
+                            expression: "data.nilai_rujukan_tensi_sistol"
+                          }
+                        ],
+                        staticClass: "form-control input-text",
+                        attrs: { type: "text" },
+                        domProps: {
+                          value: _vm.data.nilai_rujukan_tensi_sistol
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.data,
+                              "nilai_rujukan_tensi_sistol",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-group-addon" }, [
+                        _vm._v("mmHg")
+                      ])
+                    ])
+                  : _c("div", { staticClass: "text-center" }, [
+                      _vm._v(
+                        "S: " +
+                          _vm._s(_vm.data.nilai_rujukan_tensi_sistol) +
+                          " mmHg"
+                      )
+                    ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row row-form-kesehatan" }, [
+              _vm._m(10),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-3" }, [
+                _c("div", { staticClass: "input-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.data.tensi_diastol,
+                        expression: "data.tensi_diastol"
+                      }
+                    ],
+                    staticClass: "form-control input-text",
+                    attrs: { type: "number" },
+                    domProps: { value: _vm.data.tensi_diastol },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.data, "tensi_diastol", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group-addon" }, [
+                    _vm._v("mmHg")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4" }, [
+                _vm.isEditRujukan
+                  ? _c("div", { staticClass: "input-group" }, [
+                      _c("div", { staticClass: "input-group-addon" }, [
+                        _vm._v("D :")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.data.nilai_rujukan_tensi_diastol,
+                            expression: "data.nilai_rujukan_tensi_diastol"
+                          }
+                        ],
+                        staticClass: "form-control input-text",
+                        attrs: { type: "text" },
+                        domProps: {
+                          value: _vm.data.nilai_rujukan_tensi_diastol
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.data,
+                              "nilai_rujukan_tensi_diastol",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-group-addon" }, [
+                        _vm._v("mmHg")
+                      ])
+                    ])
+                  : _c("div", { staticClass: "text-center" }, [
+                      _vm._v(
+                        "D: " +
+                          _vm._s(_vm.data.nilai_rujukan_tensi_diastol) +
+                          " mmHg"
+                      )
+                    ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row row-form-kesehatan" }, [
+              _vm._m(11),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-3" }, [
+                _c("div", { staticClass: "input-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.data.asam_urat,
+                        expression: "data.asam_urat"
+                      }
+                    ],
+                    staticClass: "form-control input-text",
+                    attrs: { type: "number" },
+                    domProps: { value: _vm.data.asam_urat },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.data, "asam_urat", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group-addon" }, [
+                    _vm._v("mg/dl")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4" }, [
+                _vm.isEditRujukan
+                  ? _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-sm-6" }, [
+                        _c("div", { staticClass: "input-group" }, [
+                          _c("div", { staticClass: "input-group-addon" }, [
+                            _vm._v("L : < ")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.data.nilai_rujukan_asam_urat_l,
+                                expression: "data.nilai_rujukan_asam_urat_l"
+                              }
+                            ],
+                            staticClass: "form-control input-text",
+                            attrs: { type: "number" },
+                            domProps: {
+                              value: _vm.data.nilai_rujukan_asam_urat_l
+                            },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.data,
+                                  "nilai_rujukan_asam_urat_l",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "input-group-addon" }, [
+                            _vm._v("mg/dl")
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-6" }, [
+                        _c("div", { staticClass: "input-group" }, [
+                          _c("div", { staticClass: "input-group-addon" }, [
+                            _vm._v("P : < ")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.data.nilai_rujukan_asam_urat_p,
+                                expression: "data.nilai_rujukan_asam_urat_p"
+                              }
+                            ],
+                            staticClass: "form-control input-text",
+                            attrs: { type: "number" },
+                            domProps: {
+                              value: _vm.data.nilai_rujukan_asam_urat_p
+                            },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.data,
+                                  "nilai_rujukan_asam_urat_p",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "input-group-addon" }, [
+                            _vm._v("mg/dl")
+                          ])
+                        ])
+                      ])
+                    ])
+                  : _c("div", { staticClass: "text-center" }, [
+                      _vm._v(
+                        "L : < " +
+                          _vm._s(_vm.data.nilai_rujukan_asam_urat_l) +
+                          "; P : < " +
+                          _vm._s(_vm.data.nilai_rujukan_asam_urat_p) +
+                          " mg/dl"
+                      )
+                    ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row row-form-kesehatan" }, [
+              _vm._m(12),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-3" }, [
+                _c("div", { staticClass: "input-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.data.gula_darah,
+                        expression: "data.gula_darah"
+                      }
+                    ],
+                    staticClass: "form-control input-text",
+                    attrs: { type: "number" },
+                    domProps: { value: _vm.data.gula_darah },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.data, "gula_darah", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group-addon" }, [
+                    _vm._v("mg/dl")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4" }, [
+                _vm.isEditRujukan
+                  ? _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-sm-6" }, [
+                        _c("div", { staticClass: "input-group" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.data.nilai_rujukan_gula_darah_gdp,
+                                expression: "data.nilai_rujukan_gula_darah_gdp"
+                              }
+                            ],
+                            staticClass: "form-control input-text",
+                            attrs: { type: "text" },
+                            domProps: {
+                              value: _vm.data.nilai_rujukan_gula_darah_gdp
+                            },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.data,
+                                  "nilai_rujukan_gula_darah_gdp",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "input-group-addon" }, [
+                            _vm._v("mg/dl (GDP)")
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-6" }, [
+                        _c("div", { staticClass: "input-group" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.data.nilai_rujukan_gula_darah_gds,
+                                expression: "data.nilai_rujukan_gula_darah_gds"
+                              }
+                            ],
+                            staticClass: "form-control input-text",
+                            attrs: { type: "text" },
+                            domProps: {
+                              value: _vm.data.nilai_rujukan_gula_darah_gds
+                            },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.data,
+                                  "nilai_rujukan_gula_darah_gds",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "input-group-addon" }, [
+                            _vm._v("mg/dl (GDS)")
+                          ])
+                        ])
+                      ])
+                    ])
+                  : _c("div", { staticClass: "text-center" }, [
+                      _vm._v(
+                        _vm._s(_vm.data.nilai_rujukan_gula_darah_gdp) +
+                          " mg/dl (GDP) Dibawah " +
+                          _vm._s(_vm.data.nilai_rujukan_gula_darah_gds) +
+                          " mg/dl (GDS)"
+                      )
+                    ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row row-form-kesehatan" }, [
+              _vm._m(13),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-3" }, [
+                _c("div", { staticClass: "input-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.data.kolestrol,
+                        expression: "data.kolestrol"
+                      }
+                    ],
+                    staticClass: "form-control input-text",
+                    attrs: { type: "number" },
+                    domProps: { value: _vm.data.kolestrol },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.data, "kolestrol", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group-addon" }, [
+                    _vm._v("mg/dl")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4" }, [
+                _vm.isEditRujukan
+                  ? _c("div", { staticClass: "input-group" }, [
+                      _c("div", { staticClass: "input-group-addon" }, [
+                        _vm._v("<")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.data.nilai_rujukan_kolestrol,
+                            expression: "data.nilai_rujukan_kolestrol"
+                          }
+                        ],
+                        staticClass: "form-control input-text",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.data.nilai_rujukan_kolestrol },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.data,
+                              "nilai_rujukan_kolestrol",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-group-addon" }, [
+                        _vm._v("mg/dl")
+                      ])
+                    ])
+                  : _c("div", { staticClass: "text-center" }, [
+                      _vm._v(
+                        "< " +
+                          _vm._s(_vm.data.nilai_rujukan_kolestrol) +
+                          " mg/dl"
+                      )
+                    ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row row-form-kesehatan" }, [
+              _vm._m(14),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-3" }, [
+                _c("div", { staticClass: "input-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.data.hasil_lingkar_perut,
+                        expression: "data.hasil_lingkar_perut"
+                      }
+                    ],
+                    staticClass: "form-control input-text",
+                    attrs: { type: "number" },
+                    domProps: { value: _vm.data.hasil_lingkar_perut },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.data,
+                          "hasil_lingkar_perut",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group-addon" }, [
+                    _vm._v("Cm")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4" }, [
+                _c("div", { staticClass: "input-group" }, [
+                  _c("div", { staticClass: "input-group-addon" }, [
+                    _vm._v("<")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.data.nilai_rujukan_lingkar_perut,
+                        expression: "data.nilai_rujukan_lingkar_perut"
+                      }
+                    ],
+                    staticClass: "form-control input-text",
+                    attrs: { type: "number" },
+                    domProps: { value: _vm.data.nilai_rujukan_lingkar_perut },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.data,
+                          "nilai_rujukan_lingkar_perut",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group-addon" }, [
+                    _vm._v("Cm")
                   ])
                 ])
               ])
-            : _c("div", { staticClass: "text-center" }, [
-                _vm._v(
-                  "L : < " +
-                    _vm._s(_vm.data.nilai_rujukan_asam_urat_l) +
-                    "; P : < " +
-                    _vm._s(_vm.data.nilai_rujukan_asam_urat_p) +
-                    " mg/dl"
-                )
-              ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row row-form-kesehatan" }, [
-        _vm._m(12),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c("div", { staticClass: "input-group" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.data.gula_darah,
-                  expression: "data.gula_darah"
-                }
-              ],
-              staticClass: "form-control input-text",
-              attrs: { type: "number" },
-              domProps: { value: _vm.data.gula_darah },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.data, "gula_darah", $event.target.value)
-                }
-              }
-            }),
+            ]),
             _vm._v(" "),
-            _c("div", { staticClass: "input-group-addon" }, [_vm._v("mg/dl")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _vm.isEditRujukan
-            ? _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-sm-6" }, [
-                  _c("div", { staticClass: "input-group" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.data.nilai_rujukan_gula_darah_gdp,
-                          expression: "data.nilai_rujukan_gula_darah_gdp"
+            _c("div", { staticClass: "row row-form-kesehatan" }, [
+              _vm._m(15),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-3" }, [
+                _c("div", { staticClass: "input-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.data.hasil_berat_badan,
+                        expression: "data.hasil_berat_badan"
+                      }
+                    ],
+                    staticClass: "form-control input-text",
+                    attrs: { type: "number" },
+                    domProps: { value: _vm.data.hasil_berat_badan },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
                         }
-                      ],
-                      staticClass: "form-control input-text",
-                      attrs: { type: "text" },
-                      domProps: {
-                        value: _vm.data.nilai_rujukan_gula_darah_gdp
+                        _vm.$set(
+                          _vm.data,
+                          "hasil_berat_badan",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group-addon" }, [
+                    _vm._v("Kg")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4" }, [
+                _c("div", { staticClass: "input-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.data.nilai_rujukan_berat_badan,
+                        expression: "data.nilai_rujukan_berat_badan"
+                      }
+                    ],
+                    staticClass: "form-control input-text",
+                    attrs: { type: "number" },
+                    domProps: { value: _vm.data.nilai_rujukan_berat_badan },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.data,
+                          "nilai_rujukan_berat_badan",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group-addon" }, [
+                    _vm._v("Kg")
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row row-form-kesehatan" }, [
+              _vm._m(16),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-3" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-sm-6" }, [
+                    _c("div", { staticClass: "input-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.data.angka_lemak_tubuh,
+                            expression: "data.angka_lemak_tubuh"
+                          }
+                        ],
+                        staticClass: "form-control input-text",
+                        attrs: { type: "number" },
+                        domProps: { value: _vm.data.angka_lemak_tubuh },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.data,
+                              "angka_lemak_tubuh",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-group-addon" }, [
+                        _vm._v("Kg")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-sm-6" }, [
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.data.perbandingan_standar_lemak_tubuh,
+                            expression: "data.perbandingan_standar_lemak_tubuh"
+                          }
+                        ],
+                        staticClass: "form-control input-text",
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.data,
+                              "perbandingan_standar_lemak_tubuh",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
                       },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.data,
-                            "nilai_rujukan_gula_darah_gdp",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "input-group-addon" }, [
-                      _vm._v("mg/dl (GDP)")
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-sm-6" }, [
-                  _c("div", { staticClass: "input-group" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.data.nilai_rujukan_gula_darah_gds,
-                          expression: "data.nilai_rujukan_gula_darah_gds"
-                        }
-                      ],
-                      staticClass: "form-control input-text",
-                      attrs: { type: "text" },
-                      domProps: {
-                        value: _vm.data.nilai_rujukan_gula_darah_gds
-                      },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.data,
-                            "nilai_rujukan_gula_darah_gds",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "input-group-addon" }, [
-                      _vm._v("mg/dl (GDS)")
-                    ])
+                      [
+                        _c("option", [_vm._v("-")]),
+                        _vm._v(" "),
+                        _c("option", [_vm._v("0")]),
+                        _vm._v(" "),
+                        _c("option", [_vm._v("+")]),
+                        _vm._v(" "),
+                        _c("option", [_vm._v("++")])
+                      ]
+                    )
                   ])
                 ])
-              ])
-            : _c("div", { staticClass: "text-center" }, [
-                _vm._v(
-                  _vm._s(_vm.data.nilai_rujukan_gula_darah_gdp) +
-                    " mg/dl (GDP) Dibawah " +
-                    _vm._s(_vm.data.nilai_rujukan_gula_darah_gds) +
-                    " mg/dl (GDS)"
-                )
-              ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row row-form-kesehatan" }, [
-        _vm._m(13),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c("div", { staticClass: "input-group" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.data.kolestrol,
-                  expression: "data.kolestrol"
-                }
-              ],
-              staticClass: "form-control input-text",
-              attrs: { type: "number" },
-              domProps: { value: _vm.data.kolestrol },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.data, "kolestrol", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "input-group-addon" }, [_vm._v("mg/dl")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _vm.isEditRujukan
-            ? _c("div", { staticClass: "input-group" }, [
-                _c("div", { staticClass: "input-group-addon" }, [_vm._v("<")]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.data.nilai_rujukan_kolestrol,
-                      expression: "data.nilai_rujukan_kolestrol"
-                    }
-                  ],
-                  staticClass: "form-control input-text",
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.data.nilai_rujukan_kolestrol },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(
-                        _vm.data,
-                        "nilai_rujukan_kolestrol",
-                        $event.target.value
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4" }, [
+                _vm.isEditRujukan
+                  ? _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-sm-6" }, [
+                        _c("div", { staticClass: "input-group" }, [
+                          _c("div", { staticClass: "input-group-addon" }, [
+                            _vm._v("L :")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.data.nilai_rujukan_lemak_tubuh_l,
+                                expression: "data.nilai_rujukan_lemak_tubuh_l"
+                              }
+                            ],
+                            staticClass: "form-control input-text",
+                            attrs: { type: "text" },
+                            domProps: {
+                              value: _vm.data.nilai_rujukan_lemak_tubuh_l
+                            },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.data,
+                                  "nilai_rujukan_lemak_tubuh_l",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "input-group-addon" }, [
+                            _vm._v("%")
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-6" }, [
+                        _c("div", { staticClass: "input-group" }, [
+                          _c("div", { staticClass: "input-group-addon" }, [
+                            _vm._v("P :")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.data.nilai_rujukan_lemak_tubuh_p,
+                                expression: "data.nilai_rujukan_lemak_tubuh_p"
+                              }
+                            ],
+                            staticClass: "form-control input-text",
+                            attrs: { type: "text" },
+                            domProps: {
+                              value: _vm.data.nilai_rujukan_lemak_tubuh_p
+                            },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.data,
+                                  "nilai_rujukan_lemak_tubuh_p",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "input-group-addon" }, [
+                            _vm._v("%")
+                          ])
+                        ])
+                      ])
+                    ])
+                  : _c("div", { staticClass: "text-center" }, [
+                      _vm._v(
+                        "\n            L : " +
+                          _vm._s(_vm.data.nilai_rujukan_lemak_tubuh_l) +
+                          "% P : " +
+                          _vm._s(_vm.data.nilai_rujukan_lemak_tubuh_p) +
+                          "%\n          "
                       )
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group-addon" }, [
-                  _vm._v("mg/dl")
+                    ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row row-form-kesehatan" }, [
+              _vm._m(17),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-3" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-sm-6" }, [
+                    _c("div", { staticClass: "input-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.data.angka_lemak_lapisan_organ,
+                            expression: "data.angka_lemak_lapisan_organ"
+                          }
+                        ],
+                        staticClass: "form-control input-text",
+                        attrs: { type: "number" },
+                        domProps: { value: _vm.data.angka_lemak_lapisan_organ },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.data,
+                              "angka_lemak_lapisan_organ",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-group-addon" }, [
+                        _vm._v("%")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-sm-6" }, [
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value:
+                              _vm.data.perbandingan_standar_lemak_lapisan_organ,
+                            expression:
+                              "data.perbandingan_standar_lemak_lapisan_organ"
+                          }
+                        ],
+                        staticClass: "form-control input-text",
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.data,
+                              "perbandingan_standar_lemak_lapisan_organ",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      [
+                        _c("option", [_vm._v("-")]),
+                        _vm._v(" "),
+                        _c("option", [_vm._v("0")]),
+                        _vm._v(" "),
+                        _c("option", [_vm._v("+")]),
+                        _vm._v(" "),
+                        _c("option", [_vm._v("++")])
+                      ]
+                    )
+                  ])
                 ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4" }, [
+                _vm.isEditRujukan
+                  ? _c("div", { staticClass: "input-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.data.nilai_rujukan_lemak_lapisan_organ,
+                            expression: "data.nilai_rujukan_lemak_lapisan_organ"
+                          }
+                        ],
+                        staticClass: "form-control input-text",
+                        attrs: { type: "text" },
+                        domProps: {
+                          value: _vm.data.nilai_rujukan_lemak_lapisan_organ
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.data,
+                              "nilai_rujukan_lemak_lapisan_organ",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-group-addon" }, [
+                        _vm._v("%")
+                      ])
+                    ])
+                  : _c("div", { staticClass: "text-center" }, [
+                      _vm._v(
+                        _vm._s(_vm.data.nilai_rujukan_lemak_lapisan_organ) +
+                          " %"
+                      )
+                    ])
               ])
-            : _c("div", { staticClass: "text-center" }, [
-                _vm._v(
-                  "< " + _vm._s(_vm.data.nilai_rujukan_kolestrol) + " mg/dl"
-                )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row row-form-kesehatan" }, [
+              _vm._m(18),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-3" }, [
+                _c("div", { staticClass: "input-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.data.indeks_masa_tubuh,
+                        expression: "data.indeks_masa_tubuh"
+                      }
+                    ],
+                    staticClass: "form-control input-text",
+                    attrs: { type: "number" },
+                    domProps: { value: _vm.data.indeks_masa_tubuh },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.data,
+                          "indeks_masa_tubuh",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm._m(19)
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4" }, [
+                _vm.isEditRujukan
+                  ? _c("div", { staticClass: "input-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.data.nilai_rujukan_indeks_masa_tubuh,
+                            expression: "data.nilai_rujukan_indeks_masa_tubuh"
+                          }
+                        ],
+                        staticClass: "form-control input-text",
+                        attrs: { type: "text" },
+                        domProps: {
+                          value: _vm.data.nilai_rujukan_indeks_masa_tubuh
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.data,
+                              "nilai_rujukan_indeks_masa_tubuh",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm._m(20)
+                    ])
+                  : _c("div", { staticClass: "text-center" }, [
+                      _vm._v(
+                        _vm._s(_vm.data.nilai_rujukan_indeks_masa_tubuh) +
+                          " Kg/m"
+                      ),
+                      _c("sup", [_vm._v("2")])
+                    ])
               ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row row-form-kesehatan" }, [
-        _vm._m(14),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c("div", { staticClass: "input-group" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.data.hasil_lingkar_perut,
-                  expression: "data.hasil_lingkar_perut"
-                }
-              ],
-              staticClass: "form-control input-text",
-              attrs: { type: "number" },
-              domProps: { value: _vm.data.hasil_lingkar_perut },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.data, "hasil_lingkar_perut", $event.target.value)
-                }
-              }
-            }),
+            ]),
             _vm._v(" "),
-            _c("div", { staticClass: "input-group-addon" }, [_vm._v("Cm")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _c("div", { staticClass: "input-group" }, [
-            _c("div", { staticClass: "input-group-addon" }, [_vm._v("<")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.data.nilai_rujukan_lingkar_perut,
-                  expression: "data.nilai_rujukan_lingkar_perut"
-                }
-              ],
-              staticClass: "form-control input-text",
-              attrs: { type: "number" },
-              domProps: { value: _vm.data.nilai_rujukan_lingkar_perut },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(
-                    _vm.data,
-                    "nilai_rujukan_lingkar_perut",
-                    $event.target.value
-                  )
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "input-group-addon" }, [_vm._v("Cm")])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row row-form-kesehatan" }, [
-        _vm._m(15),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c("div", { staticClass: "input-group" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.data.hasil_berat_badan,
-                  expression: "data.hasil_berat_badan"
-                }
-              ],
-              staticClass: "form-control input-text",
-              attrs: { type: "number" },
-              domProps: { value: _vm.data.hasil_berat_badan },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.data, "hasil_berat_badan", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "input-group-addon" }, [_vm._v("Kg")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _c("div", { staticClass: "input-group" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.data.nilai_rujukan_berat_badan,
-                  expression: "data.nilai_rujukan_berat_badan"
-                }
-              ],
-              staticClass: "form-control input-text",
-              attrs: { type: "number" },
-              domProps: { value: _vm.data.nilai_rujukan_berat_badan },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(
-                    _vm.data,
-                    "nilai_rujukan_berat_badan",
-                    $event.target.value
-                  )
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "input-group-addon" }, [_vm._v("Kg")])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row row-form-kesehatan" }, [
-        _vm._m(16),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-sm-6" }, [
-              _c("div", { staticClass: "input-group" }, [
+            _c("div", { staticClass: "row row-form-kesehatan" }, [
+              _vm._m(21),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-3" }, [
                 _c("input", {
                   directives: [
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.data.angka_lemak_tubuh,
-                      expression: "data.angka_lemak_tubuh"
+                      value: _vm.data.hasil_resting_metabolism,
+                      expression: "data.hasil_resting_metabolism"
                     }
                   ],
                   staticClass: "form-control input-text",
                   attrs: { type: "number" },
-                  domProps: { value: _vm.data.angka_lemak_tubuh },
+                  domProps: { value: _vm.data.hasil_resting_metabolism },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
@@ -41857,256 +43233,28 @@ var render = function() {
                       }
                       _vm.$set(
                         _vm.data,
-                        "angka_lemak_tubuh",
+                        "hasil_resting_metabolism",
                         $event.target.value
                       )
                     }
                   }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group-addon" }, [_vm._v("Kg")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-6" }, [
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.data.perbandingan_standar_lemak_tubuh,
-                      expression: "data.perbandingan_standar_lemak_tubuh"
-                    }
-                  ],
-                  staticClass: "form-control input-text",
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.data,
-                        "perbandingan_standar_lemak_tubuh",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    }
-                  }
-                },
-                [
-                  _c("option", [_vm._v("-")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("0")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("+")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("++")])
-                ]
-              )
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _vm.isEditRujukan
-            ? _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-sm-6" }, [
-                  _c("div", { staticClass: "input-group" }, [
-                    _c("div", { staticClass: "input-group-addon" }, [
-                      _vm._v("L :")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.data.nilai_rujukan_lemak_tubuh_l,
-                          expression: "data.nilai_rujukan_lemak_tubuh_l"
-                        }
-                      ],
-                      staticClass: "form-control input-text",
-                      attrs: { type: "text" },
-                      domProps: { value: _vm.data.nilai_rujukan_lemak_tubuh_l },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.data,
-                            "nilai_rujukan_lemak_tubuh_l",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "input-group-addon" }, [
-                      _vm._v("%")
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-sm-6" }, [
-                  _c("div", { staticClass: "input-group" }, [
-                    _c("div", { staticClass: "input-group-addon" }, [
-                      _vm._v("P :")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.data.nilai_rujukan_lemak_tubuh_p,
-                          expression: "data.nilai_rujukan_lemak_tubuh_p"
-                        }
-                      ],
-                      staticClass: "form-control input-text",
-                      attrs: { type: "text" },
-                      domProps: { value: _vm.data.nilai_rujukan_lemak_tubuh_p },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.data,
-                            "nilai_rujukan_lemak_tubuh_p",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "input-group-addon" }, [
-                      _vm._v("%")
-                    ])
-                  ])
-                ])
-              ])
-            : _c("div", { staticClass: "text-center" }, [
-                _vm._v(
-                  "\n        L : " +
-                    _vm._s(_vm.data.nilai_rujukan_lemak_tubuh_l) +
-                    "% P : " +
-                    _vm._s(_vm.data.nilai_rujukan_lemak_tubuh_p) +
-                    "%\n      "
-                )
-              ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row row-form-kesehatan" }, [
-        _vm._m(17),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-sm-6" }, [
-              _c("div", { staticClass: "input-group" }, [
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4" }, [
                 _c("input", {
                   directives: [
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.data.angka_lemak_lapisan_organ,
-                      expression: "data.angka_lemak_lapisan_organ"
+                      value: _vm.data.nilai_rujukan_resting_metabolism,
+                      expression: "data.nilai_rujukan_resting_metabolism"
                     }
                   ],
                   staticClass: "form-control input-text",
                   attrs: { type: "number" },
-                  domProps: { value: _vm.data.angka_lemak_lapisan_organ },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(
-                        _vm.data,
-                        "angka_lemak_lapisan_organ",
-                        $event.target.value
-                      )
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group-addon" }, [_vm._v("%")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-6" }, [
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.data.perbandingan_standar_lemak_lapisan_organ,
-                      expression:
-                        "data.perbandingan_standar_lemak_lapisan_organ"
-                    }
-                  ],
-                  staticClass: "form-control input-text",
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.data,
-                        "perbandingan_standar_lemak_lapisan_organ",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    }
-                  }
-                },
-                [
-                  _c("option", [_vm._v("-")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("0")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("+")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("++")])
-                ]
-              )
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _vm.isEditRujukan
-            ? _c("div", { staticClass: "input-group" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.data.nilai_rujukan_lemak_lapisan_organ,
-                      expression: "data.nilai_rujukan_lemak_lapisan_organ"
-                    }
-                  ],
-                  staticClass: "form-control input-text",
-                  attrs: { type: "text" },
                   domProps: {
-                    value: _vm.data.nilai_rujukan_lemak_lapisan_organ
+                    value: _vm.data.nilai_rujukan_resting_metabolism
                   },
                   on: {
                     input: function($event) {
@@ -42115,599 +43263,465 @@ var render = function() {
                       }
                       _vm.$set(
                         _vm.data,
-                        "nilai_rujukan_lemak_lapisan_organ",
+                        "nilai_rujukan_resting_metabolism",
                         $event.target.value
                       )
                     }
                   }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group-addon" }, [_vm._v("%")])
+                })
               ])
-            : _c("div", { staticClass: "text-center" }, [
-                _vm._v(
-                  _vm._s(_vm.data.nilai_rujukan_lemak_lapisan_organ) + " %"
-                )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row row-form-kesehatan" }, [
+              _vm._m(22),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-3" }, [
+                _c("div", { staticClass: "input-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.data.hasil_usia_tubuh,
+                        expression: "data.hasil_usia_tubuh"
+                      }
+                    ],
+                    staticClass: "form-control input-text",
+                    attrs: { type: "number" },
+                    domProps: { value: _vm.data.hasil_usia_tubuh },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.data,
+                          "hasil_usia_tubuh",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group-addon" }, [
+                    _vm._v("Thn")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4" }, [
+                _vm.isEditRujukan
+                  ? _c("div", { staticClass: "input-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.data.nilai_rujukan_usia_tubuh,
+                            expression: "data.nilai_rujukan_usia_tubuh"
+                          }
+                        ],
+                        staticClass: "form-control input-text",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.data.nilai_rujukan_usia_tubuh },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.data,
+                              "nilai_rujukan_usia_tubuh",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-group-addon" }, [
+                        _vm._v("Thn")
+                      ])
+                    ])
+                  : _c("div", { staticClass: "text-center" }, [
+                      _vm._v(_vm._s(_vm.data.nilai_rujukan_usia_tubuh) + " Thn")
+                    ])
               ])
-        ])
+            ])
+          ],
+          2
+        )
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "row row-form-kesehatan" }, [
-        _vm._m(18),
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "row row-form-kesehatan head" }, [
+          _vm._m(23),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-7" }, [
+            _c(
+              "div",
+              { staticClass: "pull-right" },
+              [
+                _c("toggle-button", {
+                  attrs: { color: "#00c0ef" },
+                  model: {
+                    value: _vm.data.intensif_program,
+                    callback: function($$v) {
+                      _vm.$set(_vm.data, "intensif_program", $$v)
+                    },
+                    expression: "data.intensif_program"
+                  }
+                })
+              ],
+              1
+            )
+          ])
+        ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c("div", { staticClass: "input-group" }, [
-            _c("input", {
+        _vm.data.intensif_program
+          ? _c("section", [
+              _vm._m(24),
+              _vm._v(" "),
+              _c("div", { staticClass: "row row-form-kesehatan" }, [
+                _vm._m(25),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-3" }, [
+                  _c("div", { staticClass: "input-group" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.data.lemak_seluruh_tubuh,
+                          expression: "data.lemak_seluruh_tubuh"
+                        }
+                      ],
+                      staticClass: "form-control input-text",
+                      attrs: { type: "number" },
+                      domProps: { value: _vm.data.lemak_seluruh_tubuh },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.data,
+                            "lemak_seluruh_tubuh",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-group-addon" }, [
+                      _vm._v("%")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-3" }, [
+                  _c("div", { staticClass: "input-group" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.data.otot_seluruh_tubuh,
+                          expression: "data.otot_seluruh_tubuh"
+                        }
+                      ],
+                      staticClass: "form-control input-text",
+                      attrs: { type: "number" },
+                      domProps: { value: _vm.data.otot_seluruh_tubuh },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.data,
+                            "otot_seluruh_tubuh",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-group-addon" }, [
+                      _vm._v("%")
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row row-form-kesehatan" }, [
+                _vm._m(26),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-3" }, [
+                  _c("div", { staticClass: "input-group" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.data.lemak_lengan,
+                          expression: "data.lemak_lengan"
+                        }
+                      ],
+                      staticClass: "form-control input-text",
+                      attrs: { type: "number" },
+                      domProps: { value: _vm.data.lemak_lengan },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.data,
+                            "lemak_lengan",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-group-addon" }, [
+                      _vm._v("%")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-3" }, [
+                  _c("div", { staticClass: "input-group" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.data.otot_lengan,
+                          expression: "data.otot_lengan"
+                        }
+                      ],
+                      staticClass: "form-control input-text",
+                      attrs: { type: "number" },
+                      domProps: { value: _vm.data.otot_lengan },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.data, "otot_lengan", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-group-addon" }, [
+                      _vm._v("%")
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row row-form-kesehatan" }, [
+                _vm._m(27),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-3" }, [
+                  _c("div", { staticClass: "input-group" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.data.lemak_trunk,
+                          expression: "data.lemak_trunk"
+                        }
+                      ],
+                      staticClass: "form-control input-text",
+                      attrs: { type: "number" },
+                      domProps: { value: _vm.data.lemak_trunk },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.data, "lemak_trunk", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-group-addon" }, [
+                      _vm._v("%")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-3" }, [
+                  _c("div", { staticClass: "input-group" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.data.otot_trunk,
+                          expression: "data.otot_trunk"
+                        }
+                      ],
+                      staticClass: "form-control input-text",
+                      attrs: { type: "number" },
+                      domProps: { value: _vm.data.otot_trunk },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.data, "otot_trunk", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-group-addon" }, [
+                      _vm._v("%")
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row row-form-kesehatan" }, [
+                _vm._m(28),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-3" }, [
+                  _c("div", { staticClass: "input-group" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.data.lemak_kaki,
+                          expression: "data.lemak_kaki"
+                        }
+                      ],
+                      staticClass: "form-control input-text",
+                      attrs: { type: "number" },
+                      domProps: { value: _vm.data.lemak_kaki },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.data, "lemak_kaki", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-group-addon" }, [
+                      _vm._v("%")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-3" }, [
+                  _c("div", { staticClass: "input-group" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.data.otot_kaki,
+                          expression: "data.otot_kaki"
+                        }
+                      ],
+                      staticClass: "form-control input-text",
+                      attrs: { type: "number" },
+                      domProps: { value: _vm.data.otot_kaki },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.data, "otot_kaki", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-group-addon" }, [
+                      _vm._v("%")
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card" }, [
+        _c(
+          "div",
+          { staticClass: "form-group", staticStyle: { "margin-top": "10px" } },
+          [
+            _c("label", { attrs: { for: "keluhan" } }, [_vm._v("Keluhan")]),
+            _vm._v(" "),
+            _c("textarea", {
               directives: [
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.data.indeks_masa_tubuh,
-                  expression: "data.indeks_masa_tubuh"
+                  value: _vm.data.keluhan,
+                  expression: "data.keluhan"
                 }
               ],
-              staticClass: "form-control input-text",
-              attrs: { type: "number" },
-              domProps: { value: _vm.data.indeks_masa_tubuh },
+              staticClass: "form-control",
+              attrs: { id: "", cols: "30", rows: "5" },
+              domProps: { value: _vm.data.keluhan },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.$set(_vm.data, "indeks_masa_tubuh", $event.target.value)
+                  _vm.$set(_vm.data, "keluhan", $event.target.value)
                 }
               }
-            }),
-            _vm._v(" "),
-            _vm._m(19)
-          ])
-        ]),
+            })
+          ]
+        ),
         _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _vm.isEditRujukan
-            ? _c("div", { staticClass: "input-group" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.data.nilai_rujukan_indeks_masa_tubuh,
-                      expression: "data.nilai_rujukan_indeks_masa_tubuh"
-                    }
-                  ],
-                  staticClass: "form-control input-text",
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.data.nilai_rujukan_indeks_masa_tubuh },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(
-                        _vm.data,
-                        "nilai_rujukan_indeks_masa_tubuh",
-                        $event.target.value
-                      )
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _vm._m(20)
-              ])
-            : _c("div", { staticClass: "text-center" }, [
-                _vm._v(
-                  _vm._s(_vm.data.nilai_rujukan_indeks_masa_tubuh) + " Kg/m"
-                ),
-                _c("sup", [_vm._v("2")])
-              ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row row-form-kesehatan" }, [
-        _vm._m(21),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.data.hasil_resting_metabolism,
-                expression: "data.hasil_resting_metabolism"
-              }
-            ],
-            staticClass: "form-control input-text",
-            attrs: { type: "number" },
-            domProps: { value: _vm.data.hasil_resting_metabolism },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(
-                  _vm.data,
-                  "hasil_resting_metabolism",
-                  $event.target.value
-                )
-              }
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.data.nilai_rujukan_resting_metabolism,
-                expression: "data.nilai_rujukan_resting_metabolism"
-              }
-            ],
-            staticClass: "form-control input-text",
-            attrs: { type: "number" },
-            domProps: { value: _vm.data.nilai_rujukan_resting_metabolism },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(
-                  _vm.data,
-                  "nilai_rujukan_resting_metabolism",
-                  $event.target.value
-                )
-              }
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row row-form-kesehatan" }, [
-        _vm._m(22),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c("div", { staticClass: "input-group" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.data.hasil_usia_tubuh,
-                  expression: "data.hasil_usia_tubuh"
-                }
-              ],
-              staticClass: "form-control input-text",
-              attrs: { type: "number" },
-              domProps: { value: _vm.data.hasil_usia_tubuh },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.data, "hasil_usia_tubuh", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "input-group-addon" }, [_vm._v("Thn")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _vm.isEditRujukan
-            ? _c("div", { staticClass: "input-group" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.data.nilai_rujukan_usia_tubuh,
-                      expression: "data.nilai_rujukan_usia_tubuh"
-                    }
-                  ],
-                  staticClass: "form-control input-text",
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.data.nilai_rujukan_usia_tubuh },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(
-                        _vm.data,
-                        "nilai_rujukan_usia_tubuh",
-                        $event.target.value
-                      )
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group-addon" }, [_vm._v("Thn")])
-              ])
-            : _c("div", { staticClass: "text-center" }, [
-                _vm._v(_vm._s(_vm.data.nilai_rujukan_usia_tubuh) + " Thn")
-              ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row row-form-kesehatan" }, [
-        _vm._m(23),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.data.intensif_program,
-                expression: "data.intensif_program"
-              }
-            ],
-            staticClass: "custom-control-input",
-            attrs: { type: "checkbox", id: "customSwitch1" },
-            domProps: {
-              checked: Array.isArray(_vm.data.intensif_program)
-                ? _vm._i(_vm.data.intensif_program, null) > -1
-                : _vm.data.intensif_program
-            },
-            on: {
-              change: function($event) {
-                var $$a = _vm.data.intensif_program,
-                  $$el = $event.target,
-                  $$c = $$el.checked ? true : false
-                if (Array.isArray($$a)) {
-                  var $$v = null,
-                    $$i = _vm._i($$a, $$v)
-                  if ($$el.checked) {
-                    $$i < 0 &&
-                      _vm.$set(_vm.data, "intensif_program", $$a.concat([$$v]))
-                  } else {
-                    $$i > -1 &&
-                      _vm.$set(
-                        _vm.data,
-                        "intensif_program",
-                        $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                      )
-                  }
-                } else {
-                  _vm.$set(_vm.data, "intensif_program", $$c)
-                }
-              }
-            }
-          })
-        ])
-      ]),
-      _vm._v("\n  " + _vm._s(_vm.data) + "\n  "),
-      _vm.data.intensif_program
-        ? _c("div", { staticClass: "row row-form-kesehatan" }, [
-            _c("div", { staticClass: "col-sm-5" }),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-3" }, [_vm._v("Skeletal Fat")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-3" }, [_vm._v("Skeletal Muscle")])
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.data.intensif_program
-        ? _c("div", { staticClass: "row row-form-kesehatan" }, [
-            _vm._m(24),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-3" }, [
-              _c("div", { staticClass: "input-group" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.data.lemak_seluruh_tubuh,
-                      expression: "data.lemak_seluruh_tubuh"
-                    }
-                  ],
-                  staticClass: "form-control input-text",
-                  attrs: { type: "number" },
-                  domProps: { value: _vm.data.lemak_seluruh_tubuh },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(
-                        _vm.data,
-                        "lemak_seluruh_tubuh",
-                        $event.target.value
-                      )
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group-addon" }, [_vm._v("%")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-3" }, [
-              _c("div", { staticClass: "input-group" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.data.otot_seluruh_tubuh,
-                      expression: "data.otot_seluruh_tubuh"
-                    }
-                  ],
-                  staticClass: "form-control input-text",
-                  attrs: { type: "number" },
-                  domProps: { value: _vm.data.otot_seluruh_tubuh },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(
-                        _vm.data,
-                        "otot_seluruh_tubuh",
-                        $event.target.value
-                      )
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group-addon" }, [_vm._v("%")])
-              ])
-            ])
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.data.intensif_program
-        ? _c("div", { staticClass: "row row-form-kesehatan" }, [
-            _vm._m(25),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-3" }, [
-              _c("div", { staticClass: "input-group" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.data.lemak_lengan,
-                      expression: "data.lemak_lengan"
-                    }
-                  ],
-                  staticClass: "form-control input-text",
-                  attrs: { type: "number" },
-                  domProps: { value: _vm.data.lemak_lengan },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.data, "lemak_lengan", $event.target.value)
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group-addon" }, [_vm._v("%")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-3" }, [
-              _c("div", { staticClass: "input-group" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.data.otot_lengan,
-                      expression: "data.otot_lengan"
-                    }
-                  ],
-                  staticClass: "form-control input-text",
-                  attrs: { type: "number" },
-                  domProps: { value: _vm.data.otot_lengan },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.data, "otot_lengan", $event.target.value)
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group-addon" }, [_vm._v("%")])
-              ])
-            ])
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.data.intensif_program
-        ? _c("div", { staticClass: "row row-form-kesehatan" }, [
-            _vm._m(26),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-3" }, [
-              _c("div", { staticClass: "input-group" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.data.lemak_trunk,
-                      expression: "data.lemak_trunk"
-                    }
-                  ],
-                  staticClass: "form-control input-text",
-                  attrs: { type: "number" },
-                  domProps: { value: _vm.data.lemak_trunk },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.data, "lemak_trunk", $event.target.value)
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group-addon" }, [_vm._v("%")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-3" }, [
-              _c("div", { staticClass: "input-group" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.data.otot_trunk,
-                      expression: "data.otot_trunk"
-                    }
-                  ],
-                  staticClass: "form-control input-text",
-                  attrs: { type: "number" },
-                  domProps: { value: _vm.data.otot_trunk },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.data, "otot_trunk", $event.target.value)
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group-addon" }, [_vm._v("%")])
-              ])
-            ])
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.data.intensif_program
-        ? _c("div", { staticClass: "row row-form-kesehatan" }, [
-            _vm._m(27),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-3" }, [
-              _c("div", { staticClass: "input-group" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.data.lemak_kaki,
-                      expression: "data.lemak_kaki"
-                    }
-                  ],
-                  staticClass: "form-control input-text",
-                  attrs: { type: "number" },
-                  domProps: { value: _vm.data.lemak_kaki },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.data, "lemak_kaki", $event.target.value)
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group-addon" }, [_vm._v("%")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-3" }, [
-              _c("div", { staticClass: "input-group" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.data.otot_kaki,
-                      expression: "data.otot_kaki"
-                    }
-                  ],
-                  staticClass: "form-control input-text",
-                  attrs: { type: "number" },
-                  domProps: { value: _vm.data.otot_kaki },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.data, "otot_kaki", $event.target.value)
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group-addon" }, [_vm._v("%")])
-              ])
-            ])
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "form-group", staticStyle: { "margin-top": "10px" } },
-        [
-          _c("label", { attrs: { for: "keluhan" } }, [_vm._v("Keluhan")]),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "keluhan" } }, [
+            _vm._v("Catatan Dokter")
+          ]),
           _vm._v(" "),
           _c("textarea", {
             directives: [
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.data.keluhan,
-                expression: "data.keluhan"
+                value: _vm.data.catatan_dokter,
+                expression: "data.catatan_dokter"
               }
             ],
             staticClass: "form-control",
             attrs: { id: "", cols: "30", rows: "5" },
-            domProps: { value: _vm.data.keluhan },
+            domProps: { value: _vm.data.catatan_dokter },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.data, "keluhan", $event.target.value)
+                _vm.$set(_vm.data, "catatan_dokter", $event.target.value)
               }
             }
           })
-        ]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "keluhan" } }, [_vm._v("Catatan Dokter")]),
+        ]),
         _vm._v(" "),
-        _c("textarea", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.data.catatan_dokter,
-              expression: "data.catatan_dokter"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: { id: "", cols: "30", rows: "5" },
-          domProps: { value: _vm.data.catatan_dokter },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.data, "catatan_dokter", $event.target.value)
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-info", on: { click: _vm.createDataKesehatan } },
-        [_vm._v("Save")]
-      )
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-info",
+            on: { click: _vm.createDataKesehatan }
+          },
+          [_vm._v("Save")]
+        )
+      ])
     ],
-    2
+    1
   )
 }
 var staticRenderFns = [
@@ -42910,7 +43924,19 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-5" }, [
-      _c("div", [_c("b", [_vm._v("Intensif Program")])])
+      _c("h4", [_vm._v("Intensif Program")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row row-form-kesehatan" }, [
+      _c("div", { staticClass: "col-sm-5" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-3" }, [_vm._v("Skeletal Fat")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-3" }, [_vm._v("Skeletal Muscle")])
     ])
   },
   function() {
@@ -42965,426 +43991,448 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container-fluid" }, [
-    _vm.data.peserta
-      ? _c("section", [
-          _c("div", { staticClass: "head-content-section" }, [
-            _c("h3", [
-              _vm._v("Data Kesehatan " + _vm._s(_vm.data.peserta.nama))
-            ]),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass: "btn btn-info",
-                attrs: { href: _vm.urlEditKesehatan + _vm.data.id + "/edit" }
-              },
-              [_c("i", { staticClass: "fa fa-pencil" }), _vm._v(" Edit")]
-            )
-          ]),
+  return _c("div", [
+    _c("div", { staticClass: "box box-info" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _vm.data.peserta
+          ? _c("section", [
+              _c("div", { staticClass: "head-content-section" }, [
+                _c("h3", [
+                  _vm._v("Data Kesehatan " + _vm._s(_vm.data.peserta.nama))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-info",
+                    attrs: {
+                      href: _vm.urlEditKesehatan + _vm.data.id + "/edit"
+                    }
+                  },
+                  [_c("i", { staticClass: "fa fa-pencil" }), _vm._v(" Edit")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row form-group" }, [
+                _c("div", { staticClass: "col-sm-3" }, [_vm._v("Nama")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-9" }, [
+                  _vm._v(": " + _vm._s(_vm.data.peserta.nama))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row form-group" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-9" }, [
+                  _vm._v(": " + _vm._s(_vm.data.peserta.alamat))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row form-group" }, [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-9" }, [
+                  _vm._v(": " + _vm._s(_vm.data.peserta.jenis_kelamin))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row form-group" }, [
+                _vm._m(2),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-9" }, [
+                  _vm._v(": " + _vm._s(_vm.data.peserta.tinggi))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row form-group" }, [
+                _vm._m(3),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-9" }, [
+                  _vm._v(
+                    ": " +
+                      _vm._s(_vm.data.peserta.tempat_lahir) +
+                      ", " +
+                      _vm._s(_vm.data.peserta.tanggal_lahir.substring(0, 10))
+                  )
+                ])
+              ])
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c("div", { staticClass: "row form-group" }, [
+          _c("div", { staticClass: "col-sm-3" }, [_vm._v("Tanggal He")]),
           _vm._v(" "),
-          _c("div", { staticClass: "row form-group" }, [
-            _c("div", { staticClass: "col-sm-3" }, [_vm._v("Nama")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-9" }, [
-              _vm._v(": " + _vm._s(_vm.data.peserta.nama))
+          _c("div", { staticClass: "col-sm-9" }, [
+            _vm._v(": " + _vm._s(_vm.data.tanggal_he))
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row form-group" }, [
+          _vm._m(4),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-9" }, [
+            _vm._v("\n          : " + _vm._s(_vm.data.tempat_he) + "\n        ")
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._m(5),
+        _vm._v(" "),
+        _c("div", { staticClass: "row row-form-kesehatan" }, [
+          _vm._m(6),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-3" }, [
+            _c("div", { staticClass: "text-center" }, [
+              _vm._v(_vm._s(_vm.data.bab_setiap_hari) + " /hari")
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "row form-group" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-9" }, [
-              _vm._v(": " + _vm._s(_vm.data.peserta.alamat))
+          _c("div", { staticClass: "col-sm-4" }, [
+            _c("div", { staticClass: "text-center" }, [
+              _vm._v(_vm._s(_vm.data.nilai_rujukan_bab_setiap_hari) + " /hari")
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row row-form-kesehatan" }, [
+          _vm._m(7),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-3" }, [
+            _c("div", { staticClass: "text-center" }, [
+              _vm._v(_vm._s(_vm.data.bab_malam_hari) + " /malam")
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "row form-group" }, [
-            _vm._m(1),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-9" }, [
-              _vm._v(": " + _vm._s(_vm.data.peserta.jenis_kelamin))
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row form-group" }, [
-            _vm._m(2),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-9" }, [
-              _vm._v(": " + _vm._s(_vm.data.peserta.tinggi))
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row form-group" }, [
-            _vm._m(3),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-9" }, [
+          _c("div", { staticClass: "col-sm-4" }, [
+            _c("div", { staticClass: "text-center" }, [
               _vm._v(
-                ": " +
-                  _vm._s(_vm.data.peserta.tempat_lahir) +
-                  ", " +
-                  _vm._s(_vm.data.peserta.tanggal_lahir.substring(0, 10))
+                " ≤ " + _vm._s(_vm.data.nilai_rujukan_bak_malam_hari) + " kali"
               )
             ])
           ])
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _c("div", { staticClass: "row form-group" }, [
-      _c("div", { staticClass: "col-sm-3" }, [_vm._v("Tanggal He")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-9" }, [
-        _vm._v(": " + _vm._s(_vm.data.tanggal_he))
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row form-group" }, [
-      _vm._m(4),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-9" }, [
-        _vm._v("\n      : " + _vm._s(_vm.data.tempat_he) + "\n    ")
-      ])
-    ]),
-    _vm._v(" "),
-    _vm._m(5),
-    _vm._v(" "),
-    _c("div", { staticClass: "row row-form-kesehatan" }, [
-      _vm._m(6),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3" }, [
-        _c("div", { staticClass: "text-center" }, [
-          _vm._v(_vm._s(_vm.data.bab_setiap_hari) + " /hari")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-4" }, [
-        _c("div", { staticClass: "text-center" }, [
-          _vm._v(_vm._s(_vm.data.nilai_rujukan_bab_setiap_hari) + " /hari")
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row row-form-kesehatan" }, [
-      _vm._m(7),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3" }, [
-        _c("div", { staticClass: "text-center" }, [
-          _vm._v(_vm._s(_vm.data.bab_malam_hari) + " /malam")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-4" }, [
-        _c("div", { staticClass: "text-center" }, [
-          _vm._v(
-            " ≤ " + _vm._s(_vm.data.nilai_rujukan_bak_malam_hari) + " kali"
-          )
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row row-form-kesehatan" }, [
-      _vm._m(8),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3" }, [
-        _c("div", { staticClass: "text-center" }, [
-          _vm._v(_vm._s(_vm.data.tensi_sistol) + " mmHg")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-4" }, [
-        _c("div", { staticClass: "text-center" }, [
-          _vm._v("S: " + _vm._s(_vm.data.nilai_rujukan_tensi_sistol) + " mmHg")
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row row-form-kesehatan" }, [
-      _vm._m(9),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3" }, [
-        _c("div", { staticClass: "text-center" }, [
-          _vm._v(_vm._s(_vm.data.tensi_diastol) + " mmHg")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-4" }, [
-        _c("div", { staticClass: "text-center" }, [
-          _vm._v("D: " + _vm._s(_vm.data.nilai_rujukan_tensi_diastol) + " mmHg")
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row row-form-kesehatan" }, [
-      _vm._m(10),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3" }, [
-        _c("div", { staticClass: "text-center" }, [
-          _vm._v(_vm._s(_vm.data.asam_urat) + " mg/dl")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-4" }, [
-        _c("div", { staticClass: "text-center" }, [
-          _vm._v(
-            "L : < " +
-              _vm._s(_vm.data.nilai_rujukan_asam_urat_l) +
-              "; P : < " +
-              _vm._s(_vm.data.nilai_rujukan_asam_urat_l) +
-              " mg/dl"
-          )
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row row-form-kesehatan" }, [
-      _vm._m(11),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3" }, [
-        _c("div", { staticClass: "text-center" }, [
-          _vm._v(_vm._s(_vm.data.gula_darah) + " mg/dl")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-4" }, [
-        _c("div", { staticClass: "text-center" }, [
-          _vm._v(
-            _vm._s(_vm.data.nilai_rujukan_gula_darah_gdp) +
-              " mg/dl (GDP) Dibawah " +
-              _vm._s(_vm.data.nilai_rujukan_gula_darah_gdp) +
-              " mg/dl (GDS)"
-          )
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row row-form-kesehatan" }, [
-      _vm._m(12),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3" }, [
-        _c("div", { staticClass: "text-center" }, [
-          _vm._v(_vm._s(_vm.data.kolestrol) + " mg/dl")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-4" }, [
-        _c("div", { staticClass: "text-center" }, [
-          _vm._v("< " + _vm._s(_vm.data.nilai_rujukan_kolestrol) + " mg/dl")
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row row-form-kesehatan" }, [
-      _vm._m(13),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3" }, [
-        _c("div", { staticClass: "text-center" }, [
-          _vm._v(_vm._s(_vm.data.hasil_lingkar_perut) + " cm")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-4" }, [
-        _c("div", { staticClass: "text-center" }, [
-          _vm._v("< " + _vm._s(_vm.data.nilai_rujukan_lingkar_perut) + " cm")
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row row-form-kesehatan" }, [
-      _vm._m(14),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3" }, [
-        _c("div", { staticClass: "text-center" }, [
-          _vm._v(_vm._s(_vm.data.hasil_berat_badan) + " Kg")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-4" }, [
-        _c("div", { staticClass: "text-center" }, [
-          _vm._v(_vm._s(_vm.data.nilai_rujukan_berat_badan) + " Kg")
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row row-form-kesehatan" }, [
-      _vm._m(15),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3" }, [
-        _c("div", { staticClass: "text-center" }, [
-          _vm._v(
-            _vm._s(_vm.data.angka_lemak_tubuh) +
-              " Kg, " +
-              _vm._s(_vm.data.perbandingan_standar_lemak_tubuh)
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-4" }, [
-        _c("div", { staticClass: "text-center" }, [
-          _vm._v(
-            "\n        L: " +
-              _vm._s(_vm.data.nilai_rujukan_lemak_tubuh_l) +
-              "% P: " +
-              _vm._s(_vm.data.nilai_rujukan_lemak_tubuh_p) +
-              "%\n      "
-          )
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row row-form-kesehatan" }, [
-      _vm._m(16),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3" }, [
-        _c("div", { staticClass: "text-center" }, [
-          _vm._v(
-            _vm._s(_vm.data.angka_lemak_lapisan_organ) +
-              " %, " +
-              _vm._s(_vm.data.perbandingan_standar_lemak_lapisan_organ)
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-4" }, [
-        _c("div", { staticClass: "text-center" }, [
-          _vm._v(_vm._s(_vm.data.nilai_rujukan_lemak_lapisan_organ) + " %")
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row row-form-kesehatan" }, [
-      _vm._m(17),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3" }, [
-        _c("div", { staticClass: "text-center" }, [
-          _vm._v(_vm._s(_vm.data.indeks_masa_tubuh) + " Kg/m"),
-          _c("sup", [_vm._v("2")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-4" }, [
-        _c("div", { staticClass: "text-center" }, [
-          _vm._v(_vm._s(_vm.data.nilai_rujukan_indeks_masa_tubuh) + " Kg/m"),
-          _c("sup", [_vm._v("2")])
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row row-form-kesehatan" }, [
-      _vm._m(18),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3" }, [
-        _c("div", { staticClass: "text-center" }, [
-          _vm._v(_vm._s(_vm.data.hasil_resting_metabolism) + " ")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-4" }, [
-        _c("div", { staticClass: "text-center" }, [
-          _vm._v(_vm._s(_vm.data.nilai_rujukan_resting_metabolism) + " ")
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row row-form-kesehatan" }, [
-      _vm._m(19),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3" }, [
-        _c("div", { staticClass: "text-center" }, [
-          _vm._v(_vm._s(_vm.data.hasil_usia_tubuh) + " Thn")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-4" }, [
-        _c("div", { staticClass: "text-center" }, [
-          _vm._v(_vm._s(_vm.data.nilai_rujukan_usia_tubuh) + " Thn")
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _vm.data.intensif_program
-      ? _c("section", [
-          _vm._m(20),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row row-form-kesehatan" }, [
+          _vm._m(8),
           _vm._v(" "),
-          _c("div", { staticClass: "row row-form-kesehatan" }, [
-            _vm._m(21),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-3" }, [
-              _c("div", { staticClass: "text-center" }, [
-                _vm._v(_vm._s(_vm.data.lemak_seluruh_tubuh) + " %")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-4" }, [
-              _c("div", { staticClass: "text-center" }, [
-                _vm._v(_vm._s(_vm.data.otot_seluruh_tubuh) + " %")
-              ])
+          _c("div", { staticClass: "col-sm-3" }, [
+            _c("div", { staticClass: "text-center" }, [
+              _vm._v(_vm._s(_vm.data.tensi_sistol) + " mmHg")
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "row row-form-kesehatan" }, [
-            _vm._m(22),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-3" }, [
-              _c("div", { staticClass: "text-center" }, [
-                _vm._v(_vm._s(_vm.data.lemak_lengan) + " %")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-4" }, [
-              _c("div", { staticClass: "text-center" }, [
-                _vm._v(_vm._s(_vm.data.otot_lengan) + " %")
-              ])
+          _c("div", { staticClass: "col-sm-4" }, [
+            _c("div", { staticClass: "text-center" }, [
+              _vm._v(
+                "S: " + _vm._s(_vm.data.nilai_rujukan_tensi_sistol) + " mmHg"
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row row-form-kesehatan" }, [
+          _vm._m(9),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-3" }, [
+            _c("div", { staticClass: "text-center" }, [
+              _vm._v(_vm._s(_vm.data.tensi_diastol) + " mmHg")
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "row row-form-kesehatan" }, [
-            _vm._m(23),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-3" }, [
-              _c("div", { staticClass: "text-center" }, [
-                _vm._v(_vm._s(_vm.data.lemak_trunk) + " %")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-4" }, [
-              _c("div", { staticClass: "text-center" }, [
-                _vm._v(_vm._s(_vm.data.otot_trunk) + " %")
-              ])
+          _c("div", { staticClass: "col-sm-4" }, [
+            _c("div", { staticClass: "text-center" }, [
+              _vm._v(
+                "D: " + _vm._s(_vm.data.nilai_rujukan_tensi_diastol) + " mmHg"
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row row-form-kesehatan" }, [
+          _vm._m(10),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-3" }, [
+            _c("div", { staticClass: "text-center" }, [
+              _vm._v(_vm._s(_vm.data.asam_urat) + " mg/dl")
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "row row-form-kesehatan" }, [
-            _vm._m(24),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-3" }, [
-              _c("div", { staticClass: "text-center" }, [
-                _vm._v(_vm._s(_vm.data.lemak_kaki) + " %")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-4" }, [
-              _c("div", { staticClass: "text-center" }, [
-                _vm._v(_vm._s(_vm.data.otot_kaki) + " %")
-              ])
+          _c("div", { staticClass: "col-sm-4" }, [
+            _c("div", { staticClass: "text-center" }, [
+              _vm._v(
+                "L : < " +
+                  _vm._s(_vm.data.nilai_rujukan_asam_urat_l) +
+                  "; P : < " +
+                  _vm._s(_vm.data.nilai_rujukan_asam_urat_l) +
+                  " mg/dl"
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row row-form-kesehatan" }, [
+          _vm._m(11),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-3" }, [
+            _c("div", { staticClass: "text-center" }, [
+              _vm._v(_vm._s(_vm.data.gula_darah) + " mg/dl")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-4" }, [
+            _c("div", { staticClass: "text-center" }, [
+              _vm._v(
+                _vm._s(_vm.data.nilai_rujukan_gula_darah_gdp) +
+                  " mg/dl (GDP) Dibawah " +
+                  _vm._s(_vm.data.nilai_rujukan_gula_darah_gdp) +
+                  " mg/dl (GDS)"
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row row-form-kesehatan" }, [
+          _vm._m(12),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-3" }, [
+            _c("div", { staticClass: "text-center" }, [
+              _vm._v(_vm._s(_vm.data.kolestrol) + " mg/dl")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-4" }, [
+            _c("div", { staticClass: "text-center" }, [
+              _vm._v("< " + _vm._s(_vm.data.nilai_rujukan_kolestrol) + " mg/dl")
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row row-form-kesehatan" }, [
+          _vm._m(13),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-3" }, [
+            _c("div", { staticClass: "text-center" }, [
+              _vm._v(_vm._s(_vm.data.hasil_lingkar_perut) + " cm")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-4" }, [
+            _c("div", { staticClass: "text-center" }, [
+              _vm._v(
+                "< " + _vm._s(_vm.data.nilai_rujukan_lingkar_perut) + " cm"
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row row-form-kesehatan" }, [
+          _vm._m(14),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-3" }, [
+            _c("div", { staticClass: "text-center" }, [
+              _vm._v(_vm._s(_vm.data.hasil_berat_badan) + " Kg")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-4" }, [
+            _c("div", { staticClass: "text-center" }, [
+              _vm._v(_vm._s(_vm.data.nilai_rujukan_berat_badan) + " Kg")
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row row-form-kesehatan" }, [
+          _vm._m(15),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-3" }, [
+            _c("div", { staticClass: "text-center" }, [
+              _vm._v(
+                _vm._s(_vm.data.angka_lemak_tubuh) +
+                  " Kg, " +
+                  _vm._s(_vm.data.perbandingan_standar_lemak_tubuh)
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-4" }, [
+            _c("div", { staticClass: "text-center" }, [
+              _vm._v(
+                "\n            L: " +
+                  _vm._s(_vm.data.nilai_rujukan_lemak_tubuh_l) +
+                  "% P: " +
+                  _vm._s(_vm.data.nilai_rujukan_lemak_tubuh_p) +
+                  "%\n          "
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row row-form-kesehatan" }, [
+          _vm._m(16),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-3" }, [
+            _c("div", { staticClass: "text-center" }, [
+              _vm._v(
+                _vm._s(_vm.data.angka_lemak_lapisan_organ) +
+                  " %, " +
+                  _vm._s(_vm.data.perbandingan_standar_lemak_lapisan_organ)
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-4" }, [
+            _c("div", { staticClass: "text-center" }, [
+              _vm._v(_vm._s(_vm.data.nilai_rujukan_lemak_lapisan_organ) + " %")
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row row-form-kesehatan" }, [
+          _vm._m(17),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-3" }, [
+            _c("div", { staticClass: "text-center" }, [
+              _vm._v(_vm._s(_vm.data.indeks_masa_tubuh) + " Kg/m"),
+              _c("sup", [_vm._v("2")])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-4" }, [
+            _c("div", { staticClass: "text-center" }, [
+              _vm._v(
+                _vm._s(_vm.data.nilai_rujukan_indeks_masa_tubuh) + " Kg/m"
+              ),
+              _c("sup", [_vm._v("2")])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row row-form-kesehatan" }, [
+          _vm._m(18),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-3" }, [
+            _c("div", { staticClass: "text-center" }, [
+              _vm._v(_vm._s(_vm.data.hasil_resting_metabolism) + " ")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-4" }, [
+            _c("div", { staticClass: "text-center" }, [
+              _vm._v(_vm._s(_vm.data.nilai_rujukan_resting_metabolism) + " ")
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row row-form-kesehatan" }, [
+          _vm._m(19),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-3" }, [
+            _c("div", { staticClass: "text-center" }, [
+              _vm._v(_vm._s(_vm.data.hasil_usia_tubuh) + " Thn")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-4" }, [
+            _c("div", { staticClass: "text-center" }, [
+              _vm._v(_vm._s(_vm.data.nilai_rujukan_usia_tubuh) + " Thn")
             ])
           ])
         ])
-      : _vm._e(),
+      ])
+    ]),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "form-group", staticStyle: { "margin-top": "10px" } },
-      [
-        _c("label", { attrs: { for: "keluhan" } }, [_vm._v("Keluhan : ")]),
-        _vm._v(" "),
-        _c("p", [_vm._v(_vm._s(_vm.data.keluhan))])
-      ]
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "keluhan" } }, [_vm._v("Catatan Dokter : ")]),
+    _c("div", { staticClass: "card" }, [
+      _c("h4", [_vm._v("Intensif Program")]),
       _vm._v(" "),
-      _c("p", [_vm._v(_vm._s(_vm.data.catatan_dokter))])
+      _vm.data.intensif_program
+        ? _c("section", [
+            _vm._m(20),
+            _vm._v(" "),
+            _c("div", { staticClass: "row row-form-kesehatan" }, [
+              _vm._m(21),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-3" }, [
+                _c("div", { staticClass: "text-center" }, [
+                  _vm._v(_vm._s(_vm.data.lemak_seluruh_tubuh) + " %")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4" }, [
+                _c("div", { staticClass: "text-center" }, [
+                  _vm._v(_vm._s(_vm.data.otot_seluruh_tubuh) + " %")
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row row-form-kesehatan" }, [
+              _vm._m(22),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-3" }, [
+                _c("div", { staticClass: "text-center" }, [
+                  _vm._v(_vm._s(_vm.data.lemak_lengan) + " %")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4" }, [
+                _c("div", { staticClass: "text-center" }, [
+                  _vm._v(_vm._s(_vm.data.otot_lengan) + " %")
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row row-form-kesehatan" }, [
+              _vm._m(23),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-3" }, [
+                _c("div", { staticClass: "text-center" }, [
+                  _vm._v(_vm._s(_vm.data.lemak_trunk) + " %")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4" }, [
+                _c("div", { staticClass: "text-center" }, [
+                  _vm._v(_vm._s(_vm.data.otot_trunk) + " %")
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row row-form-kesehatan" }, [
+              _vm._m(24),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-3" }, [
+                _c("div", { staticClass: "text-center" }, [
+                  _vm._v(_vm._s(_vm.data.lemak_kaki) + " %")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4" }, [
+                _c("div", { staticClass: "text-center" }, [
+                  _vm._v(_vm._s(_vm.data.otot_kaki) + " %")
+                ])
+              ])
+            ])
+          ])
+        : _vm._e()
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card" }, [
+      _c(
+        "div",
+        { staticClass: "form-group", staticStyle: { "margin-top": "10px" } },
+        [
+          _c("label", { attrs: { for: "keluhan" } }, [_vm._v("Keluhan : ")]),
+          _vm._v(" "),
+          _c("p", [_vm._v(_vm._s(_vm.data.keluhan))])
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "keluhan" } }, [
+          _vm._v("Catatan Dokter : ")
+        ]),
+        _vm._v(" "),
+        _c("p", [_vm._v(_vm._s(_vm.data.catatan_dokter))])
+      ])
     ])
   ])
 }
@@ -43643,7 +44691,6 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "container-fluid" },
     [
       _c("loading-modal"),
       _vm._v(" "),
@@ -43657,1190 +44704,1411 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("div", { staticClass: "head-content-section" }, [
-        _c("h3", [_vm._v("Edit Data Kesehatan " + _vm._s(_vm.peserta.nama))])
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "form-group" },
-        [
-          _c("label", { staticClass: "required", attrs: { for: "nama" } }, [
-            _vm._v("Nama Peserta")
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "input-group" },
-            [
-              _c("vue-select", {
-                class: _vm.getErrorMessage("peserta_id"),
-                attrs: {
-                  placeholder: "Cari Peserta",
-                  options: _vm.pesertas,
-                  label: "nama",
-                  clearable: false,
-                  value: _vm.peserta.nama
-                },
-                on: { search: _vm.searchPeserta, input: _vm.selectPeserta }
-              }),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "input-group-addon clickable",
-                  on: { click: _vm.showTablePesertaModal }
-                },
-                [_c("i", { staticClass: "fa fa-search" })]
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _vm._l(_vm.errorMessage.peserta_id, function(error, i) {
-            return _c("div", { key: i, staticClass: "error-message" }, [
-              _vm._v(_vm._s(error))
-            ])
-          })
-        ],
-        2
-      ),
-      _vm._v(" "),
-      _vm.peserta.nama !== null
-        ? [
-            _c("div", { staticClass: "row form-group" }, [
-              _vm._m(0),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-9" }, [
-                _vm._v(": " + _vm._s(_vm.peserta.alamat))
+      _c("div", { staticClass: "box box-info" }, [
+        _c(
+          "div",
+          { staticClass: "container-fluid" },
+          [
+            _c("div", { staticClass: "head-content-section" }, [
+              _c("h3", [
+                _vm._v("Edit Data Kesehatan " + _vm._s(_vm.peserta.nama))
               ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "row form-group" }, [
-              _vm._m(1),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-9" }, [
-                _vm._v(": " + _vm._s(_vm.peserta.jenis_kelamin))
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row form-group" }, [
-              _vm._m(2),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-9" }, [
-                _vm._v(": " + _vm._s(_vm.peserta.tinggi))
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row form-group" }, [
-              _vm._m(3),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-9" }, [
-                _vm._v(
-                  ": " +
-                    _vm._s(_vm.peserta.tempat_lahir) +
-                    ", " +
-                    _vm._s(_vm.peserta.tanggal_lahir.substring(0, 10))
-                )
-              ])
-            ])
-          ]
-        : _vm._e(),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c(
-            "div",
-            { staticClass: "form-group" },
-            [
-              _c(
-                "label",
-                { staticClass: "required", attrs: { for: "tanggal he" } },
-                [_vm._v("Tanggal He")]
-              ),
-              _vm._v(" "),
-              _c("vue-datepicker", {
-                class: _vm.getErrorMessage("tanggal_he"),
-                model: {
-                  value: _vm.data.tanggal_he,
-                  callback: function($$v) {
-                    _vm.$set(_vm.data, "tanggal_he", $$v)
-                  },
-                  expression: "data.tanggal_he"
-                }
-              }),
-              _vm._v(" "),
-              _vm._l(_vm.errorMessage.tanggal_he, function(error, i) {
-                return _c("div", { key: i, staticClass: "error-message" }, [
-                  _vm._v(_vm._s(error))
-                ])
-              })
-            ],
-            2
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-9" }, [
-          _c("label", { attrs: { for: "tempat he" } }, [_vm._v("Tempat He")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.data.tempat_he,
-                expression: "data.tempat_he"
-              }
-            ],
-            staticClass: "form-control input-text",
-            attrs: { type: "text" },
-            domProps: { value: _vm.data.tempat_he },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.data, "tempat_he", $event.target.value)
-              }
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row row-form-kesehatan" }, [
-        _vm._m(4),
-        _vm._v(" "),
-        _vm._m(5),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _c("div", { staticClass: "text-center" }, [
-            _c("b", [_vm._v("Nilai Rujukan")]),
-            _vm._v(" ("),
             _c(
-              "span",
-              {
-                staticClass: "btn btn-link clickable",
-                on: {
-                  click: function($event) {
-                    return _vm.editRujukanValue(true)
-                  }
-                }
-              },
-              [_c("i", { staticClass: "fa fa-pencil" }), _vm._v(" Edit")]
-            ),
-            _vm._v(")")
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row row-form-kesehatan" }, [
-        _vm._m(6),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c("div", { staticClass: "input-group" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.data.bab_setiap_hari,
-                  expression: "data.bab_setiap_hari"
-                }
-              ],
-              staticClass: "form-control input-text",
-              attrs: { type: "number" },
-              domProps: { value: _vm.data.bab_setiap_hari },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.data, "bab_setiap_hari", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "input-group-addon" }, [_vm._v("/hari")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _vm.isEditRujukan
-            ? _c("div", { staticClass: "input-group" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.data.nilai_rujukan_bab_setiap_hari,
-                      expression: "data.nilai_rujukan_bab_setiap_hari"
-                    }
-                  ],
-                  staticClass: "form-control input-text",
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.data.nilai_rujukan_bab_setiap_hari },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(
-                        _vm.data,
-                        "nilai_rujukan_bab_setiap_hari",
-                        $event.target.value
-                      )
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group-addon" }, [
-                  _vm._v("/hari")
-                ])
-              ])
-            : _c("div", { staticClass: "text-center" }, [
-                _vm._v(
-                  _vm._s(_vm.data.nilai_rujukan_bab_setiap_hari) + " /hari"
-                )
-              ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row row-form-kesehatan" }, [
-        _vm._m(7),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c("div", { staticClass: "input-group" }, [
-            _c("div", { staticClass: "input-group-addon" }, [_vm._v("≤")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.data.bab_malam_hari,
-                  expression: "data.bab_malam_hari"
-                }
-              ],
-              staticClass: "form-control input-text",
-              attrs: { type: "number" },
-              domProps: { value: _vm.data.bab_malam_hari },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.data, "bab_malam_hari", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "input-group-addon" }, [_vm._v("/malam")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _vm.isEditRujukan
-            ? _c("div", { staticClass: "input-group" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.data.nilai_rujukan_bak_malam_hari,
-                      expression: "data.nilai_rujukan_bak_malam_hari"
-                    }
-                  ],
-                  staticClass: "form-control input-text",
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.data.nilai_rujukan_bak_malam_hari },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(
-                        _vm.data,
-                        "nilai_rujukan_bak_malam_hari",
-                        $event.target.value
-                      )
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group-addon" }, [
-                  _vm._v("kali")
-                ])
-              ])
-            : _c("div", { staticClass: "text-center" }, [
-                _vm._v(
-                  " ≤ " +
-                    _vm._s(_vm.data.nilai_rujukan_bak_malam_hari) +
-                    " kali"
-                )
-              ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row row-form-kesehatan" }, [
-        _vm._m(8),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c("div", { staticClass: "input-group" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.data.tensi_sistol,
-                  expression: "data.tensi_sistol"
-                }
-              ],
-              staticClass: "form-control input-text",
-              attrs: { type: "number" },
-              domProps: { value: _vm.data.tensi_sistol },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.data, "tensi_sistol", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "input-group-addon" }, [_vm._v("mmHg")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _vm.isEditRujukan
-            ? _c("div", { staticClass: "input-group" }, [
-                _c("div", { staticClass: "input-group-addon" }, [
-                  _vm._v("S :")
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.data.nilai_rujukan_tensi_sistol,
-                      expression: "data.nilai_rujukan_tensi_sistol"
-                    }
-                  ],
-                  staticClass: "form-control input-text",
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.data.nilai_rujukan_tensi_sistol },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(
-                        _vm.data,
-                        "nilai_rujukan_tensi_sistol",
-                        $event.target.value
-                      )
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group-addon" }, [
-                  _vm._v("mmHg")
-                ])
-              ])
-            : _c("div", { staticClass: "text-center" }, [
-                _vm._v(
-                  "S: " + _vm._s(_vm.data.nilai_rujukan_tensi_sistol) + " mmHg"
-                )
-              ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row row-form-kesehatan" }, [
-        _vm._m(9),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c("div", { staticClass: "input-group" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.data.tensi_diastol,
-                  expression: "data.tensi_diastol"
-                }
-              ],
-              staticClass: "form-control input-text",
-              attrs: { type: "number" },
-              domProps: { value: _vm.data.tensi_diastol },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.data, "tensi_diastol", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "input-group-addon" }, [_vm._v("mmHg")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _vm.isEditRujukan
-            ? _c("div", { staticClass: "input-group" }, [
-                _c("div", { staticClass: "input-group-addon" }, [
-                  _vm._v("D :")
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.data.nilai_rujukan_tensi_diastol,
-                      expression: "data.nilai_rujukan_tensi_diastol"
-                    }
-                  ],
-                  staticClass: "form-control input-text",
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.data.nilai_rujukan_tensi_diastol },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(
-                        _vm.data,
-                        "nilai_rujukan_tensi_diastol",
-                        $event.target.value
-                      )
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group-addon" }, [
-                  _vm._v("mmHg")
-                ])
-              ])
-            : _c("div", { staticClass: "text-center" }, [
-                _vm._v(
-                  "D: " + _vm._s(_vm.data.nilai_rujukan_tensi_diastol) + " mmHg"
-                )
-              ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row row-form-kesehatan" }, [
-        _vm._m(10),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c("div", { staticClass: "input-group" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.data.asam_urat,
-                  expression: "data.asam_urat"
-                }
-              ],
-              staticClass: "form-control input-text",
-              attrs: { type: "number" },
-              domProps: { value: _vm.data.asam_urat },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.data, "asam_urat", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "input-group-addon" }, [_vm._v("mg/dl")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _vm.isEditRujukan
-            ? _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-sm-6" }, [
-                  _c("div", { staticClass: "input-group" }, [
-                    _c("div", { staticClass: "input-group-addon" }, [
-                      _vm._v("L : < ")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.data.nilai_rujukan_asam_urat_l,
-                          expression: "data.nilai_rujukan_asam_urat_l"
-                        }
-                      ],
-                      staticClass: "form-control input-text",
-                      attrs: { type: "number" },
-                      domProps: { value: _vm.data.nilai_rujukan_asam_urat_l },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.data,
-                            "nilai_rujukan_asam_urat_l",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "input-group-addon" }, [
-                      _vm._v("mg/dl")
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-sm-6" }, [
-                  _c("div", { staticClass: "input-group" }, [
-                    _c("div", { staticClass: "input-group-addon" }, [
-                      _vm._v("P : < ")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.data.nilai_rujukan_asam_urat_p,
-                          expression: "data.nilai_rujukan_asam_urat_p"
-                        }
-                      ],
-                      staticClass: "form-control input-text",
-                      attrs: { type: "number" },
-                      domProps: { value: _vm.data.nilai_rujukan_asam_urat_p },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.data,
-                            "nilai_rujukan_asam_urat_p",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "input-group-addon" }, [
-                      _vm._v("mg/dl")
-                    ])
-                  ])
-                ])
-              ])
-            : _c("div", { staticClass: "text-center" }, [
-                _vm._v(
-                  "L : < " +
-                    _vm._s(_vm.data.nilai_rujukan_asam_urat_l) +
-                    "; P : < " +
-                    _vm._s(_vm.data.nilai_rujukan_asam_urat_p) +
-                    " mg/dl"
-                )
-              ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row row-form-kesehatan" }, [
-        _vm._m(11),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c("div", { staticClass: "input-group" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.data.gula_darah,
-                  expression: "data.gula_darah"
-                }
-              ],
-              staticClass: "form-control input-text",
-              attrs: { type: "number" },
-              domProps: { value: _vm.data.gula_darah },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.data, "gula_darah", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "input-group-addon" }, [_vm._v("mg/dl")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _vm.isEditRujukan
-            ? _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-sm-6" }, [
-                  _c("div", { staticClass: "input-group" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.data.nilai_rujukan_gula_darah_gdp,
-                          expression: "data.nilai_rujukan_gula_darah_gdp"
-                        }
-                      ],
-                      staticClass: "form-control input-text",
-                      attrs: { type: "text" },
-                      domProps: {
-                        value: _vm.data.nilai_rujukan_gula_darah_gdp
-                      },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.data,
-                            "nilai_rujukan_gula_darah_gdp",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "input-group-addon" }, [
-                      _vm._v("mg/dl (GDP)")
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-sm-6" }, [
-                  _c("div", { staticClass: "input-group" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.data.nilai_rujukan_gula_darah_gds,
-                          expression: "data.nilai_rujukan_gula_darah_gds"
-                        }
-                      ],
-                      staticClass: "form-control input-text",
-                      attrs: { type: "text" },
-                      domProps: {
-                        value: _vm.data.nilai_rujukan_gula_darah_gds
-                      },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.data,
-                            "nilai_rujukan_gula_darah_gds",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "input-group-addon" }, [
-                      _vm._v("mg/dl (GDS)")
-                    ])
-                  ])
-                ])
-              ])
-            : _c("div", { staticClass: "text-center" }, [
-                _vm._v(
-                  _vm._s(_vm.data.nilai_rujukan_gula_darah_gdp) +
-                    " mg/dl (GDP) Dibawah " +
-                    _vm._s(_vm.data.nilai_rujukan_gula_darah_gds) +
-                    " mg/dl (GDS)"
-                )
-              ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row row-form-kesehatan" }, [
-        _vm._m(12),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c("div", { staticClass: "input-group" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.data.kolestrol,
-                  expression: "data.kolestrol"
-                }
-              ],
-              staticClass: "form-control input-text",
-              attrs: { type: "number" },
-              domProps: { value: _vm.data.kolestrol },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.data, "kolestrol", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "input-group-addon" }, [_vm._v("mg/dl")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _vm.isEditRujukan
-            ? _c("div", { staticClass: "input-group" }, [
-                _c("div", { staticClass: "input-group-addon" }, [_vm._v("<")]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.data.nilai_rujukan_kolestrol,
-                      expression: "data.nilai_rujukan_kolestrol"
-                    }
-                  ],
-                  staticClass: "form-control input-text",
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.data.nilai_rujukan_kolestrol },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(
-                        _vm.data,
-                        "nilai_rujukan_kolestrol",
-                        $event.target.value
-                      )
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group-addon" }, [
-                  _vm._v("mg/dl")
-                ])
-              ])
-            : _c("div", { staticClass: "text-center" }, [
-                _vm._v(
-                  "< " + _vm._s(_vm.data.nilai_rujukan_kolestrol) + " mg/dl"
-                )
-              ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row row-form-kesehatan" }, [
-        _vm._m(13),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c("div", { staticClass: "input-group" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.data.hasil_lingkar_perut,
-                  expression: "data.hasil_lingkar_perut"
-                }
-              ],
-              staticClass: "form-control input-text",
-              attrs: { type: "number" },
-              domProps: { value: _vm.data.hasil_lingkar_perut },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.data, "hasil_lingkar_perut", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "input-group-addon" }, [_vm._v("Cm")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _c("div", { staticClass: "input-group" }, [
-            _c("div", { staticClass: "input-group-addon" }, [_vm._v("<")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.data.nilai_rujukan_lingkar_perut,
-                  expression: "data.nilai_rujukan_lingkar_perut"
-                }
-              ],
-              staticClass: "form-control input-text",
-              attrs: { type: "number" },
-              domProps: { value: _vm.data.nilai_rujukan_lingkar_perut },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(
-                    _vm.data,
-                    "nilai_rujukan_lingkar_perut",
-                    $event.target.value
-                  )
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "input-group-addon" }, [_vm._v("Cm")])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row row-form-kesehatan" }, [
-        _vm._m(14),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c("div", { staticClass: "input-group" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.data.hasil_berat_badan,
-                  expression: "data.hasil_berat_badan"
-                }
-              ],
-              staticClass: "form-control input-text",
-              attrs: { type: "number" },
-              domProps: { value: _vm.data.hasil_berat_badan },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.data, "hasil_berat_badan", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "input-group-addon" }, [_vm._v("Kg")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _c("div", { staticClass: "input-group" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.data.nilai_rujukan_berat_badan,
-                  expression: "data.nilai_rujukan_berat_badan"
-                }
-              ],
-              staticClass: "form-control input-text",
-              attrs: { type: "number" },
-              domProps: { value: _vm.data.nilai_rujukan_berat_badan },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(
-                    _vm.data,
-                    "nilai_rujukan_berat_badan",
-                    $event.target.value
-                  )
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "input-group-addon" }, [_vm._v("Kg")])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row row-form-kesehatan" }, [
-        _vm._m(15),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-sm-6" }, [
-              _c("div", { staticClass: "input-group" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.data.angka_lemak_tubuh,
-                      expression: "data.angka_lemak_tubuh"
-                    }
-                  ],
-                  staticClass: "form-control input-text",
-                  attrs: { type: "number" },
-                  domProps: { value: _vm.data.angka_lemak_tubuh },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(
-                        _vm.data,
-                        "angka_lemak_tubuh",
-                        $event.target.value
-                      )
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group-addon" }, [_vm._v("Kg")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-6" }, [
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.data.perbandingan_standar_lemak_tubuh,
-                      expression: "data.perbandingan_standar_lemak_tubuh"
-                    }
-                  ],
-                  staticClass: "form-control input-text",
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.data,
-                        "perbandingan_standar_lemak_tubuh",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    }
-                  }
-                },
-                [
-                  _c("option", [_vm._v("-")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("0")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("+")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("++")])
-                ]
-              )
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _vm.isEditRujukan
-            ? _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-sm-6" }, [
-                  _c("div", { staticClass: "input-group" }, [
-                    _c("div", { staticClass: "input-group-addon" }, [
-                      _vm._v("L :")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.data.nilai_rujukan_lemak_tubuh_l,
-                          expression: "data.nilai_rujukan_lemak_tubuh_l"
-                        }
-                      ],
-                      staticClass: "form-control input-text",
-                      attrs: { type: "text" },
-                      domProps: { value: _vm.data.nilai_rujukan_lemak_tubuh_l },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.data,
-                            "nilai_rujukan_lemak_tubuh_l",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "input-group-addon" }, [
-                      _vm._v("%")
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-sm-6" }, [
-                  _c("div", { staticClass: "input-group" }, [
-                    _c("div", { staticClass: "input-group-addon" }, [
-                      _vm._v("P :")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.data.nilai_rujukan_lemak_tubuh_p,
-                          expression: "data.nilai_rujukan_lemak_tubuh_p"
-                        }
-                      ],
-                      staticClass: "form-control input-text",
-                      attrs: { type: "text" },
-                      domProps: { value: _vm.data.nilai_rujukan_lemak_tubuh_p },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.data,
-                            "nilai_rujukan_lemak_tubuh_p",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "input-group-addon" }, [
-                      _vm._v("%")
-                    ])
-                  ])
-                ])
-              ])
-            : _c("div", { staticClass: "text-center" }, [
-                _vm._v(
-                  "\n        L : " +
-                    _vm._s(_vm.data.nilai_rujukan_lemak_tubuh_l) +
-                    "% P : " +
-                    _vm._s(_vm.data.nilai_rujukan_lemak_tubuh_p) +
-                    "%\n      "
-                )
-              ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row row-form-kesehatan" }, [
-        _vm._m(16),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c("div", { staticClass: "input-group" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.data.indeks_masa_tubuh,
-                  expression: "data.indeks_masa_tubuh"
-                }
-              ],
-              staticClass: "form-control input-text",
-              attrs: { type: "number" },
-              domProps: { value: _vm.data.indeks_masa_tubuh },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.data, "indeks_masa_tubuh", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _vm._m(17)
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _vm.isEditRujukan
-            ? _c("div", { staticClass: "input-group" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.data.nilai_rujukan_indeks_masa_tubuh,
-                      expression: "data.nilai_rujukan_indeks_masa_tubuh"
-                    }
-                  ],
-                  staticClass: "form-control input-text",
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.data.nilai_rujukan_indeks_masa_tubuh },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(
-                        _vm.data,
-                        "nilai_rujukan_indeks_masa_tubuh",
-                        $event.target.value
-                      )
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _vm._m(18)
-              ])
-            : _c("div", { staticClass: "text-center" }, [
-                _vm._v(
-                  _vm._s(_vm.data.nilai_rujukan_indeks_masa_tubuh) + " Kg/m"
+              "div",
+              { staticClass: "form-group" },
+              [
+                _c(
+                  "label",
+                  { staticClass: "required", attrs: { for: "nama" } },
+                  [_vm._v("Nama Peserta")]
                 ),
-                _c("sup", [_vm._v("2")])
-              ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row row-form-kesehatan" }, [
-        _vm._m(19),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-sm-6" }, [
-              _c("div", { staticClass: "input-group" }, [
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "input-group" },
+                  [
+                    _c("vue-select", {
+                      class: _vm.getErrorMessage("peserta_id"),
+                      attrs: {
+                        placeholder: "Cari Peserta",
+                        options: _vm.pesertas,
+                        label: "nama",
+                        clearable: false,
+                        value: _vm.peserta.nama
+                      },
+                      on: {
+                        search: _vm.searchPeserta,
+                        input: _vm.selectPeserta
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "input-group-addon clickable",
+                        on: { click: _vm.showTablePesertaModal }
+                      },
+                      [_c("i", { staticClass: "fa fa-search" })]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _vm._l(_vm.errorMessage.peserta_id, function(error, i) {
+                  return _c("div", { key: i, staticClass: "error-message" }, [
+                    _vm._v(_vm._s(error))
+                  ])
+                })
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _vm.peserta.nama !== null
+              ? [
+                  _c("div", { staticClass: "row form-group" }, [
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-9" }, [
+                      _vm._v(": " + _vm._s(_vm.peserta.alamat))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row form-group" }, [
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-9" }, [
+                      _vm._v(": " + _vm._s(_vm.peserta.jenis_kelamin))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row form-group" }, [
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-9" }, [
+                      _vm._v(": " + _vm._s(_vm.peserta.tinggi))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row form-group" }, [
+                    _vm._m(3),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-9" }, [
+                      _vm._v(
+                        ": " +
+                          _vm._s(_vm.peserta.tempat_lahir) +
+                          ", " +
+                          _vm._s(_vm.peserta.tanggal_lahir.substring(0, 10))
+                      )
+                    ])
+                  ])
+                ]
+              : _vm._e(),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-sm-3" }, [
+                _c(
+                  "div",
+                  { staticClass: "form-group" },
+                  [
+                    _c(
+                      "label",
+                      { staticClass: "required", attrs: { for: "tanggal he" } },
+                      [_vm._v("Tanggal He")]
+                    ),
+                    _vm._v(" "),
+                    _c("vue-datepicker", {
+                      class: _vm.getErrorMessage("tanggal_he"),
+                      model: {
+                        value: _vm.data.tanggal_he,
+                        callback: function($$v) {
+                          _vm.$set(_vm.data, "tanggal_he", $$v)
+                        },
+                        expression: "data.tanggal_he"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm._l(_vm.errorMessage.tanggal_he, function(error, i) {
+                      return _c(
+                        "div",
+                        { key: i, staticClass: "error-message" },
+                        [_vm._v(_vm._s(error))]
+                      )
+                    })
+                  ],
+                  2
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-9" }, [
+                _c("label", { attrs: { for: "tempat he" } }, [
+                  _vm._v("Tempat He")
+                ]),
+                _vm._v(" "),
                 _c("input", {
                   directives: [
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.data.angka_lemak_lapisan_organ,
-                      expression: "data.angka_lemak_lapisan_organ"
+                      value: _vm.data.tempat_he,
+                      expression: "data.tempat_he"
+                    }
+                  ],
+                  staticClass: "form-control input-text",
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.data.tempat_he },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.data, "tempat_he", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row row-form-kesehatan" }, [
+              _vm._m(4),
+              _vm._v(" "),
+              _vm._m(5),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4" }, [
+                _c("div", { staticClass: "text-center" }, [
+                  _c("b", [_vm._v("Nilai Rujukan")]),
+                  _vm._v(" ("),
+                  _c(
+                    "span",
+                    {
+                      staticClass: "btn btn-link clickable",
+                      on: {
+                        click: function($event) {
+                          return _vm.editRujukanValue(true)
+                        }
+                      }
+                    },
+                    [_c("i", { staticClass: "fa fa-pencil" }), _vm._v(" Edit")]
+                  ),
+                  _vm._v(")")
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row row-form-kesehatan" }, [
+              _vm._m(6),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-3" }, [
+                _c("div", { staticClass: "input-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.data.bab_setiap_hari,
+                        expression: "data.bab_setiap_hari"
+                      }
+                    ],
+                    staticClass: "form-control input-text",
+                    attrs: { type: "number" },
+                    domProps: { value: _vm.data.bab_setiap_hari },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.data,
+                          "bab_setiap_hari",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group-addon" }, [
+                    _vm._v("/hari")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4" }, [
+                _vm.isEditRujukan
+                  ? _c("div", { staticClass: "input-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.data.nilai_rujukan_bab_setiap_hari,
+                            expression: "data.nilai_rujukan_bab_setiap_hari"
+                          }
+                        ],
+                        staticClass: "form-control input-text",
+                        attrs: { type: "text" },
+                        domProps: {
+                          value: _vm.data.nilai_rujukan_bab_setiap_hari
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.data,
+                              "nilai_rujukan_bab_setiap_hari",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-group-addon" }, [
+                        _vm._v("/hari")
+                      ])
+                    ])
+                  : _c("div", { staticClass: "text-center" }, [
+                      _vm._v(
+                        _vm._s(_vm.data.nilai_rujukan_bab_setiap_hari) +
+                          " /hari"
+                      )
+                    ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row row-form-kesehatan" }, [
+              _vm._m(7),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-3" }, [
+                _c("div", { staticClass: "input-group" }, [
+                  _c("div", { staticClass: "input-group-addon" }, [
+                    _vm._v("≤")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.data.bab_malam_hari,
+                        expression: "data.bab_malam_hari"
+                      }
+                    ],
+                    staticClass: "form-control input-text",
+                    attrs: { type: "number" },
+                    domProps: { value: _vm.data.bab_malam_hari },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.data,
+                          "bab_malam_hari",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group-addon" }, [
+                    _vm._v("/malam")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4" }, [
+                _vm.isEditRujukan
+                  ? _c("div", { staticClass: "input-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.data.nilai_rujukan_bak_malam_hari,
+                            expression: "data.nilai_rujukan_bak_malam_hari"
+                          }
+                        ],
+                        staticClass: "form-control input-text",
+                        attrs: { type: "text" },
+                        domProps: {
+                          value: _vm.data.nilai_rujukan_bak_malam_hari
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.data,
+                              "nilai_rujukan_bak_malam_hari",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-group-addon" }, [
+                        _vm._v("kali")
+                      ])
+                    ])
+                  : _c("div", { staticClass: "text-center" }, [
+                      _vm._v(
+                        " ≤ " +
+                          _vm._s(_vm.data.nilai_rujukan_bak_malam_hari) +
+                          " kali"
+                      )
+                    ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row row-form-kesehatan" }, [
+              _vm._m(8),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-3" }, [
+                _c("div", { staticClass: "input-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.data.tensi_sistol,
+                        expression: "data.tensi_sistol"
+                      }
+                    ],
+                    staticClass: "form-control input-text",
+                    attrs: { type: "number" },
+                    domProps: { value: _vm.data.tensi_sistol },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.data, "tensi_sistol", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group-addon" }, [
+                    _vm._v("mmHg")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4" }, [
+                _vm.isEditRujukan
+                  ? _c("div", { staticClass: "input-group" }, [
+                      _c("div", { staticClass: "input-group-addon" }, [
+                        _vm._v("S :")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.data.nilai_rujukan_tensi_sistol,
+                            expression: "data.nilai_rujukan_tensi_sistol"
+                          }
+                        ],
+                        staticClass: "form-control input-text",
+                        attrs: { type: "text" },
+                        domProps: {
+                          value: _vm.data.nilai_rujukan_tensi_sistol
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.data,
+                              "nilai_rujukan_tensi_sistol",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-group-addon" }, [
+                        _vm._v("mmHg")
+                      ])
+                    ])
+                  : _c("div", { staticClass: "text-center" }, [
+                      _vm._v(
+                        "S: " +
+                          _vm._s(_vm.data.nilai_rujukan_tensi_sistol) +
+                          " mmHg"
+                      )
+                    ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row row-form-kesehatan" }, [
+              _vm._m(9),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-3" }, [
+                _c("div", { staticClass: "input-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.data.tensi_diastol,
+                        expression: "data.tensi_diastol"
+                      }
+                    ],
+                    staticClass: "form-control input-text",
+                    attrs: { type: "number" },
+                    domProps: { value: _vm.data.tensi_diastol },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.data, "tensi_diastol", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group-addon" }, [
+                    _vm._v("mmHg")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4" }, [
+                _vm.isEditRujukan
+                  ? _c("div", { staticClass: "input-group" }, [
+                      _c("div", { staticClass: "input-group-addon" }, [
+                        _vm._v("D :")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.data.nilai_rujukan_tensi_diastol,
+                            expression: "data.nilai_rujukan_tensi_diastol"
+                          }
+                        ],
+                        staticClass: "form-control input-text",
+                        attrs: { type: "text" },
+                        domProps: {
+                          value: _vm.data.nilai_rujukan_tensi_diastol
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.data,
+                              "nilai_rujukan_tensi_diastol",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-group-addon" }, [
+                        _vm._v("mmHg")
+                      ])
+                    ])
+                  : _c("div", { staticClass: "text-center" }, [
+                      _vm._v(
+                        "D: " +
+                          _vm._s(_vm.data.nilai_rujukan_tensi_diastol) +
+                          " mmHg"
+                      )
+                    ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row row-form-kesehatan" }, [
+              _vm._m(10),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-3" }, [
+                _c("div", { staticClass: "input-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.data.asam_urat,
+                        expression: "data.asam_urat"
+                      }
+                    ],
+                    staticClass: "form-control input-text",
+                    attrs: { type: "number" },
+                    domProps: { value: _vm.data.asam_urat },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.data, "asam_urat", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group-addon" }, [
+                    _vm._v("mg/dl")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4" }, [
+                _vm.isEditRujukan
+                  ? _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-sm-6" }, [
+                        _c("div", { staticClass: "input-group" }, [
+                          _c("div", { staticClass: "input-group-addon" }, [
+                            _vm._v("L : < ")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.data.nilai_rujukan_asam_urat_l,
+                                expression: "data.nilai_rujukan_asam_urat_l"
+                              }
+                            ],
+                            staticClass: "form-control input-text",
+                            attrs: { type: "number" },
+                            domProps: {
+                              value: _vm.data.nilai_rujukan_asam_urat_l
+                            },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.data,
+                                  "nilai_rujukan_asam_urat_l",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "input-group-addon" }, [
+                            _vm._v("mg/dl")
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-6" }, [
+                        _c("div", { staticClass: "input-group" }, [
+                          _c("div", { staticClass: "input-group-addon" }, [
+                            _vm._v("P : < ")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.data.nilai_rujukan_asam_urat_p,
+                                expression: "data.nilai_rujukan_asam_urat_p"
+                              }
+                            ],
+                            staticClass: "form-control input-text",
+                            attrs: { type: "number" },
+                            domProps: {
+                              value: _vm.data.nilai_rujukan_asam_urat_p
+                            },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.data,
+                                  "nilai_rujukan_asam_urat_p",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "input-group-addon" }, [
+                            _vm._v("mg/dl")
+                          ])
+                        ])
+                      ])
+                    ])
+                  : _c("div", { staticClass: "text-center" }, [
+                      _vm._v(
+                        "L : < " +
+                          _vm._s(_vm.data.nilai_rujukan_asam_urat_l) +
+                          "; P : < " +
+                          _vm._s(_vm.data.nilai_rujukan_asam_urat_p) +
+                          " mg/dl"
+                      )
+                    ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row row-form-kesehatan" }, [
+              _vm._m(11),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-3" }, [
+                _c("div", { staticClass: "input-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.data.gula_darah,
+                        expression: "data.gula_darah"
+                      }
+                    ],
+                    staticClass: "form-control input-text",
+                    attrs: { type: "number" },
+                    domProps: { value: _vm.data.gula_darah },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.data, "gula_darah", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group-addon" }, [
+                    _vm._v("mg/dl")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4" }, [
+                _vm.isEditRujukan
+                  ? _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-sm-6" }, [
+                        _c("div", { staticClass: "input-group" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.data.nilai_rujukan_gula_darah_gdp,
+                                expression: "data.nilai_rujukan_gula_darah_gdp"
+                              }
+                            ],
+                            staticClass: "form-control input-text",
+                            attrs: { type: "text" },
+                            domProps: {
+                              value: _vm.data.nilai_rujukan_gula_darah_gdp
+                            },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.data,
+                                  "nilai_rujukan_gula_darah_gdp",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "input-group-addon" }, [
+                            _vm._v("mg/dl (GDP)")
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-6" }, [
+                        _c("div", { staticClass: "input-group" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.data.nilai_rujukan_gula_darah_gds,
+                                expression: "data.nilai_rujukan_gula_darah_gds"
+                              }
+                            ],
+                            staticClass: "form-control input-text",
+                            attrs: { type: "text" },
+                            domProps: {
+                              value: _vm.data.nilai_rujukan_gula_darah_gds
+                            },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.data,
+                                  "nilai_rujukan_gula_darah_gds",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "input-group-addon" }, [
+                            _vm._v("mg/dl (GDS)")
+                          ])
+                        ])
+                      ])
+                    ])
+                  : _c("div", { staticClass: "text-center" }, [
+                      _vm._v(
+                        _vm._s(_vm.data.nilai_rujukan_gula_darah_gdp) +
+                          " mg/dl (GDP) Dibawah " +
+                          _vm._s(_vm.data.nilai_rujukan_gula_darah_gds) +
+                          " mg/dl (GDS)"
+                      )
+                    ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row row-form-kesehatan" }, [
+              _vm._m(12),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-3" }, [
+                _c("div", { staticClass: "input-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.data.kolestrol,
+                        expression: "data.kolestrol"
+                      }
+                    ],
+                    staticClass: "form-control input-text",
+                    attrs: { type: "number" },
+                    domProps: { value: _vm.data.kolestrol },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.data, "kolestrol", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group-addon" }, [
+                    _vm._v("mg/dl")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4" }, [
+                _vm.isEditRujukan
+                  ? _c("div", { staticClass: "input-group" }, [
+                      _c("div", { staticClass: "input-group-addon" }, [
+                        _vm._v("<")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.data.nilai_rujukan_kolestrol,
+                            expression: "data.nilai_rujukan_kolestrol"
+                          }
+                        ],
+                        staticClass: "form-control input-text",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.data.nilai_rujukan_kolestrol },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.data,
+                              "nilai_rujukan_kolestrol",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-group-addon" }, [
+                        _vm._v("mg/dl")
+                      ])
+                    ])
+                  : _c("div", { staticClass: "text-center" }, [
+                      _vm._v(
+                        "< " +
+                          _vm._s(_vm.data.nilai_rujukan_kolestrol) +
+                          " mg/dl"
+                      )
+                    ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row row-form-kesehatan" }, [
+              _vm._m(13),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-3" }, [
+                _c("div", { staticClass: "input-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.data.hasil_lingkar_perut,
+                        expression: "data.hasil_lingkar_perut"
+                      }
+                    ],
+                    staticClass: "form-control input-text",
+                    attrs: { type: "number" },
+                    domProps: { value: _vm.data.hasil_lingkar_perut },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.data,
+                          "hasil_lingkar_perut",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group-addon" }, [
+                    _vm._v("Cm")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4" }, [
+                _c("div", { staticClass: "input-group" }, [
+                  _c("div", { staticClass: "input-group-addon" }, [
+                    _vm._v("<")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.data.nilai_rujukan_lingkar_perut,
+                        expression: "data.nilai_rujukan_lingkar_perut"
+                      }
+                    ],
+                    staticClass: "form-control input-text",
+                    attrs: { type: "number" },
+                    domProps: { value: _vm.data.nilai_rujukan_lingkar_perut },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.data,
+                          "nilai_rujukan_lingkar_perut",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group-addon" }, [
+                    _vm._v("Cm")
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row row-form-kesehatan" }, [
+              _vm._m(14),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-3" }, [
+                _c("div", { staticClass: "input-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.data.hasil_berat_badan,
+                        expression: "data.hasil_berat_badan"
+                      }
+                    ],
+                    staticClass: "form-control input-text",
+                    attrs: { type: "number" },
+                    domProps: { value: _vm.data.hasil_berat_badan },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.data,
+                          "hasil_berat_badan",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group-addon" }, [
+                    _vm._v("Kg")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4" }, [
+                _c("div", { staticClass: "input-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.data.nilai_rujukan_berat_badan,
+                        expression: "data.nilai_rujukan_berat_badan"
+                      }
+                    ],
+                    staticClass: "form-control input-text",
+                    attrs: { type: "number" },
+                    domProps: { value: _vm.data.nilai_rujukan_berat_badan },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.data,
+                          "nilai_rujukan_berat_badan",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group-addon" }, [
+                    _vm._v("Kg")
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row row-form-kesehatan" }, [
+              _vm._m(15),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-3" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-sm-6" }, [
+                    _c("div", { staticClass: "input-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.data.angka_lemak_tubuh,
+                            expression: "data.angka_lemak_tubuh"
+                          }
+                        ],
+                        staticClass: "form-control input-text",
+                        attrs: { type: "number" },
+                        domProps: { value: _vm.data.angka_lemak_tubuh },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.data,
+                              "angka_lemak_tubuh",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-group-addon" }, [
+                        _vm._v("Kg")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-sm-6" }, [
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.data.perbandingan_standar_lemak_tubuh,
+                            expression: "data.perbandingan_standar_lemak_tubuh"
+                          }
+                        ],
+                        staticClass: "form-control input-text",
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.data,
+                              "perbandingan_standar_lemak_tubuh",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      [
+                        _c("option", [_vm._v("-")]),
+                        _vm._v(" "),
+                        _c("option", [_vm._v("0")]),
+                        _vm._v(" "),
+                        _c("option", [_vm._v("+")]),
+                        _vm._v(" "),
+                        _c("option", [_vm._v("++")])
+                      ]
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4" }, [
+                _vm.isEditRujukan
+                  ? _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-sm-6" }, [
+                        _c("div", { staticClass: "input-group" }, [
+                          _c("div", { staticClass: "input-group-addon" }, [
+                            _vm._v("L :")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.data.nilai_rujukan_lemak_tubuh_l,
+                                expression: "data.nilai_rujukan_lemak_tubuh_l"
+                              }
+                            ],
+                            staticClass: "form-control input-text",
+                            attrs: { type: "text" },
+                            domProps: {
+                              value: _vm.data.nilai_rujukan_lemak_tubuh_l
+                            },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.data,
+                                  "nilai_rujukan_lemak_tubuh_l",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "input-group-addon" }, [
+                            _vm._v("%")
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-6" }, [
+                        _c("div", { staticClass: "input-group" }, [
+                          _c("div", { staticClass: "input-group-addon" }, [
+                            _vm._v("P :")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.data.nilai_rujukan_lemak_tubuh_p,
+                                expression: "data.nilai_rujukan_lemak_tubuh_p"
+                              }
+                            ],
+                            staticClass: "form-control input-text",
+                            attrs: { type: "text" },
+                            domProps: {
+                              value: _vm.data.nilai_rujukan_lemak_tubuh_p
+                            },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.data,
+                                  "nilai_rujukan_lemak_tubuh_p",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "input-group-addon" }, [
+                            _vm._v("%")
+                          ])
+                        ])
+                      ])
+                    ])
+                  : _c("div", { staticClass: "text-center" }, [
+                      _vm._v(
+                        "\n            L : " +
+                          _vm._s(_vm.data.nilai_rujukan_lemak_tubuh_l) +
+                          "% P : " +
+                          _vm._s(_vm.data.nilai_rujukan_lemak_tubuh_p) +
+                          "%\n          "
+                      )
+                    ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row row-form-kesehatan" }, [
+              _vm._m(16),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-3" }, [
+                _c("div", { staticClass: "input-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.data.indeks_masa_tubuh,
+                        expression: "data.indeks_masa_tubuh"
+                      }
+                    ],
+                    staticClass: "form-control input-text",
+                    attrs: { type: "number" },
+                    domProps: { value: _vm.data.indeks_masa_tubuh },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.data,
+                          "indeks_masa_tubuh",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm._m(17)
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4" }, [
+                _vm.isEditRujukan
+                  ? _c("div", { staticClass: "input-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.data.nilai_rujukan_indeks_masa_tubuh,
+                            expression: "data.nilai_rujukan_indeks_masa_tubuh"
+                          }
+                        ],
+                        staticClass: "form-control input-text",
+                        attrs: { type: "text" },
+                        domProps: {
+                          value: _vm.data.nilai_rujukan_indeks_masa_tubuh
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.data,
+                              "nilai_rujukan_indeks_masa_tubuh",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm._m(18)
+                    ])
+                  : _c("div", { staticClass: "text-center" }, [
+                      _vm._v(
+                        _vm._s(_vm.data.nilai_rujukan_indeks_masa_tubuh) +
+                          " Kg/m"
+                      ),
+                      _c("sup", [_vm._v("2")])
+                    ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row row-form-kesehatan" }, [
+              _vm._m(19),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-3" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-sm-6" }, [
+                    _c("div", { staticClass: "input-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.data.angka_lemak_lapisan_organ,
+                            expression: "data.angka_lemak_lapisan_organ"
+                          }
+                        ],
+                        staticClass: "form-control input-text",
+                        attrs: { type: "number" },
+                        domProps: { value: _vm.data.angka_lemak_lapisan_organ },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.data,
+                              "angka_lemak_lapisan_organ",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-group-addon" }, [
+                        _vm._v("%")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-sm-6" }, [
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value:
+                              _vm.data.perbandingan_standar_lemak_lapisan_organ,
+                            expression:
+                              "data.perbandingan_standar_lemak_lapisan_organ"
+                          }
+                        ],
+                        staticClass: "form-control input-text",
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.data,
+                              "perbandingan_standar_lemak_lapisan_organ",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      [
+                        _c("option", [_vm._v("-")]),
+                        _vm._v(" "),
+                        _c("option", [_vm._v("0")]),
+                        _vm._v(" "),
+                        _c("option", [_vm._v("+")]),
+                        _vm._v(" "),
+                        _c("option", [_vm._v("++")])
+                      ]
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4" }, [
+                _vm.isEditRujukan
+                  ? _c("div", { staticClass: "input-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.data.nilai_rujukan_lemak_lapisan_organ,
+                            expression: "data.nilai_rujukan_lemak_lapisan_organ"
+                          }
+                        ],
+                        staticClass: "form-control input-text",
+                        attrs: { type: "text" },
+                        domProps: {
+                          value: _vm.data.nilai_rujukan_lemak_lapisan_organ
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.data,
+                              "nilai_rujukan_lemak_lapisan_organ",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-group-addon" }, [
+                        _vm._v("%")
+                      ])
+                    ])
+                  : _c("div", { staticClass: "text-center" }, [
+                      _vm._v(
+                        _vm._s(_vm.data.nilai_rujukan_lemak_lapisan_organ) +
+                          " %"
+                      )
+                    ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row row-form-kesehatan" }, [
+              _vm._m(20),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-3" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.data.hasil_resting_metabolism,
+                      expression: "data.hasil_resting_metabolism"
                     }
                   ],
                   staticClass: "form-control input-text",
                   attrs: { type: "number" },
-                  domProps: { value: _vm.data.angka_lemak_lapisan_organ },
+                  domProps: { value: _vm.data.hasil_resting_metabolism },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
@@ -44848,81 +46116,28 @@ var render = function() {
                       }
                       _vm.$set(
                         _vm.data,
-                        "angka_lemak_lapisan_organ",
+                        "hasil_resting_metabolism",
                         $event.target.value
                       )
                     }
                   }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group-addon" }, [_vm._v("%")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-6" }, [
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.data.perbandingan_standar_lemak_lapisan_organ,
-                      expression:
-                        "data.perbandingan_standar_lemak_lapisan_organ"
-                    }
-                  ],
-                  staticClass: "form-control input-text",
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.data,
-                        "perbandingan_standar_lemak_lapisan_organ",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    }
-                  }
-                },
-                [
-                  _c("option", [_vm._v("-")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("0")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("+")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("++")])
-                ]
-              )
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _vm.isEditRujukan
-            ? _c("div", { staticClass: "input-group" }, [
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4" }, [
                 _c("input", {
                   directives: [
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.data.nilai_rujukan_lemak_lapisan_organ,
-                      expression: "data.nilai_rujukan_lemak_lapisan_organ"
+                      value: _vm.data.nilai_rujukan_resting_metabolism,
+                      expression: "data.nilai_rujukan_resting_metabolism"
                     }
                   ],
                   staticClass: "form-control input-text",
-                  attrs: { type: "text" },
+                  attrs: { type: "number" },
                   domProps: {
-                    value: _vm.data.nilai_rujukan_lemak_lapisan_organ
+                    value: _vm.data.nilai_rujukan_resting_metabolism
                   },
                   on: {
                     input: function($event) {
@@ -44931,572 +46146,465 @@ var render = function() {
                       }
                       _vm.$set(
                         _vm.data,
-                        "nilai_rujukan_lemak_lapisan_organ",
+                        "nilai_rujukan_resting_metabolism",
                         $event.target.value
                       )
                     }
                   }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group-addon" }, [_vm._v("%")])
+                })
               ])
-            : _c("div", { staticClass: "text-center" }, [
-                _vm._v(
-                  _vm._s(_vm.data.nilai_rujukan_lemak_lapisan_organ) + " %"
-                )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row row-form-kesehatan" }, [
+              _vm._m(21),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-3" }, [
+                _c("div", { staticClass: "input-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.data.hasil_usia_tubuh,
+                        expression: "data.hasil_usia_tubuh"
+                      }
+                    ],
+                    staticClass: "form-control input-text",
+                    attrs: { type: "number" },
+                    domProps: { value: _vm.data.hasil_usia_tubuh },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.data,
+                          "hasil_usia_tubuh",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group-addon" }, [
+                    _vm._v("Thn")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4" }, [
+                _vm.isEditRujukan
+                  ? _c("div", { staticClass: "input-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.data.nilai_rujukan_usia_tubuh,
+                            expression: "data.nilai_rujukan_usia_tubuh"
+                          }
+                        ],
+                        staticClass: "form-control input-text",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.data.nilai_rujukan_usia_tubuh },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.data,
+                              "nilai_rujukan_usia_tubuh",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-group-addon" }, [
+                        _vm._v("Thn")
+                      ])
+                    ])
+                  : _c("div", { staticClass: "text-center" }, [
+                      _vm._v(_vm._s(_vm.data.nilai_rujukan_usia_tubuh) + " Thn")
+                    ])
               ])
-        ])
+            ])
+          ],
+          2
+        )
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "row row-form-kesehatan" }, [
-        _vm._m(20),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.data.hasil_resting_metabolism,
-                expression: "data.hasil_resting_metabolism"
-              }
-            ],
-            staticClass: "form-control input-text",
-            attrs: { type: "number" },
-            domProps: { value: _vm.data.hasil_resting_metabolism },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(
-                  _vm.data,
-                  "hasil_resting_metabolism",
-                  $event.target.value
-                )
-              }
-            }
-          })
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "row row-form-kesehatan head" }, [
+          _vm._m(22),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-7" }, [
+            _c(
+              "div",
+              { staticClass: "pull-right" },
+              [
+                _c("toggle-button", {
+                  attrs: { color: "#00c0ef" },
+                  model: {
+                    value: _vm.data.intensif_program,
+                    callback: function($$v) {
+                      _vm.$set(_vm.data, "intensif_program", $$v)
+                    },
+                    expression: "data.intensif_program"
+                  }
+                })
+              ],
+              1
+            )
+          ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.data.nilai_rujukan_resting_metabolism,
-                expression: "data.nilai_rujukan_resting_metabolism"
-              }
-            ],
-            staticClass: "form-control input-text",
-            attrs: { type: "number" },
-            domProps: { value: _vm.data.nilai_rujukan_resting_metabolism },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(
-                  _vm.data,
-                  "nilai_rujukan_resting_metabolism",
-                  $event.target.value
-                )
-              }
-            }
-          })
-        ])
+        _vm.data.intensif_program
+          ? _c("section", [
+              _vm._m(23),
+              _vm._v(" "),
+              _c("div", { staticClass: "row row-form-kesehatan" }, [
+                _vm._m(24),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-3" }, [
+                  _c("div", { staticClass: "input-group" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.data.lemak_seluruh_tubuh,
+                          expression: "data.lemak_seluruh_tubuh"
+                        }
+                      ],
+                      staticClass: "form-control input-text",
+                      attrs: { type: "number" },
+                      domProps: { value: _vm.data.lemak_seluruh_tubuh },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.data,
+                            "lemak_seluruh_tubuh",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-group-addon" }, [
+                      _vm._v("%")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-3" }, [
+                  _c("div", { staticClass: "input-group" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.data.otot_seluruh_tubuh,
+                          expression: "data.otot_seluruh_tubuh"
+                        }
+                      ],
+                      staticClass: "form-control input-text",
+                      attrs: { type: "number" },
+                      domProps: { value: _vm.data.otot_seluruh_tubuh },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.data,
+                            "otot_seluruh_tubuh",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-group-addon" }, [
+                      _vm._v("%")
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row row-form-kesehatan" }, [
+                _vm._m(25),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-3" }, [
+                  _c("div", { staticClass: "input-group" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.data.lemak_lengan,
+                          expression: "data.lemak_lengan"
+                        }
+                      ],
+                      staticClass: "form-control input-text",
+                      attrs: { type: "number" },
+                      domProps: { value: _vm.data.lemak_lengan },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.data,
+                            "lemak_lengan",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-group-addon" }, [
+                      _vm._v("%")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-3" }, [
+                  _c("div", { staticClass: "input-group" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.data.otot_lengan,
+                          expression: "data.otot_lengan"
+                        }
+                      ],
+                      staticClass: "form-control input-text",
+                      attrs: { type: "number" },
+                      domProps: { value: _vm.data.otot_lengan },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.data, "otot_lengan", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-group-addon" }, [
+                      _vm._v("%")
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row row-form-kesehatan" }, [
+                _vm._m(26),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-3" }, [
+                  _c("div", { staticClass: "input-group" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.data.lemak_trunk,
+                          expression: "data.lemak_trunk"
+                        }
+                      ],
+                      staticClass: "form-control input-text",
+                      attrs: { type: "number" },
+                      domProps: { value: _vm.data.lemak_trunk },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.data, "lemak_trunk", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-group-addon" }, [
+                      _vm._v("%")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-3" }, [
+                  _c("div", { staticClass: "input-group" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.data.otot_trunk,
+                          expression: "data.otot_trunk"
+                        }
+                      ],
+                      staticClass: "form-control input-text",
+                      attrs: { type: "number" },
+                      domProps: { value: _vm.data.otot_trunk },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.data, "otot_trunk", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-group-addon" }, [
+                      _vm._v("%")
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row row-form-kesehatan" }, [
+                _vm._m(27),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-3" }, [
+                  _c("div", { staticClass: "input-group" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.data.lemak_kaki,
+                          expression: "data.lemak_kaki"
+                        }
+                      ],
+                      staticClass: "form-control input-text",
+                      attrs: { type: "number" },
+                      domProps: { value: _vm.data.lemak_kaki },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.data, "lemak_kaki", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-group-addon" }, [
+                      _vm._v("%")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-3" }, [
+                  _c("div", { staticClass: "input-group" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.data.otot_kaki,
+                          expression: "data.otot_kaki"
+                        }
+                      ],
+                      staticClass: "form-control input-text",
+                      attrs: { type: "number" },
+                      domProps: { value: _vm.data.otot_kaki },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.data, "otot_kaki", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-group-addon" }, [
+                      _vm._v("%")
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          : _vm._e()
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "row row-form-kesehatan" }, [
-        _vm._m(21),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c("div", { staticClass: "input-group" }, [
-            _c("input", {
+      _c("div", { staticClass: "card" }, [
+        _c(
+          "div",
+          { staticClass: "form-group", staticStyle: { "margin-top": "10px" } },
+          [
+            _c("label", { attrs: { for: "keluhan" } }, [_vm._v("Keluhan")]),
+            _vm._v(" "),
+            _c("textarea", {
               directives: [
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.data.hasil_usia_tubuh,
-                  expression: "data.hasil_usia_tubuh"
+                  value: _vm.data.keluhan,
+                  expression: "data.keluhan"
                 }
               ],
-              staticClass: "form-control input-text",
-              attrs: { type: "number" },
-              domProps: { value: _vm.data.hasil_usia_tubuh },
+              staticClass: "form-control",
+              attrs: { id: "", cols: "30", rows: "5" },
+              domProps: { value: _vm.data.keluhan },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.$set(_vm.data, "hasil_usia_tubuh", $event.target.value)
+                  _vm.$set(_vm.data, "keluhan", $event.target.value)
                 }
               }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "input-group-addon" }, [_vm._v("Thn")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _vm.isEditRujukan
-            ? _c("div", { staticClass: "input-group" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.data.nilai_rujukan_usia_tubuh,
-                      expression: "data.nilai_rujukan_usia_tubuh"
-                    }
-                  ],
-                  staticClass: "form-control input-text",
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.data.nilai_rujukan_usia_tubuh },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(
-                        _vm.data,
-                        "nilai_rujukan_usia_tubuh",
-                        $event.target.value
-                      )
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group-addon" }, [_vm._v("Thn")])
-              ])
-            : _c("div", { staticClass: "text-center" }, [
-                _vm._v(_vm._s(_vm.data.nilai_rujukan_usia_tubuh) + " Thn")
-              ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row row-form-kesehatan" }, [
-        _vm._m(22),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.data.intensif_program,
-                expression: "data.intensif_program"
-              }
-            ],
-            staticClass: "custom-control-input",
-            attrs: { type: "checkbox", id: "customSwitch1" },
-            domProps: {
-              checked: Array.isArray(_vm.data.intensif_program)
-                ? _vm._i(_vm.data.intensif_program, null) > -1
-                : _vm.data.intensif_program
-            },
-            on: {
-              change: function($event) {
-                var $$a = _vm.data.intensif_program,
-                  $$el = $event.target,
-                  $$c = $$el.checked ? true : false
-                if (Array.isArray($$a)) {
-                  var $$v = null,
-                    $$i = _vm._i($$a, $$v)
-                  if ($$el.checked) {
-                    $$i < 0 &&
-                      _vm.$set(_vm.data, "intensif_program", $$a.concat([$$v]))
-                  } else {
-                    $$i > -1 &&
-                      _vm.$set(
-                        _vm.data,
-                        "intensif_program",
-                        $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                      )
-                  }
-                } else {
-                  _vm.$set(_vm.data, "intensif_program", $$c)
-                }
-              }
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _vm.data.intensif_program
-        ? [
-            _vm.data.intensif_program
-              ? _c("div", { staticClass: "row row-form-kesehatan" }, [
-                  _c("div", { staticClass: "col-sm-5" }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-sm-3" }, [
-                    _vm._v("Skeletal Fat")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-sm-3" }, [
-                    _vm._v("Skeletal Muscle")
-                  ])
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.data.intensif_program
-              ? _c("div", { staticClass: "row row-form-kesehatan" }, [
-                  _vm._m(23),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-sm-3" }, [
-                    _c("div", { staticClass: "input-group" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.data.lemak_seluruh_tubuh,
-                            expression: "data.lemak_seluruh_tubuh"
-                          }
-                        ],
-                        staticClass: "form-control input-text",
-                        attrs: { type: "number" },
-                        domProps: { value: _vm.data.lemak_seluruh_tubuh },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.data,
-                              "lemak_seluruh_tubuh",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "input-group-addon" }, [
-                        _vm._v("%")
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-sm-3" }, [
-                    _c("div", { staticClass: "input-group" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.data.otot_seluruh_tubuh,
-                            expression: "data.otot_seluruh_tubuh"
-                          }
-                        ],
-                        staticClass: "form-control input-text",
-                        attrs: { type: "number" },
-                        domProps: { value: _vm.data.otot_seluruh_tubuh },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.data,
-                              "otot_seluruh_tubuh",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "input-group-addon" }, [
-                        _vm._v("%")
-                      ])
-                    ])
-                  ])
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.data.intensif_program
-              ? _c("div", { staticClass: "row row-form-kesehatan" }, [
-                  _vm._m(24),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-sm-3" }, [
-                    _c("div", { staticClass: "input-group" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.data.lemak_lengan,
-                            expression: "data.lemak_lengan"
-                          }
-                        ],
-                        staticClass: "form-control input-text",
-                        attrs: { type: "number" },
-                        domProps: { value: _vm.data.lemak_lengan },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.data,
-                              "lemak_lengan",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "input-group-addon" }, [
-                        _vm._v("%")
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-sm-3" }, [
-                    _c("div", { staticClass: "input-group" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.data.otot_lengan,
-                            expression: "data.otot_lengan"
-                          }
-                        ],
-                        staticClass: "form-control input-text",
-                        attrs: { type: "number" },
-                        domProps: { value: _vm.data.otot_lengan },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.data,
-                              "otot_lengan",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "input-group-addon" }, [
-                        _vm._v("%")
-                      ])
-                    ])
-                  ])
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.data.intensif_program
-              ? _c("div", { staticClass: "row row-form-kesehatan" }, [
-                  _vm._m(25),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-sm-3" }, [
-                    _c("div", { staticClass: "input-group" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.data.lemak_trunk,
-                            expression: "data.lemak_trunk"
-                          }
-                        ],
-                        staticClass: "form-control input-text",
-                        attrs: { type: "number" },
-                        domProps: { value: _vm.data.lemak_trunk },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.data,
-                              "lemak_trunk",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "input-group-addon" }, [
-                        _vm._v("%")
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-sm-3" }, [
-                    _c("div", { staticClass: "input-group" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.data.otot_trunk,
-                            expression: "data.otot_trunk"
-                          }
-                        ],
-                        staticClass: "form-control input-text",
-                        attrs: { type: "number" },
-                        domProps: { value: _vm.data.otot_trunk },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.data,
-                              "otot_trunk",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "input-group-addon" }, [
-                        _vm._v("%")
-                      ])
-                    ])
-                  ])
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.data.intensif_program
-              ? _c("div", { staticClass: "row row-form-kesehatan" }, [
-                  _vm._m(26),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-sm-3" }, [
-                    _c("div", { staticClass: "input-group" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.data.lemak_kaki,
-                            expression: "data.lemak_kaki"
-                          }
-                        ],
-                        staticClass: "form-control input-text",
-                        attrs: { type: "number" },
-                        domProps: { value: _vm.data.lemak_kaki },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.data,
-                              "lemak_kaki",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "input-group-addon" }, [
-                        _vm._v("%")
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-sm-3" }, [
-                    _c("div", { staticClass: "input-group" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.data.otot_kaki,
-                            expression: "data.otot_kaki"
-                          }
-                        ],
-                        staticClass: "form-control input-text",
-                        attrs: { type: "number" },
-                        domProps: { value: _vm.data.otot_kaki },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.data, "otot_kaki", $event.target.value)
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "input-group-addon" }, [
-                        _vm._v("%")
-                      ])
-                    ])
-                  ])
-                ])
-              : _vm._e()
+            })
           ]
-        : _vm._e(),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "form-group", staticStyle: { "margin-top": "10px" } },
-        [
-          _c("label", { attrs: { for: "keluhan" } }, [_vm._v("Keluhan")]),
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "keluhan" } }, [
+            _vm._v("Catatan Dokter")
+          ]),
           _vm._v(" "),
           _c("textarea", {
             directives: [
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.data.keluhan,
-                expression: "data.keluhan"
+                value: _vm.data.catatan_dokter,
+                expression: "data.catatan_dokter"
               }
             ],
             staticClass: "form-control",
             attrs: { id: "", cols: "30", rows: "5" },
-            domProps: { value: _vm.data.keluhan },
+            domProps: { value: _vm.data.catatan_dokter },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.data, "keluhan", $event.target.value)
+                _vm.$set(_vm.data, "catatan_dokter", $event.target.value)
               }
             }
           })
-        ]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "keluhan" } }, [_vm._v("Catatan Dokter")]),
+        ]),
         _vm._v(" "),
-        _c("textarea", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.data.catatan_dokter,
-              expression: "data.catatan_dokter"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: { id: "", cols: "30", rows: "5" },
-          domProps: { value: _vm.data.catatan_dokter },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.data, "catatan_dokter", $event.target.value)
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-info", on: { click: _vm.updateDataKesehatan } },
-        [_vm._v("Save")]
-      )
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-info",
+            on: { click: _vm.updateDataKesehatan }
+          },
+          [_vm._v("Save")]
+        )
+      ])
     ],
-    2
+    1
   )
 }
 var staticRenderFns = [
@@ -45691,7 +46799,19 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-5" }, [
-      _c("div", [_c("b", [_vm._v("Intensif Program")])])
+      _c("h4", [_vm._v("Intensif Program")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row row-form-kesehatan" }, [
+      _c("div", { staticClass: "col-sm-5" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-3" }, [_vm._v("Skeletal Fat")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-3" }, [_vm._v("Skeletal Muscle")])
     ])
   },
   function() {
@@ -47373,12 +48493,7 @@ var render = function() {
   return _c(
     "modal",
     {
-      attrs: {
-        name: "peserta-table-modal",
-        "min-width": 800,
-        "min-height": 300,
-        adaptive: true
-      }
+      attrs: { name: "peserta-table-modal", "min-width": 800, adaptive: true }
     },
     [
       _c("div", { staticClass: "head-content-section" }, [
@@ -47520,6 +48635,8 @@ var render = function() {
         }
       }),
       _vm._v(" "),
+      _c("loading-modal"),
+      _vm._v(" "),
       _c(
         "delete-modal",
         {
@@ -47540,6 +48657,10 @@ var render = function() {
         ],
         2
       ),
+      _vm._v(" "),
+      _c("success-modal", [
+        _vm._v("\n    Berhasil menghapus data kesehatan\n  ")
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "box box-info" }, [
         _c(
@@ -47838,10 +48959,6 @@ var render = function() {
         [
           _c("template", { slot: "title" }, [
             _vm._v("Apa anda yakin ingin menghapus event?")
-          ]),
-          _vm._v(" "),
-          _c("template", { slot: "description" }, [
-            _vm._v("Seluruh data kesehatan juga akan dihapus")
           ])
         ],
         2
@@ -62231,6 +63348,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_sweetalert_icons__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! vue-sweetalert-icons */ "./node_modules/vue-sweetalert-icons/dist/sweetalert-icon.esm.js");
 /* harmony import */ var vuejs_paginate__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! vuejs-paginate */ "./node_modules/vuejs-paginate/dist/index.js");
 /* harmony import */ var vuejs_paginate__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(vuejs_paginate__WEBPACK_IMPORTED_MODULE_19__);
+/* harmony import */ var vue_js_toggle_button__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! vue-js-toggle-button */ "./node_modules/vue-js-toggle-button/dist/index.js");
+/* harmony import */ var vue_js_toggle_button__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(vue_js_toggle_button__WEBPACK_IMPORTED_MODULE_20__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js"); //table
@@ -62260,6 +63379,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 
 
+
 Vue.component('peserta-table', _components_tables_peserta_table__WEBPACK_IMPORTED_MODULE_0__["default"]);
 Vue.component('data-kesehatan-table', _components_tables_data_kesehatan_table__WEBPACK_IMPORTED_MODULE_1__["default"]);
 Vue.component('event-table', _components_tables_event_table__WEBPACK_IMPORTED_MODULE_2__["default"]); // form data kesehatan
@@ -62281,6 +63401,7 @@ Vue.component('success-modal', _components_modals_success_modal__WEBPACK_IMPORTE
 Vue.component('peserta-table-modal', _components_modals_peserta_table_modal__WEBPACK_IMPORTED_MODULE_15__["default"]);
 Vue.component('vue-datepicker', vue_date_pick__WEBPACK_IMPORTED_MODULE_16___default.a);
 Vue.component('vue-pagination', vuejs_paginate__WEBPACK_IMPORTED_MODULE_19___default.a);
+Vue.component('toggle-button', vue_js_toggle_button__WEBPACK_IMPORTED_MODULE_20__["ToggleButton"]);
 Vue.use(vue_js_modal__WEBPACK_IMPORTED_MODULE_17___default.a);
 Vue.use(vue_sweetalert_icons__WEBPACK_IMPORTED_MODULE_18__["default"]);
 var app = new Vue({
@@ -63411,8 +64532,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /opt/lampp/htdocs/form-he/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /opt/lampp/htdocs/form-he/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/andreas/Documents/Work/form-he/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/andreas/Documents/Work/form-he/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

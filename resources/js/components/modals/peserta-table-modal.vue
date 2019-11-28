@@ -1,5 +1,5 @@
 <template>
-  <modal name="peserta-table-modal" :min-width="800" :min-height="300" :adaptive="true">
+  <modal name="peserta-table-modal" :min-width="800" :adaptive="true">
     <div class="head-content-section">
       <h3>Table Data Peserta</h3>
       <i class="fa fa-times-circle clickable close-icon-modal" @click="hideModal()"></i> 

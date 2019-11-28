@@ -161,7 +161,7 @@ class DataKesehatanController extends Controller
         $dataKesehatan = DataKesehatan::find($request->id);
         $dataKesehatan->delete();
 
-        return ressponse()->json([
+        return response()->json([
             'message' => 'Berhasil menghapus data kesehatan',
             'status' => 200
         ]);

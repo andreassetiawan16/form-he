@@ -166,18 +166,6 @@
     </div>
     <!-- Lemak Tubuh -->
 
-    <!-- Indeks Massa Tubuh -->
-    <div class="row row-form-kesehatan">
-      <div class="col-sm-5"><div>Indeks Massa Tubuh (BMI = BB/T<sup>2</sup>)</div></div>
-      <div class="col-sm-3">
-        <div class="text-center">{{ data.indeks_masa_tubuh }} Kg/m<sup>2</sup></div>
-      </div>
-      <div class="col-sm-4">
-        <div class="text-center">{{data.nilai_rujukan_indeks_masa_tubuh}} Kg/m<sup>2</sup></div>
-      </div>
-    </div>
-    <!-- Indeks Massa Tubuh -->
-
     <!-- Lemak Lapisan Organ -->
     <div class="row row-form-kesehatan">
       <div class="col-sm-5"><div>Lemak Lapisan Organ (Angka, +/-)</div></div>
@@ -189,6 +177,18 @@
       </div>
     </div>
     <!-- Lemak Lapisan Organ -->
+
+    <!-- Indeks Massa Tubuh -->
+    <div class="row row-form-kesehatan">
+      <div class="col-sm-5"><div>Indeks Massa Tubuh (BMI = BB/T<sup>2</sup>)</div></div>
+      <div class="col-sm-3">
+        <div class="text-center">{{ data.indeks_masa_tubuh }} Kg/m<sup>2</sup></div>
+      </div>
+      <div class="col-sm-4">
+        <div class="text-center">{{data.nilai_rujukan_indeks_masa_tubuh}} Kg/m<sup>2</sup></div>
+      </div>
+    </div>
+    <!-- Indeks Massa Tubuh -->
 
     <!-- Resting Metabolism -->
     <div class="row row-form-kesehatan">
@@ -213,6 +213,55 @@
       </div>
     </div>
     <!-- Usia Tubuh -->
+
+    <!-- Intensif Program -->
+    <section v-if="data.intensif_program">
+      <div class="row row-form-kesehatan">
+        <div class="col-sm-5" />
+        <div class="col-sm-3"><div class="text-center"><b>Skeletal Fat</b></div></div>
+        <div class="col-sm-4"><div class="text-center"><b>Skeletal Muscle</b></div></div>
+      </div>
+
+      <div class="row row-form-kesehatan">
+        <div class="col-sm-5"><div>Seluruh Tubuh</div></div>
+        <div class="col-sm-3">
+          <div class="text-center">{{ data.lemak_seluruh_tubuh }} %</div>
+        </div>
+        <div class="col-sm-4">
+          <div class="text-center">{{ data.otot_seluruh_tubuh }} %</div>
+        </div>
+      </div>
+
+      <div class="row row-form-kesehatan">
+        <div class="col-sm-5"><div>Lengan</div></div>
+        <div class="col-sm-3">
+          <div class="text-center">{{ data.lemak_lengan }} %</div>
+        </div>
+        <div class="col-sm-4">
+          <div class="text-center">{{ data.otot_lengan }} %</div>
+        </div>
+      </div>
+
+      <div class="row row-form-kesehatan">
+        <div class="col-sm-5"><div>Trunk</div></div>
+        <div class="col-sm-3">
+          <div class="text-center">{{ data.lemak_trunk }} %</div>
+        </div>
+        <div class="col-sm-4">
+          <div class="text-center">{{ data.otot_trunk }} %</div>
+        </div>
+      </div>
+
+      <div class="row row-form-kesehatan">
+        <div class="col-sm-5"><div>Kaki</div></div>
+        <div class="col-sm-3">
+          <div class="text-center">{{ data.lemak_kaki }} %</div>
+        </div>
+        <div class="col-sm-4">
+          <div class="text-center">{{ data.otot_kaki }} %</div>
+        </div>
+      </div>
+    </section>
 
     <div class="form-group" style="margin-top: 10px">
       <label for="keluhan">Keluhan : </label>

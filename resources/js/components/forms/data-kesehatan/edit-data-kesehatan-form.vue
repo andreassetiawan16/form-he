@@ -397,6 +397,96 @@
     </div>
     <!-- Usia Tubuh -->
 
+    <!-- Intensif Program -->
+
+    <div class="row row-form-kesehatan">
+      <div class="col-sm-5"><div><b>Intensif Program</b></div></div>
+      <div class="col-sm-3">
+        <input type="checkbox" class="custom-control-input" id="customSwitch1" v-model="data.intensif_program">
+      </div>
+    </div>
+
+    <template v-if="data.intensif_program">
+      <div class="row row-form-kesehatan" v-if="data.intensif_program">
+        <div class="col-sm-5" />
+        <div class="col-sm-3">Skeletal Fat</div>
+        <div class="col-sm-3">Skeletal Muscle</div>
+      </div>
+
+      <!-- Otot Seluruh Tubuh -->
+    <div class="row row-form-kesehatan" v-if="data.intensif_program">
+      <div class="col-sm-5"><div>Seluruh Tubuh</div></div>
+      <div class="col-sm-3">
+        <div class="input-group">
+          <input type="number" class="form-control input-text" v-model="data.lemak_seluruh_tubuh">
+          <div class="input-group-addon">%</div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="input-group">
+          <input type="number" class="form-control input-text" v-model="data.otot_seluruh_tubuh">
+          <div class="input-group-addon">%</div>
+        </div>
+      </div>
+    </div>
+    <!-- Otot Seluruh Tubuh -->
+
+    <!-- Otot Lengan -->
+    <div class="row row-form-kesehatan" v-if="data.intensif_program">
+      <div class="col-sm-5"><div>Lengan</div></div>
+      <div class="col-sm-3">
+        <div class="input-group">
+          <input type="number" class="form-control input-text" v-model="data.lemak_lengan">
+          <div class="input-group-addon">%</div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="input-group">
+          <input type="number" class="form-control input-text" v-model="data.otot_lengan">
+          <div class="input-group-addon">%</div>
+        </div>
+      </div>
+    </div>
+    <!-- Otot Seluruh Tubuh -->
+
+    <!-- Otot Trunk -->
+    <div class="row row-form-kesehatan" v-if="data.intensif_program">
+      <div class="col-sm-5"><div>Trunk</div></div>
+      <div class="col-sm-3">
+        <div class="input-group">
+          <input type="number" class="form-control input-text" v-model="data.lemak_trunk">
+          <div class="input-group-addon">%</div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="input-group">
+          <input type="number" class="form-control input-text" v-model="data.otot_trunk">
+          <div class="input-group-addon">%</div>
+        </div>
+      </div>
+    </div>
+    <!-- Otot Trunk -->
+
+    <!-- Otot Kaki -->
+    <div class="row row-form-kesehatan" v-if="data.intensif_program">
+      <div class="col-sm-5"><div>Kaki</div></div>
+      <div class="col-sm-3">
+        <div class="input-group">
+          <input type="number" class="form-control input-text" v-model="data.lemak_kaki">
+          <div class="input-group-addon">%</div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="input-group">
+          <input type="number" class="form-control input-text" v-model="data.otot_kaki">
+          <div class="input-group-addon">%</div>
+        </div>
+      </div>
+    </div>
+    <!-- Otot Kaki -->
+    </template>
+    
+
     <!-- end form data kesehatan -->
 
     <div class="form-group" style="margin-top: 10px">
@@ -460,7 +550,16 @@ export default {
         nilai_rujukan_lemak_tubuh_l: '10 - 20',
         nilai_rujukan_lemak_tubuh_p: '20 - 30',
         nilai_rujukan_indeks_masa_tubuh: '18.5 - 23',
-        nilai_rujukan_lemak_lapisan_organ: '1 - 9'
+        nilai_rujukan_lemak_lapisan_organ: '1 - 9',
+        intensif_program: false,
+        otot_seluruh_tubuh: null,
+        otot_lengan: null,
+        otot_trunk: null,
+        otot_kaki: null,
+        lemak_seluruh_tubuh: null,
+        lemak_lengan: null,
+        lemak_trunk: null,
+        lemak_kaki: null
       },
       peserta: {
         nama: null,

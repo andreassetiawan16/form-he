@@ -27,6 +27,15 @@ class AddNilaiRujukanKesehatan extends Migration
             $table->string('nilai_rujukan_lemak_tubuh_p')->nullable();
             $table->string('nilai_rujukan_indeks_masa_tubuh')->nullable();
             $table->string('nilai_rujukan_lemak_lapisan_organ')->nullable();
+            $table->boolean('intensif_program')->default(false);
+            $table->string('otot_seluruh_tubuh')->nullable();
+            $table->string('otot_lengan')->nullable();
+            $table->string('otot_trunk')->nullable();
+            $table->string('otot_kaki')->nullable();
+            $table->string('lemak_seluruh_tubuh')->nullable();
+            $table->string('lemak_lengan')->nullable();
+            $table->string('lemak_trunk')->nullable();
+            $table->string('lemak_kaki')->nullable();
         });
     }
 

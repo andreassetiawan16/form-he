@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div>
 
     <!-- peserta table modal -->
     <peserta-table-modal @selectedPeserta="selectPeserta($event)" />

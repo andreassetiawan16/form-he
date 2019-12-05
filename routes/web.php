@@ -38,3 +38,12 @@ Route::get('/data-peserta/{id}/edit', 'PesertaController@edit');
 Route::post('/data-peserta/{id}/update', 'PesertaController@update');
 Route::post('/data-peserta/delete', 'PesertaController@destroy');
 Route::get('/data-peserta/search', 'PesertaController@search');
+
+Route::get('/staff', 'StaffController@index')->name('data.staff');
+Route::get('/staff/create', 'StaffController@create')->name('create.staff');
+Route::get('/staff-table', 'StaffController@table');
+Route::post('/staff/store', 'StaffController@store');
+Route::get('/staff/{id}/detail', 'StaffController@show');
+Route::get('/staff/{id}/edit', 'StaffController@edit');
+Route::post('/staff/{id}/update', 'StaffController@update');
+Route::get('/staff/search', 'StaffController@search');

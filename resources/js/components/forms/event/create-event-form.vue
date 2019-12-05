@@ -8,7 +8,7 @@
 
     <!-- edit form -->
     <div class="head-content-section">
-      <h3>Data Event</h3>
+      <h3>Create Data Event</h3>
     </div>
     <div class="form-group">
       <label for="tanggal_event" class="required">Tanggal Event</label>

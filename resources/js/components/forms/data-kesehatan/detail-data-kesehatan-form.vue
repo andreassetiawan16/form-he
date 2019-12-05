@@ -27,7 +27,7 @@
             <div class="col-sm-3">
               <label for="tinggi">Tinggi</label>
             </div>
-            <div class="col-sm-9">: {{ data.peserta.tinggi }}</div>
+            <div class="col-sm-9">: {{ data.peserta.tinggi }} cm</div>
           </div>
           <div class="row form-group">
             <div class="col-sm-3">
@@ -36,6 +36,20 @@
             <div class="col-sm-9">: {{ data.peserta.tempat_lahir }}, {{ data.peserta.tanggal_lahir.substring(0, 10) }}</div>
           </div>
         </section>
+
+        <div class="row form-group">
+          <div class="col-sm-3">Dokter</div>
+          <div class="col-sm-9">
+            <span>: {{ data.dokter ? data.dokter.nama : '-'}}</span>
+          </div>
+        </div>
+
+        <div class="row form-group">
+          <div class="col-sm-3">Petugas</div>
+          <div class="col-sm-9">
+            <span>: {{ data.petugas ? data.petugas.nama : '-' }}</span>
+          </div>
+        </div>
 
         <div class="row form-group">
           <div class="col-sm-3">Tanggal He</div>

@@ -32,8 +32,9 @@
       {{-- <li class="header">HEADER</li> --}}
       <!-- Optionally, you can add icons to the links -->
       <li class="{{ explode('/', Request::path())[0] == 'data-kesehatan' ? 'active' : ''}}"><a href="{{ route("data.kesehatan") }}"><i class="fa fa-file-text-o"></i> <span>Data Kesehatan Peserta</span></a></li>
-      <li class="{{ explode('/', Request::path())[0] == 'event' ? 'active' : ''}}"><a href="{{ route("events") }}"><i class="fa fa-user-o"></i> <span>Event</span></a></li>
-      <li class="{{ explode('/', Request::path())[0] == 'data-peserta' ? 'active' : ''}}"><a href="{{ route("data.peserta") }}"><i class="fa fa-file-text-o"></i> <span>Data Peserta</span></a></li>
+      <li class="{{ explode('/', Request::path())[0] == 'event' ? 'active' : ''}}"><a href="{{ route("events") }}"><i class="fa fa-calendar"></i> <span>Event</span></a></li>
+      <li class="{{ explode('/', Request::path())[0] == 'data-peserta' ? 'active' : ''}}"><a href="{{ route("data.peserta") }}"><i class="fa fa-user-o"></i> <span>Data Peserta</span></a></li>
+      <li class="{{ explode('/', Request::path())[0] == 'staff' ? 'active' : ''}}"><a href="{{ route("data.staff") }}"><i class="fa fa-user-o"></i> <span>Staff</span></a></li>
       {{-- <li class="treeview">
         <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
           <span class="pull-right-container">

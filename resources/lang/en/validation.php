@@ -135,6 +135,12 @@ return [
         ],
         'peserta_id' => [
             'required' => 'the peserta field is required'
+        ],
+        'dokter_id' => [
+            'required' => 'the dokter field is required'
+        ],
+        'petugas_id' => [
+            'required' => 'the petugas field is required'
         ]
     ],
 

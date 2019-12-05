@@ -7,6 +7,11 @@
     </success-modal>
 
     <peserta-table-modal @selectedPeserta="selectPeserta($event)" />
+
+    <staff-table-modal modalname="dokter" @selectedStaff="selectDokter($event)" />
+
+    <staff-table-modal modalname="petugas" @selectedStaff="selectPetugas($event)" />
+
     <div class="box box-info">
       <div class="container-fluid">
         <!-- title form -->
@@ -54,6 +59,28 @@
           </div>
         </template>
         <!-- end detail peserta -->
+
+        <!-- search dokter -->
+        <div class="form-group">
+          <label for="dokter" class="required">Nama Dokter</label>
+          <div class="input-group">
+            <vue-select placeholder="Cari Dokter" :options="listDokter" label="nama" @search="searchDokter" :clearable="false" :value="dokter.nama" @input="selectDokter" :class="getErrorMessage('dokter_id')"></vue-select>
+            <div class="input-group-addon clickable" @click="showDokterTableModal"><i class="fa fa-search"></i></div>
+          </div>
+          <div class="error-message" v-for="(error, i) in errorMessage.dokter_id" :key="i">{{ error }}</div>
+        </div>
+        <!-- end search dokter -->
+
+        <!-- search petugas -->
+        <div class="form-group">
+          <label for="petugas" class="required">Nama Petugas</label>
+          <div class="input-group">
+            <vue-select placeholder="Cari Petugas" :options="listPetugas" label="nama" @search="searchPetugas" :clearable="false" :value="petugas.nama" @input="selectPetugas" :class="getErrorMessage('petugas_id')"></vue-select>
+            <div class="input-group-addon clickable" @click="showPetugasTableModal"><i class="fa fa-search"></i></div>
+          </div>
+          <div class="error-message" v-for="(error, i) in errorMessage.petugas_id" :key="i">{{ error }}</div>
+        </div>
+        <!-- end search petugas -->
 
         <div class="row">
           <div class="col-sm-3">
@@ -581,9 +608,17 @@ export default {
         tanggal_lahir: null,
         alamat: null
       },
+      dokter: {
+        nama: null
+      },
+      petugas: {
+        nama: null
+      },
       isEditRujukan: false,
       errorMessage: {},
-      pesertas: []
+      pesertas: [],
+      listDokter: [],
+      listPetugas: []
     }
   },
   methods: {
@@ -599,14 +634,44 @@ export default {
         .then(json => (this.pesertas = json.data));
       })
     },
+    searchDokter (search, loading) {
+      fetch ('/staff/search?posisi=dokter&query=' + search)
+      .then(res => {
+        res.json()
+        .then(json => (this.listDokter = json.data));
+      })
+    },
+    searchPetugas (search, loading) {
+      fetch ('/staff/search?posisi=petugas&query=' + search)
+      .then(res => {
+        res.json()
+        .then(json => (this.listPetugas = json.data));
+      })
+    },
     selectPeserta (peserta) {
       this.$modal.hide('peserta-table-modal')
       this.peserta = peserta
       this.data.peserta_id = peserta.id
       this.data.nilai_rujukan_usia_tubuh = peserta.usia
     },
+    selectDokter (dokter) {
+      this.$modal.hide('dokter-table-modal')
+      this.dokter = dokter
+      this.data.dokter_id = dokter.id
+    },
+    selectPetugas (petugas) {
+      this.$modal.hide('petugas-table-modal')
+      this.petugas = petugas
+      this.data.petugas_id = petugas.id
+    },
     showTablePesertaModal () {
       this.$modal.show('peserta-table-modal')
+    },
+    showDokterTableModal () {
+      this.$modal.show('dokter-table-modal')
+    },
+    showPetugasTableModal () {
+      this.$modal.show('petugas-table-modal')
     },
     formatDate(date) {
       var d = new Date(date),
@@ -650,10 +715,12 @@ export default {
       }
     }
   },
-  beforeMount () {
+  beforeMount () { 
     this.data.tanggal_he = new Date()
     this.data = Object.assign({}, JSON.parse(this.datakesehatan))
     this.peserta = Object.assign({}, JSON.parse(this.datakesehatan).peserta)
+    this.dokter = Object.assign({}, JSON.parse(this.datakesehatan).dokter)
+    this.petugas = Object.assign({}, JSON.parse(this.datakesehatan).petugas)
     this.data.tanggal_he = (this.formatDate(this.data.tanggal_he)).toString()
     if (this.data.intensif_program === 1) {
       this.data.intensif_program = true
@@ -661,6 +728,8 @@ export default {
       this.data.intensif_program = false
     }
     delete this.data.peserta
+    delete this.data.dokter
+    delete this.data.petugas
   }
 }
 </script>

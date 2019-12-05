@@ -26,6 +26,8 @@ class DataKesehatanRequest extends FormRequest
         return [
             'peserta_id' => 'required',
             'tanggal_he' => 'required',
+            'dokter_id' => 'required',
+            'petugas_id' => 'required'
         ];
     }
 }

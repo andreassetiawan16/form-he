@@ -154,7 +154,7 @@ class PesertaController extends Controller
             $updatePeserta->update($data);
             return response()->json([
                 'data' => $updatePeserta,
-                'message' => 'Berhasil membuat data peserta',
+                'message' => 'Berhasil update data peserta',
                 'status' => 200
             ]);
         }
@@ -173,7 +173,7 @@ class PesertaController extends Controller
         $peserta->delete();
 
         return response()->json([
-            'message' => 'Berhasil menghapus user',
+            'message' => 'Berhasil menghapus peserta',
             'status' => 200
         ]);
     }

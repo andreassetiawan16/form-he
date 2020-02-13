@@ -49,7 +49,7 @@
     </div>
     <div class="form-group">
       <label for="Tanggal Lahir" class="required">Tanggal Lahir</label>
-      <vue-datepicker v-model="peserta.tanggal_lahir" :class="getErrorMessage('tanggal_lahir')" />
+      <vue-datepicker v-model="peserta.tanggal_lahir" :class="getErrorMessage('tanggal_lahir')" :selectableYearRange="120" />
       <div class="error-message" v-for="(error, i) in errorMessage.tanggal_lahir" :key="i">{{ error }}</div>
     </div>
     <div class="form-group">

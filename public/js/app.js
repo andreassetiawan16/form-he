@@ -4725,7 +4725,7 @@ __webpack_require__.r(__webpack_exports__);
         pembicara: null,
         topik: null,
         tanggal_event: null,
-        jumlah_peserta: null
+        jumlah_peserta: 0
       },
       errorMessage: {}
     };
@@ -4897,7 +4897,7 @@ __webpack_require__.r(__webpack_exports__);
         pembicara: null,
         topik: null,
         tanggal_event: null,
-        jumlah_peserta: null
+        jumlah_peserta: 0
       },
       errorMessage: {}
     };
@@ -48334,6 +48334,7 @@ var render = function() {
           _vm._v(" "),
           _c("vue-datepicker", {
             class: _vm.getErrorMessage("tanggal_lahir"),
+            attrs: { selectableYearRange: 120 },
             model: {
               value: _vm.peserta.tanggal_lahir,
               callback: function($$v) {
@@ -48955,6 +48956,7 @@ var render = function() {
           _vm._v(" "),
           _c("vue-datepicker", {
             class: _vm.getErrorMessage("tanggal_lahir"),
+            attrs: { selectableYearRange: 120 },
             model: {
               value: _vm.peserta.tanggal_lahir,
               callback: function($$v) {

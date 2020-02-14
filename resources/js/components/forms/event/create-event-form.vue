@@ -42,7 +42,7 @@ export default {
         pembicara: null,
         topik: null,
         tanggal_event: null,
-        jumlah_peserta: null
+        jumlah_peserta: 0
       },
       errorMessage: {},
     }

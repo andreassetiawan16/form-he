@@ -26,7 +26,6 @@ class EventRequest extends FormRequest
         return [
             'pembicara' => 'required',
             'tanggal_event' => 'required',
-            'jumlah_peserta' => 'required',
         ];
     }
 }

@@ -292,6 +292,10 @@ label {
   border: 1px solid #dd4b39;
 }
 
+.v--modal-overlay {
+  z-index: 9999 !important;
+}
+
 .v--modal-overlay .v--modal-background-click .v--modal-box.v--modal {
   padding: 35px;
   height: auto !important;

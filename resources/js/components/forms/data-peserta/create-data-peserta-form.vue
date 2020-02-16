@@ -15,19 +15,19 @@
       <div class="error-message" v-for="(error, i) in errorMessage.nama" :key="i">{{ error }}</div>
     </div>
     <div class="form-group">
-      <label for="Email" class="required">Email</label>
+      <label for="Email">Email</label>
       <input type="email" class="form-control input-text" :class="getErrorMessage('email')" v-model="peserta.email">
       <div class="error-message" v-for="(error, i) in errorMessage.email" :key="i">{{ error }}</div>
     </div>
     <div class="form-group">
-      <label for="Nomor Telepon" class="required">Nomor Telepon</label>
-      <input type="number" class="form-control input-text" :class="getErrorMessage('no_telepon')" v-model="peserta.no_telepon">
-      <div class="error-message" v-for="(error, i) in errorMessage.no_telepon" :key="i">{{ error }}</div>
-    </div>
-    <div class="form-group">
-      <label for="Nomor Whatsapp">Nomor Whatsapp</label>
+      <label for="Nomor Whatsapp" class="required">Nomor Whatsapp</label>
       <input type="number" class="form-control input-text" :class="getErrorMessage('no_wa')" v-model="peserta.no_wa">
       <div class="error-message" v-for="(error, i) in errorMessage.usia" :key="i">{{ error }}</div>
+    </div>
+    <div class="form-group">
+      <label for="Nomor Telepon">Nomor Telepon</label>
+      <input type="number" class="form-control input-text" :class="getErrorMessage('no_telepon')" v-model="peserta.no_telepon">
+      <div class="error-message" v-for="(error, i) in errorMessage.no_telepon" :key="i">{{ error }}</div>
     </div>
     <div class="form-group">
       <label for="Jenis Kelamin" class="required">Jenis Kelamin</label>
@@ -38,7 +38,7 @@
       <div class="error-message" v-for="(error, i) in errorMessage.jenis_kelamin" :key="i">{{ error }}</div>
     </div>
     <div class="form-group">
-      <label for="Tinggi" class="required">Tinggi</label>
+      <label for="Tinggi">Tinggi</label>
       <input type="number" class="form-control input-text" :class="getErrorMessage('tinggi')" v-model="peserta.tinggi">
       <div class="error-message" v-for="(error, i) in errorMessage.tinggi" :key="i">{{ error }}</div>
     </div>
@@ -53,7 +53,7 @@
       <div class="error-message" v-for="(error, i) in errorMessage.tanggal_lahir" :key="i">{{ error }}</div>
     </div>
     <div class="form-group">
-      <label for="Alamat" class="required">Alamat</label>
+      <label for="Alamat">Alamat</label>
       <input type="text" class="form-control input-text" :class="getErrorMessage('alamat')" v-model="peserta.alamat">
       <div class="error-message" v-for="(error, i) in errorMessage.alamat" :key="i">{{ error }}</div>
     </div>
